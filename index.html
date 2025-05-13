@@ -59,6 +59,8 @@ Comprehensive Affordable Housing Plan</title>
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
+      display: flex;
+      align-items: center;
     }
     
     .logo span {
@@ -99,7 +101,7 @@ Comprehensive Affordable Housing Plan</title>
       overflow: hidden;
       background-size: cover;
       background-position: center;
-      height: 400px;
+      height: 450px;
       display: flex;
       align-items: center;
       text-align: center;
@@ -124,28 +126,32 @@ Comprehensive Affordable Housing Plan</title>
     }
     
     .hero-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 2.7rem;
+      margin-bottom: 1.2rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: -0.5px;
     }
     
     .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     
     .btn {
       display: inline-block;
       background-color: var(--accent-color);
       color: white;
-      padding: 0.75rem 1.5rem;
+      padding: 0.85rem 1.8rem;
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
       transition: all 0.3s ease;
+      margin: 0 0.5rem 0.5rem;
+      letter-spacing: 0.5px;
     }
     
     .btn:hover {
@@ -166,7 +172,7 @@ Comprehensive Affordable Housing Plan</title>
     }
     
     .section {
-      padding: 4rem 0;
+      padding: 5rem 0;
     }
 
     .section:nth-child(odd) {
@@ -179,26 +185,26 @@ Comprehensive Affordable Housing Plan</title>
     
     .section-title {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
       color: var(--primary-color);
     }
     
     .section-title h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       position: relative;
       display: inline-block;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
     
     .section-title h2::after {
       content: '';
-      width: 50px;
+      width: 60px;
       height: 3px;
       background-color: var(--accent-color);
       position: absolute;
-      bottom: -10px;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -206,29 +212,28 @@ Comprehensive Affordable Housing Plan</title>
     .section-title p {
       max-width: 800px;
       margin: 0 auto;
-      color: #666;
       font-size: 1.1rem;
       color: #6c757d;
     }
     
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
     }
     
     .card {
       background-color: white;
-      border-radius: 5px;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
       border: 2px solid transparent;
     }
     
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
       border-color: var(--accent-color);
     }
     
@@ -240,16 +245,23 @@ Comprehensive Affordable Housing Plan</title>
       justify-content: center;
       color: #888;
       font-size: 2rem;
+      overflow: hidden;
     }
     
     .card-content {
-      padding: 1.5rem;
+      padding: 1.8rem;
     }
     
     .card-content h3 {
       color: var(--primary-color);
       margin-bottom: 1rem;
       letter-spacing: -0.5px;
+      font-size: 1.4rem;
+    }
+    
+    .card-content p {
+      color: #555;
+      line-height: 1.7;
     }
     
     .timeline {
@@ -328,6 +340,12 @@ Comprehensive Affordable Housing Plan</title>
     .timeline-content h3 {
       color: var(--primary-color);
       margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    
+    .timeline-content p {
+      color: #555;
+      line-height: 1.6;
     }
     
     .form-container {
@@ -335,8 +353,8 @@ Comprehensive Affordable Housing Plan</title>
       margin: 0 auto;
       background-color: white;
       padding: 2rem;
-      border-radius: 5px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
     .form-group {
@@ -371,57 +389,85 @@ Comprehensive Affordable Housing Plan</title>
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
     }
     
     .team-member {
       text-align: center;
       background-color: white;
-      padding: 1.5rem;
-      border-radius: 5px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 1.8rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 380px;
+      display: flex;
+      flex-direction: column;
     }
     
     .team-member:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     }
     
     .team-image {
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      margin: 0 auto 1rem;
+      margin: 0 auto 1.2rem;
       object-fit: cover;
       background-color: #eee;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      border: 3px solid #f0f4f8;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
     
     .team-image img {
       transition: transform 0.5s ease;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
     .team-member:hover .team-image img {
       transform: scale(1.05);
     }
     
+    .team-member h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.4rem;
+      font-size: 1.3rem;
+    }
+    
+    .team-member p {
+      margin-bottom: 0.3rem;
+      color: #555;
+    }
+    
+    .team-info {
+      flex-grow: 1;
+    }
+    
     .social-links {
-      margin-top: 1rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
     }
     
     .social-links a {
       display: inline-block;
       margin: 0 5px;
       color: var(--primary-color);
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s;
+      text-decoration: none;
+      padding: 5px;
     }
     
     .social-links a:hover {
       color: var(--accent-color);
+      transform: translateY(-2px);
     }
     
     .faq-container {
@@ -430,25 +476,33 @@ Comprehensive Affordable Housing Plan</title>
     }
     
     .faq-item {
-      margin-bottom: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
       overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
     .faq-question {
-      padding: 1rem;
+      padding: 1.2rem;
       background-color: #f8f9fa;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      color: var(--dark-color);
     }
     
     .faq-question i {
       transition: transform 0.3s ease;
+      color: var(--accent-color);
     }
     
     .faq-item.active .faq-question {
@@ -457,7 +511,7 @@ Comprehensive Affordable Housing Plan</title>
     }
     
     .faq-answer {
-      padding: 0 1rem;
+      padding: 0 1.2rem;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease-out;
@@ -465,7 +519,9 @@ Comprehensive Affordable Housing Plan</title>
     }
     
     .faq-answer p {
-      padding: 1rem 0;
+      padding: 1.2rem 0;
+      color: #555;
+      line-height: 1.7;
     }
     
     .faq-item.active .faq-answer {
@@ -480,6 +536,7 @@ Comprehensive Affordable Housing Plan</title>
       background-color: var(--primary-color);
       color: white;
       padding: 3rem 0 1rem;
+      margin-top: 2rem;
     }
     
     .footer-content {
@@ -518,6 +575,80 @@ Comprehensive Affordable Housing Plan</title>
       padding-top: 1rem;
       font-size: 0.9rem;
       color: #ddd;
+    }
+    
+    .partner-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .partner-logo {
+      width: 200px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .partner-logo a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+    
+    .partner-logo:hover a {
+      transform: translateY(-3px);
+    }
+    
+    .partner-logo img {
+      max-height: 80px;
+      max-width: 100%;
+      border-radius: 4px;
+      transition: filter 0.3s ease;
+    }
+    
+    .partner-logo p {
+      color: #ddd;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .back-to-top:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .stat-highlight {
+      color: var(--accent-color);
+      font-weight: 600;
     }
     
     /* Survey embed styles */
@@ -633,7 +764,7 @@ Comprehensive Affordable Housing Plan</title>
 </head>
 <body>
   <!-- Back to Top Button -->
-  <a href="#" id="back-to-top" style="position: fixed; bottom: 20px; right: 20px; background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: opacity 0.3s; z-index: 1000;">
+  <a href="#" class="back-to-top" id="back-to-top">
     <i class="fas fa-arrow-up"></i>
   </a>
 
@@ -689,7 +820,7 @@ Comprehensive Affordable Housing Plan</title>
           </div>
           <div class="card-content">
             <h3>Housing Challenges</h3>
-            <p>Lake City and Hinsdale County face significant challenges in providing affordable and workforce housing. As Colorado's most remote county with 96% federally owned land, median home prices of $563,000, and 65% of housing units being second homes, our community requires tailored housing solutions.</p>
+            <p>Lake City and Hinsdale County face significant challenges in providing affordable and workforce housing. As Colorado's most remote county with <span class="stat-highlight">96% federally owned land</span>, median home prices of <span class="stat-highlight">$563,000</span>, and <span class="stat-highlight">65% of housing units being second homes</span>, our community requires tailored housing solutions that address our unique circumstances.</p>
           </div>
         </div>
         <div class="card">
@@ -704,7 +835,7 @@ Comprehensive Affordable Housing Plan</title>
           </div>
           <div class="card-content">
             <h3>Project Goals</h3>
-            <p>Our project will identify housing needs, develop strategies for both new construction and preservation, secure funding opportunities, and create a clear roadmap to ensure Lake City residents can find homes they can afford.</p>
+            <p>Our project will identify housing needs, develop strategies for both new construction and preservation, secure funding opportunities, and create a clear roadmap to ensure Lake City residents can find homes they can afford. We're focusing on practical solutions that can be implemented in our unique mountain community context.</p>
           </div>
         </div>
         <div class="card">
@@ -719,7 +850,7 @@ Comprehensive Affordable Housing Plan</title>
           </div>
           <div class="card-content">
             <h3>Community Involvement</h3>
-            <p>Your input is essential to this process. Through surveys, public meetings, and ongoing engagement, we're working to ensure that housing solutions reflect the real needs of our community.</p>
+            <p>Your input is essential to this process. Through surveys, public meetings, and ongoing engagement, we're working to ensure that housing solutions reflect the real needs of our community. Please take our surveys and stay connected as we develop strategies that work for Lake City and Hinsdale County residents.</p>
           </div>
         </div>
       </div>
@@ -774,68 +905,68 @@ Comprehensive Affordable Housing Plan</title>
   </section>
   
   <!-- Team -->
-<section id="team" class="section">
-  <div class="container">
-    <div class="section-title">
-      <h2>Project Team</h2>
-      <p>Meet the experts working on Lake City's housing solutions</p>
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Project Team</h2>
+        <p>Meet the experts working on Lake City's housing solutions</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-info">
+            <div class="team-image">
+              <img src="Sarah.png" alt="Sarah Brown McClain">
+            </div>
+            <h3>Sarah Brown McClain</h3>
+            <p>Western Spaces, LLC</p>
+            <p>Project Lead and Housing Specialist</p>
+          </div>
+          <div class="social-links">
+            <a href="https://westernspaces.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-info">
+            <div class="team-image">
+              <img src="Ethan.png" alt="Ethan Mobley">
+            </div>
+            <h3>Ethan Mobley</h3>
+            <p>Dynamic Planning & Science</p>
+            <p>Land Use Feasibility and GIS</p>
+          </div>
+          <div class="social-links">
+            <a href="https://dynamicplanning.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-info">
+            <div class="team-image">
+              <img src="Grant.png" alt="Grant Bennett">
+            </div>
+            <h3>Grant Bennett</h3>
+            <p>Proximity Green</p>
+            <p>Development Specialist</p>
+          </div>
+          <div class="social-links">
+            <a href="https://proximitygreen.com" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-info">
+            <div class="team-image">
+              <img src="Jeff.png" alt="Jeff Moffett">
+            </div>
+            <h3>Jeff Moffett</h3>
+            <p>Triple Point Strategic Consulting</p>
+            <p>Financial Feasibility</p>
+          </div>
+          <div class="social-links">
+            <a href="https://tpsconsulting.net" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="team-grid">
-      <div class="team-member" style="display: flex; flex-direction: column; height: 380px;">
-        <div style="flex-grow: 1;">
-          <div class="team-image">
-            <img src="Sarah.png" alt="Sarah Brown McClain" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-          </div>
-          <h3>Sarah Brown McClain</h3>
-          <p>Western Spaces, LLC</p>
-          <p>Project Lead and Housing Specialist</p>
-        </div>
-        <div class="social-links" style="margin-top: auto; padding-top: 1rem;">
-          <a href="https://westernspaces.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-      <div class="team-member" style="display: flex; flex-direction: column; height: 380px;">
-        <div style="flex-grow: 1;">
-          <div class="team-image">
-            <img src="Ethan.png" alt="Ethan Mobley" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-          </div>
-          <h3>Ethan Mobley</h3>
-          <p>Dynamic Planning & Science</p>
-          <p>Land Use Feasibility and GIS</p>
-        </div>
-        <div class="social-links" style="margin-top: auto; padding-top: 1rem;">
-          <a href="https://dynamicplanning.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-      <div class="team-member" style="display: flex; flex-direction: column; height: 380px;">
-        <div style="flex-grow: 1;">
-          <div class="team-image">
-            <img src="Grant.png" alt="Grant Bennett" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-          </div>
-          <h3>Grant Bennett</h3>
-          <p>Proximity Green</p>
-          <p>Development Specialist</p>
-        </div>
-        <div class="social-links" style="margin-top: auto; padding-top: 1rem;">
-          <a href="https://proximitygreen.com" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-      <div class="team-member" style="display: flex; flex-direction: column; height: 380px;">
-        <div style="flex-grow: 1;">
-          <div class="team-image">
-            <img src="Jeff.png" alt="Jeff Moffett" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-          </div>
-          <h3>Jeff Moffett</h3>
-          <p>Triple Point Strategic Consulting</p>
-          <p>Financial Feasibility</p>
-        </div>
-        <div class="social-links" style="margin-top: auto; padding-top: 1rem;">
-          <a href="https://tpsconsulting.net" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- FAQ -->
   <section id="faq" class="section">
@@ -860,7 +991,7 @@ Comprehensive Affordable Housing Plan</title>
             <i class="fas fa-chevron-down"></i>
           </div>
           <div class="faq-answer">
-            <p>Lake City and Hinsdale County face unique housing challenges due to limited developable land, seasonal population fluctuations, and workforce housing shortages. This plan will provide actionable strategies to address these challenges and ensure long-term housing affordability and availability for our community.</p>
+            <p>Lake City and Hinsdale County face unique housing challenges due to limited developable land, seasonal population fluctuations, and workforce housing shortages. With median home prices at $563,000 and 65% of homes being second residences, we need targeted strategies to ensure housing remains accessible. This plan will provide actionable strategies to address these challenges and ensure long-term housing affordability and availability for our community.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -901,7 +1032,11 @@ Comprehensive Affordable Housing Plan</title>
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="container">
-      <div class="form-container" style="max-width: 800px; margin: 0 auto; background-color: white; padding: 2rem; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback about Lake City's housing initiatives?</p>
+      </div>
+      <div class="form-container">
         <!-- Your Google Form Embed -->
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiwZRKQi1QcgvEHoZPw_N-QqsyGeEEf19oRUISDbq7A_NgpQ/viewform?embedded=true" width="100%" height="811" frameborder="0" marginheight="0" marginwidth="0" style="display: block; margin: 0 auto;">Loading…</iframe>
       </div>
@@ -914,35 +1049,35 @@ Comprehensive Affordable Housing Plan</title>
       <div style="text-align: center; padding: 2rem 0;">
         <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Project Partners</h3>
         
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; margin-bottom: 2rem;">
+        <div class="partner-logos">
           <!-- Town of Lake City Logo/Link -->
-          <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-            <a href="https://www.townoflakecityco.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
-              <img src="https://www.townoflakecityco.gov/uploads/1/0/6/1/10613658/published/tolc-logo-2.png?1637193446" alt="Town of Lake City Logo" style="max-height: 80px; max-width: 100%; background-color: white; padding: 8px; border-radius: 4px;">
+          <div class="partner-logo">
+            <a href="https://www.townoflakecityco.gov/" target="_blank">
+              <img src="https://www.townoflakecityco.gov/uploads/1/0/6/1/10613658/published/tolc-logo-2.png?1637193446" alt="Town of Lake City Logo" style="background-color: white; padding: 8px; border-radius: 4px;">
             </a>
-            <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Town of Lake City</p>
+            <p>Town of Lake City</p>
           </div>
           
           <!-- Hinsdale County Logo/Link -->
-          <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-            <a href="https://hinsdalecounty.colorado.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
-              <img src="https://hinsdalecounty.colorado.gov/sites/hinsdalecounty/files/double%20logo.jpg" alt="Hinsdale County Logo" style="max-height: 80px; max-width: 100%; border-radius: 4px;">
+          <div class="partner-logo">
+            <a href="https://hinsdalecounty.colorado.gov/" target="_blank">
+              <img src="https://hinsdalecounty.colorado.gov/sites/hinsdalecounty/files/double%20logo.jpg" alt="Hinsdale County Logo">
             </a>
-            <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Hinsdale County</p>
+            <p>Hinsdale County</p>
           </div>
           
           <!-- DOLA Logo/Link -->
-          <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-            <a href="https://cdola.colorado.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
-              <img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" alt="Department of Local Affairs Logo" style="max-height: 80px; max-width: 100%; background-color: white; padding: 8px; border-radius: 4px;">
+          <div class="partner-logo">
+            <a href="https://cdola.colorado.gov/" target="_blank">
+              <img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" alt="Department of Local Affairs Logo" style="background-color: white; padding: 8px; border-radius: 4px;">
             </a>
-            <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Department of Local Affairs</p>
+            <p>Department of Local Affairs</p>
           </div>
         </div>
       </div>
       
       <div class="copyright">
-        <p>&copy; 2025 Western Spaces, LLC. All rights reserved.</p>
+        <p>&copy; 2025 Lake City Comprehensive Affordable Housing Plan. All rights reserved.</p>
       </div>
     </div>
   </footer>
