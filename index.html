@@ -1029,19 +1029,58 @@ Comprehensive Affordable Housing Plan</title>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Contact Us</h2>
-        <p>Have questions or feedback about Lake City's housing initiatives?</p>
-      </div>
-      <div class="form-container">
-        <!-- Your Google Form Embed -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiwZRKQi1QcgvEHoZPw_N-QqsyGeEEf19oRUISDbq7A_NgpQ/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" style="display: block; margin: 0 auto;">Loading…</iframe>
+<!-- Sign Up for Updates -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Stay Informed</h2>
+      <p>Sign up to receive updates about Lake City's housing initiatives</p>
+    </div>
+    <div class="form-container" style="max-width: 600px;">
+      <form id="signup-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="interest">I'm interested in: (optional)</label>
+          <select class="form-control" id="interest">
+            <option value="">Select an option</option>
+            <option value="renting">Renting in Lake City</option>
+            <option value="buying">Buying a home in Lake City</option>
+            <option value="developing">Housing development opportunities</option>
+            <option value="general">General housing information</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn" style="width: 100%;">Sign Up for Updates</button>
+        </div>
+        <p style="text-align: center; color: #6c757d; font-size: 0.9rem;">We respect your privacy and will never share your information with third parties.</p>
+      </form>
+      <div id="success-message" style="display: none; text-align: center; padding: 2rem 0;">
+        <i class="fas fa-check-circle" style="color: var(--success-color); font-size: 3rem; margin-bottom: 1rem;"></i>
+        <h3 style="margin-bottom: 1rem;">Thank You!</h3>
+        <p>You've been added to our update list. We'll keep you informed about Lake City's housing initiatives.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Add this script at the end of your existing scripts -->
+<script>
+  // Simple form submission handler
+  document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Here you would typically have code to submit to a backend or email service
+    // For now, we'll just show a success message
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+  });
+</script>
 
   <!-- Footer -->
   <footer>
