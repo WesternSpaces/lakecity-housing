@@ -4,6 +4,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,20L20,50v30h60V50L50,20z' fill='%232c5f73'/%3E%3C/svg%3E">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Lake City and Hinsdale County Comprehensive Affordable Housing Plan aims to create practical housing solutions in Colorado's most remote county.">
   <title>Lake City and Hinsdale County
 Comprehensive Affordable Housing Plan</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -28,6 +29,8 @@ Comprehensive Affordable Housing Plan</title>
       line-height: 1.6;
       color: #333;
       background-color: #f8f9fa;
+      background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h20v20H0z" fill="%23f8f9fa"/%3E%3Cpath d="M0 10h20M10 0v20" stroke="%23e9ecef" stroke-width="0.5"/%3E%3C/svg%3E');
+      background-attachment: fixed;
     }
     
     .container {
@@ -42,6 +45,9 @@ Comprehensive Affordable Housing Plan</title>
       color: white;
       padding: 1rem 0;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     
     .header-container {
@@ -89,7 +95,8 @@ Comprehensive Affordable Housing Plan</title>
     }
     
     .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+      position: relative;
+      overflow: hidden;
       background-size: cover;
       background-position: center;
       height: 400px;
@@ -99,9 +106,27 @@ Comprehensive Affordable Housing Plan</title>
       color: white;
     }
     
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    
     .hero-content h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
     .hero-content p {
@@ -120,11 +145,13 @@ Comprehensive Affordable Housing Plan</title>
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
     }
     
     .btn:hover {
       background-color: #3a5a40;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     
     .btn-outline {
@@ -141,6 +168,14 @@ Comprehensive Affordable Housing Plan</title>
     .section {
       padding: 4rem 0;
     }
+
+    .section:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    
+    .section:nth-child(even) {
+      background-color: #f8f9fa;
+    }
     
     .section-title {
       text-align: center;
@@ -153,6 +188,8 @@ Comprehensive Affordable Housing Plan</title>
       position: relative;
       display: inline-block;
       margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
     
     .section-title h2::after {
@@ -170,6 +207,8 @@ Comprehensive Affordable Housing Plan</title>
       max-width: 800px;
       margin: 0 auto;
       color: #666;
+      font-size: 1.1rem;
+      color: #6c757d;
     }
     
     .cards {
@@ -183,17 +222,19 @@ Comprehensive Affordable Housing Plan</title>
       border-radius: 5px;
       overflow: hidden;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      border: 2px solid transparent;
     }
     
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-color: var(--accent-color);
     }
     
     .card-img {
       height: 200px;
-      background-color: #ddd;
+      background-color: #f0f4f8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,6 +249,7 @@ Comprehensive Affordable Housing Plan</title>
     .card-content h3 {
       color: var(--primary-color);
       margin-bottom: 1rem;
+      letter-spacing: -0.5px;
     }
     
     .timeline {
@@ -268,7 +310,20 @@ Comprehensive Affordable Housing Plan</title>
       position: relative;
       border-radius: 6px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
     }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .timeline-item:nth-child(1) .timeline-content { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) .timeline-content { animation-delay: 0.3s; }
+    .timeline-item:nth-child(3) .timeline-content { animation-delay: 0.5s; }
+    .timeline-item:nth-child(4) .timeline-content { animation-delay: 0.7s; }
+    .timeline-item:nth-child(5) .timeline-content { animation-delay: 0.9s; }
     
     .timeline-content h3 {
       color: var(--primary-color);
@@ -325,6 +380,12 @@ Comprehensive Affordable Housing Plan</title>
       padding: 1.5rem;
       border-radius: 5px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
     
     .team-image {
@@ -337,6 +398,15 @@ Comprehensive Affordable Housing Plan</title>
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+    }
+    
+    .team-image img {
+      transition: transform 0.5s ease;
+    }
+    
+    .team-member:hover .team-image img {
+      transform: scale(1.05);
     }
     
     .social-links {
@@ -374,6 +444,16 @@ Comprehensive Affordable Housing Plan</title>
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .faq-question i {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question {
+      color: var(--primary-color);
+      background-color: rgba(88, 129, 87, 0.1);
     }
     
     .faq-answer {
@@ -552,89 +632,99 @@ Comprehensive Affordable Housing Plan</title>
   </style>
 </head>
 <body>
+  <!-- Back to Top Button -->
+  <a href="#" id="back-to-top" style="position: fixed; bottom: 20px; right: 20px; background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: opacity 0.3s; z-index: 1000;">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
   <!-- Header -->
-<header>
-  <div class="container header-container">
-    <div class="logo">
-      <img src="logo.png" alt="Lake City Housing Strategy Logo" height="100">
-      <!-- Optionally keep text next to logo: <span style="vertical-align: middle; margin-left: 10px;">Housing Strategy</span> -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="logo.png" alt="Lake City Housing Strategy Logo" height="50" style="vertical-align: middle;">
+        <span style="vertical-align: middle; margin-left: 10px;">Housing Strategy</span>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    <button class="hamburger" id="hamburger">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav>
-      <ul id="nav-menu">
-        <!-- keep your existing menu items -->
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<!-- Hero -->
-<section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('cover-small.jpg'); background-size: cover; background-position: center;">
-  <div class="container" style="position: relative; z-index: 2;">
-    <div class="hero-content">
-      <h1>Lake City and Hinsdale County<br>Comprehensive Affordable Housing Plan</h1>
-      <p>Building housing solutions that work for our community, now and for generations to come.</p>
-      <a href="https://survey.alchemer.com/s3/8317986/Household" target="_blank" class="btn">Take the Household Survey</a>
-      <a href="https://survey.alchemer.com/s3/8317987/Employer" target="_blank" class="btn">Take the Employer Survey</a>
+  <!-- Hero -->
+  <section class="hero" style="background-image: url('cover-small.jpg');">
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="hero-content">
+        <h1>Lake City and Hinsdale County<br>Comprehensive Affordable Housing Plan</h1>
+        <p>Building housing solutions that work for our community, now and for generations to come.</p>
+        <a href="https://survey.alchemer.com/s3/8317986/Household" target="_blank" class="btn">Take the Household Survey</a>
+        <a href="https://survey.alchemer.com/s3/8317987/Employer" target="_blank" class="btn">Take the Employer Survey</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- About -->
-<section id="about" class="section">
-  <div class="container">
-    <div class="section-title">
-      <h2>About the Project</h2>
-      <p>Understanding our community's housing needs and developing actionable solutions</p>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>About the Project</h2>
+        <p>Understanding our community's housing needs and developing actionable solutions</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Simple House Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Housing Challenges</h3>
+            <p>Lake City and Hinsdale County face significant challenges in providing affordable and workforce housing. As Colorado's most remote county with 96% federally owned land, median home prices of $563,000, and 65% of housing units being second homes, our community requires tailored housing solutions.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Simple Chart Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+              <line x1="2" y1="20" x2="22" y2="20"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Project Goals</h3>
+            <p>Our project will identify housing needs, develop strategies for both new construction and preservation, secure funding opportunities, and create a clear roadmap to ensure Lake City residents can find homes they can afford.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Simple People Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Community Involvement</h3>
+            <p>Your input is essential to this process. Through surveys, public meetings, and ongoing engagement, we're working to ensure that housing solutions reflect the real needs of our community.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="cards">
-      <div class="card">
-        <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
-          <!-- Simple House Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
-        </div>
-        <div class="card-content">
-          <h3>Housing Challenges</h3>
-          <p>Lake City and Hinsdale County face significant challenges in providing affordable and workforce housing. As Colorado's most remote county with 96% federally owned land, our community requires tailored housing solutions.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
-          <!-- Simple Chart Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="20" x2="18" y2="10"></line>
-            <line x1="12" y1="20" x2="12" y2="4"></line>
-            <line x1="6" y1="20" x2="6" y2="14"></line>
-            <line x1="2" y1="20" x2="22" y2="20"></line>
-          </svg>
-        </div>
-        <div class="card-content">
-          <h3>Project Goals</h3>
-          <p>Our project will identify housing needs, develop strategies for both new construction and preservation, secure funding opportunities, and create a clear roadmap to ensure Lake City residents can find homes they can afford.</p>        </div>
-      </div>
-      <div class="card">
-        <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
-          <!-- Simple People Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-          </svg>
-        </div>
-        <div class="card-content">
-          <h3>Community Involvement</h3>
-          <p>Your input is essential to this process. Through surveys, public meetings, and ongoing engagement, we're working to ensure that housing solutions reflect the real needs of our community.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
   
   <!-- Timeline -->
   <section id="timeline" class="section">
@@ -647,7 +737,7 @@ Comprehensive Affordable Housing Plan</title>
         <div class="timeline-item left">
           <div class="timeline-content">
             <h3>Project Kickoff</h3>
-            <p>April 2025</p>
+            <p>March 2025</p>
             <p>Formation of Housing Working Group and initial stakeholder engagement</p>
           </div>
         </div>
@@ -683,61 +773,61 @@ Comprehensive Affordable Housing Plan</title>
     </div>
   </section>
   
-<!-- Team -->
-<section id="team" class="section" style="background-color: #f0f4f8;">
-  <div class="container">
-    <div class="section-title">
-      <h2>Project Team</h2>
-      <p>Meet the experts working on Lake City's housing solutions</p>
+  <!-- Team -->
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Project Team</h2>
+        <p>Meet the experts working on Lake City's housing solutions</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-image">
+            <img src="Sarah.png" alt="Sarah Brown McClain" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+          </div>
+          <h3>Sarah Brown McClain</h3>
+          <p>Western Spaces, LLC</p>
+          <p>Project Lead and Housing Specialist</p>
+          <div class="social-links">
+            <a href="https://westernspaces.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-image">
+            <img src="Ethan.png" alt="Ethan Mobley" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+          </div>
+          <h3>Ethan Mobley</h3>
+          <p>Dynamic Planning & Science</p>
+          <p>Land Use Feasibility and GIS</p>
+          <div class="social-links">
+            <a href="https://dynamicplanning.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-image">
+            <img src="Grant.png" alt="Grant Bennett" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+          </div>
+          <h3>Grant Bennett</h3>
+          <p>Proximity Green</p>
+          <p>Development Specialist</p>
+          <div class="social-links">
+            <a href="https://proximitygreen.com" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-image">
+            <img src="Jeff.png" alt="Jeff Moffett" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+          </div>
+          <h3>Jeff Moffett</h3>
+          <p>Triple Point Strategic Consulting</p>
+          <p>Financial Feasibility</p>
+          <div class="social-links">
+            <a href="https://tpsconsulting.net" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="team-grid">
-      <div class="team-member">
-        <div class="team-image">
-          <img src="Sarah.png" alt="Sarah Brown McClain" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        </div>
-        <h3>Sarah Brown McClain</h3>
-        <p>Western Spaces, LLC</p>
-        <p>Project Lead and Housing Specialist</p>
-        <div class="social-links">
-          <a href="https://westernspaces.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-      <div class="team-member">
-        <div class="team-image">
-          <img src="Ethan.png" alt="Ethan Mobley" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        </div>
-        <h3>Ethan Mobley</h3>
-        <p>Dynamic Planning & Science</p>
-        <p>Land Use Feasibility and GIS</p>
-        <div class="social-links">
-          <a href="https://dynamicplanning.co" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-      <div class="team-member">
-        <div class="team-image">
-          <img src="Grant.png" alt="Grant Bennett" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        </div>
-        <h3>Grant Bennett</h3>
-        <p>Proximity Green</p>
-        <p>Development Specialist</p>
-        <div class="social-links">
-          <a href="https://proximitygreen.com" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-      <div class="team-member">
-        <div class="team-image">
-          <img src="Jeff.png" alt="Jeff Moffett" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        </div>
-        <h3>Jeff Moffett</h3>
-        <p>Triple Point Strategic Consulting</p>
-        <p>Financial Feasibility</p>
-        <div class="social-links">
-          <a href="https://tpsconsulting.net" target="_blank"><i class="fas fa-globe"></i> Company Website</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- FAQ -->
   <section id="faq" class="section">
@@ -801,52 +891,53 @@ Comprehensive Affordable Housing Plan</title>
   </section>
 
   <!-- Contact -->
-<section id="contact" class="section" style="background-color: #f0f4f8;">
-  <div class="container">
-    <div class="form-container" style="max-width: 800px; margin: 0 auto; background-color: white; padding: 2rem; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
-      <!-- Your Google Form Embed -->
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiwZRKQi1QcgvEHoZPw_N-QqsyGeEEf19oRUISDbq7A_NgpQ/viewform?embedded=true" width="100%" height="811" frameborder="0" marginheight="0" marginwidth="0" style="display: block; margin: 0 auto;">Loading…</iframe>
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="form-container" style="max-width: 800px; margin: 0 auto; background-color: white; padding: 2rem; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+        <!-- Your Google Form Embed -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiwZRKQi1QcgvEHoZPw_N-QqsyGeEEf19oRUISDbq7A_NgpQ/viewform?embedded=true" width="100%" height="811" frameborder="0" marginheight="0" marginwidth="0" style="display: block; margin: 0 auto;">Loading…</iframe>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Footer -->
-<footer>
-  <div class="container">
-    <div style="text-align: center; padding: 2rem 0;">
-      <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Project Partners</h3>
-      
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; margin-bottom: 2rem;">
-        <!-- Town of Lake City Logo/Link -->
-        <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-          <a href="https://www.townoflakecityco.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
-            <img src="https://www.townoflakecityco.gov/uploads/1/0/6/1/10613658/published/tolc-logo-2.png?1637193446" alt="Town of Lake City Logo" style="max-height: 80px; max-width: 100%; background-color: white; padding: 8px; border-radius: 4px;">
-          </a>
-          <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Town of Lake City</p>
-        </div>
+  <footer>
+    <div class="container">
+      <div style="text-align: center; padding: 2rem 0;">
+        <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Project Partners</h3>
         
-        <!-- Hinsdale County Logo/Link -->
-        <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-          <a href="https://hinsdalecounty.colorado.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
-            <img src="https://hinsdalecounty.colorado.gov/sites/hinsdalecounty/files/double%20logo.jpg" alt="Hinsdale County Logo" style="max-height: 80px; max-width: 100%; border-radius: 4px;">
-          </a>
-          <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Hinsdale County</p>
-        </div>
-        
-        <!-- DOLA Logo/Link -->
-        <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-          <a href="https://cdola.colorado.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
-            <img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" alt="Department of Local Affairs Logo" style="max-height: 80px; max-width: 100%; background-color: white; padding: 8px; border-radius: 4px;">
-          </a>
-          <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Department of Local Affairs</p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; margin-bottom: 2rem;">
+          <!-- Town of Lake City Logo/Link -->
+          <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <a href="https://www.townoflakecityco.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
+              <img src="https://www.townoflakecityco.gov/uploads/1/0/6/1/10613658/published/tolc-logo-2.png?1637193446" alt="Town of Lake City Logo" style="max-height: 80px; max-width: 100%; background-color: white; padding: 8px; border-radius: 4px;">
+            </a>
+            <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Town of Lake City</p>
+          </div>
+          
+          <!-- Hinsdale County Logo/Link -->
+          <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <a href="https://hinsdalecounty.colorado.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
+              <img src="https://hinsdalecounty.colorado.gov/sites/hinsdalecounty/files/double%20logo.jpg" alt="Hinsdale County Logo" style="max-height: 80px; max-width: 100%; border-radius: 4px;">
+            </a>
+            <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Hinsdale County</p>
+          </div>
+          
+          <!-- DOLA Logo/Link -->
+          <div style="width: 200px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <a href="https://cdola.colorado.gov/" target="_blank" style="display: flex; align-items: center; justify-content: center; height: 100px; width: 100%;">
+              <img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" alt="Department of Local Affairs Logo" style="max-height: 80px; max-width: 100%; background-color: white; padding: 8px; border-radius: 4px;">
+            </a>
+            <p style="color: #ddd; margin-top: 0.5rem; font-size: 0.9rem;">Department of Local Affairs</p>
+          </div>
         </div>
       </div>
-    
-    <div class="copyright">
-      <p>&copy; 2025 Lake City Comprehensive Affordable Housing Plan. All rights reserved.</p>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Lake City Comprehensive Affordable Housing Plan. All rights reserved.</p>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     // Mobile menu toggle
@@ -892,6 +983,16 @@ Comprehensive Affordable Housing Plan</title>
           document.getElementById('nav-menu').classList.remove('show');
         }
       });
+    });
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', function() {
+      var backToTop = document.getElementById('back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTop.style.opacity = '1';
+      } else {
+        backToTop.style.opacity = '0';
+      }
     });
   </script>
 </body>
