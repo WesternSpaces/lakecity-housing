@@ -789,17 +789,25 @@ Comprehensive Affordable Housing Plan</title>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" style="background-image: url('cover-small.jpg');">
-    <div class="container" style="position: relative; z-index: 2;">
-      <div class="hero-content">
-        <h1>Lake City and Hinsdale County<br>Comprehensive Affordable Housing Plan</h1>
-        <p>Building housing solutions that work for our community, now and for generations to come.</p>
-        <a href="https://survey.alchemer.com/s3/8317986/Household" target="_blank" class="btn">Take the Household Survey</a>
-        <a href="https://survey.alchemer.com/s3/8317987/Employer" target="_blank" class="btn">Take the Employer Survey</a>
+<!-- Hero -->
+<section class="hero" style="background-image: url('cover-small.jpg'); position: relative; overflow: hidden; background-size: cover; background-position: center; min-height: 450px; display: flex; align-items: center; text-align: center; color: white;">
+  <!-- Overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)); z-index: 1;"></div>
+  
+  <div class="container" style="position: relative; z-index: 2; width: 100%; padding: 2rem 1rem;">
+    <div class="hero-content" style="max-width: 900px; margin: 0 auto;">
+      <h1 style="font-size: clamp(1.8rem, 5vw, 2.7rem); margin-bottom: clamp(1rem, 3vw, 1.2rem); text-shadow: 0 2px 4px rgba(0,0,0,0.3); letter-spacing: -0.5px; line-height: 1.2;">Lake City and Hinsdale County<br>Comprehensive Affordable Housing Plan</h1>
+      
+      <p style="font-size: clamp(1rem, 3vw, 1.3rem); margin-bottom: clamp(1.5rem, 5vw, 2.5rem); max-width: 800px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 2px rgba(0,0,0,0.3); line-height: 1.5;">Building housing solutions that work for our community, now and for generations to come.</p>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+        <a href="https://survey.alchemer.com/s3/8317986/Household" target="_blank" style="display: inline-block; background-color: #588157; color: white; padding: clamp(0.7rem, 2vw, 0.85rem) clamp(1.2rem, 3vw, 1.8rem); border-radius: 4px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; letter-spacing: 0.5px;">Take the Household Survey</a>
+        
+        <a href="https://survey.alchemer.com/s3/8317987/Employer" target="_blank" style="display: inline-block; background-color: #588157; color: white; padding: clamp(0.7rem, 2vw, 0.85rem) clamp(1.2rem, 3vw, 1.8rem); border-radius: 4px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; letter-spacing: 0.5px;">Take the Employer Survey</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- About -->
   <section id="about" class="section">
