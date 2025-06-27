@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lake City Housing Trade-off Simulator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #3498db;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .panel {
+            background: #2c3e50;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #e74c3c;
+            margin: 15px 0 10px;
+            font-size: 1.3em;
+        }
+        
+        .slider-group {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: #34495e;
+            outline: none;
+            margin: 10px 0;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+        
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .metric-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card.warning {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.2);
+        }
+        
+        .metric-card.success {
+            border-color: #2ecc71;
+            background: rgba(46, 204, 113, 0.2);
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
+        
+        .ami-bar {
+            display: flex;
+            height: 40px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .ami-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .warning-box {
+            background: rgba(231, 76, 60, 0.2);
+            border: 2px solid #e74c3c;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .toggle-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .toggle-button {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-button.active {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.3);
+        }
+        
+        .bottom-summary {
+            background: #2c3e50;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .big-number {
+            font-size: 3em;
+            color: #3498db;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lake City Housing Trade-off Simulator</h1>
+        
+        <div class="main-grid">
+            <!-- Left Panel: Inputs -->
+            <div class="panel">
+                <h2>Housing Production Choices</h2>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Total Units to Build (5 years)</span>
+                        <span id="totalUnitsValue">40</span>
+                    </div>
+                    <input type="range" min="20" max="60" value="40" class="slider" id="totalUnitsSlider">
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>% Rental vs Ownership</span>
+                        <span id="rentalPercentValue">70% Rental</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="70" class="slider" id="rentalPercentSlider">
+                </div>
+                
+                <h3>Rental Income Targeting</h3>
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>% Below 60% AMI (Deep Subsidy)</span>
+                        <span id="rental60Value">40%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="40" class="slider" id="rental60Slider">
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>% at 60-80% AMI (Workforce)</span>
+                        <span id="rental80Value">30%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="30" class="slider" id="rental80Slider">
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>% at 80-120% AMI (Moderate)</span>
+                        <span id="rental120Value">30%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="30" class="slider" id="rental120Slider">
+                </div>
+                
+                <div class="warning-box" id="rentalWarning">
+                    ⚠️ Rental percentages must equal 100%
+                </div>
+                
+                <h3>Ownership Income Targeting</h3>
+                <div class="toggle-group">
+                    <button class="toggle-button active" onclick="setOwnershipTarget('workforce')">
+                        Workforce Focus (80-120% AMI)
+                    </button>
+                    <button class="toggle-button" onclick="setOwnershipTarget('mixed')">
+                        Mixed Income (80-150% AMI)
+                    </button>
+                </div>
+                
+                <h3>Development Assumptions</h3>
+                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-top: 10px;">
+                    <p style="margin: 5px 0;">✓ Land provided at no cost</p>
+                    <p style="margin: 5px 0;">✓ Basic infrastructure in place</p>
+                    <p style="margin: 5px 0;">✓ Standard construction costs</p>
+                </div>
+            </div>
+            
+            <!-- Right Panel: Impacts -->
+            <div class="panel">
+                <h2>Community Impacts</h2>
+                
+                <div class="impact-metrics">
+                    <div class="metric-card" id="householdsServedCard">
+                        <div class="metric-value" id="householdsServed">40</div>
+                        <div class="metric-label">Households Served</div>
+                    </div>
+                    
+                    <div class="metric-card" id="workersHousedCard">
+                        <div class="metric-value" id="workersHoused">32</div>
+                        <div class="metric-label">New Workers Can Live Here</div>
+                    </div>
+                    
+                    <div class="metric-card" id="childrenCard">
+                        <div class="metric-value" id="children">+12</div>
+                        <div class="metric-label">School-Age Children</div>
+                    </div>
+                    
+                    <div class="metric-card" id="economicCard">
+                        <div class="metric-value" id="economic">$1.2M</div>
+                        <div class="metric-label">Annual Economic Impact</div>
+                    </div>
+                </div>
+                
+                <h3>Who Gets Housed?</h3>
+                <div class="ami-bar" id="amiBar">
+                    <div class="ami-segment" style="background: #e74c3c; width: 40%;">
+                        <60% AMI: 11
+                    </div>
+                    <div class="ami-segment" style="background: #f39c12; width: 30%;">
+                        60-80%: 8
+                    </div>
+                    <div class="ami-segment" style="background: #3498db; width: 30%;">
+                        80-120%: 21
+                    </div>
+                </div>
+                
+                <h3>Community Benefits</h3>
+                <div class="benefit-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                    <div class="benefit-item" style="background: rgba(46, 204, 113, 0.2); padding: 15px; border-radius: 10px;">
+                        <strong>Essential Services</strong>
+                        <div id="essentialWorkers" style="font-size: 1.2em; margin-top: 5px;">18 teachers, nurses, EMTs housed</div>
+                    </div>
+                    <div class="benefit-item" style="background: rgba(52, 152, 219, 0.2); padding: 15px; border-radius: 10px;">
+                        <strong>Seniors Aging in Place</strong>
+                        <div id="seniorHousing" style="font-size: 1.2em; margin-top: 5px;">8 seniors can downsize</div>
+                    </div>
+                    <div class="benefit-item" style="background: rgba(155, 89, 182, 0.2); padding: 15px; border-radius: 10px;">
+                        <strong>Business Stability</strong>
+                        <div id="businessImpact" style="font-size: 1.2em; margin-top: 5px;">15 businesses keep workers</div>
+                    </div>
+                    <div class="benefit-item" style="background: rgba(241, 196, 15, 0.2); padding: 15px; border-radius: 10px;">
+                        <strong>Commute Reduction</strong>
+                        <div id="commuteImpact" style="font-size: 1.2em; margin-top: 5px;">25 fewer daily commuters</div>
+                    </div>
+                </div>
+                
+                <h3>Investment Required</h3>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2em; color: #3498db; font-weight: bold;" id="totalSubsidy">$8.2M</div>
+                    <div style="color: #bdc3c7;">Total subsidy over 5 years</div>
+                    <div style="margin-top: 10px; font-size: 1.2em;">
+                        <span id="perUnitCost">$205k</span> per household |
+                        <span id="annualCost">$1.6M</span> per year
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Summary -->
+        <div class="bottom-summary">
+            <h2>Making the Trade-offs</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: rgba(46, 204, 113, 0.2); padding: 20px; border-radius: 10px;">
+                    <div class="big-number" id="annualUnits">8</div>
+                    <div>Units per Year</div>
+                </div>
+                <div style="background: rgba(52, 152, 219, 0.2); padding: 20px; border-radius: 10px;">
+                    <div class="big-number" id="percentNeed">16%</div>
+                    <div>of Housing Need Met</div>
+                </div>
+                <div style="background: rgba(155, 89, 182, 0.2); padding: 20px; border-radius: 10px;">
+                    <div class="big-number" id="populationGrowth">+10%</div>
+                    <div>Population Growth</div>
+                </div>
+                <div style="background: rgba(241, 196, 15, 0.2); padding: 20px; border-radius: 10px;">
+                    <div class="big-number" id="yearRoundBalance">31%</div>
+                    <div>Year-Round Housing</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; font-size: 1.3em; color: #ecf0f1; line-height: 1.6;">
+                <p id="summaryText">
+                    This balanced plan would strengthen our community by housing 40 essential workers and families, adding 12 children to our schools, and reducing commuters by 25 vehicles daily.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constants
+        const TOTAL_DEMAND = 245; // 150 rental + 95 ownership
+        const RENTAL_DEMAND = 150;
+        const OWNERSHIP_DEMAND = 95;
+        const CURRENT_POPULATION = 774;
+        const AVG_HOUSEHOLD_SIZE = 2.0;
+        
+        // Subsidy assumptions (simplified)
+        const SUBSIDIES = {
+            rental: {
+                below60: 400000,      // Per unit capital + operating subsidy
+                ami60to80: 250000,    // Per unit capital + operating subsidy  
+                ami80to120: 100000    // Per unit capital subsidy
+            },
+            ownership: {
+                ami80to100: 260000,   // Gap between affordable price and construction cost
+                ami100to120: 200000,  // Gap between affordable price and construction cost
+                ami120to150: 100000   // Minimal subsidy needed
+            }
+        };
+        
+        // State
+        let ownershipTarget = 'workforce';
+        
+        // Get elements
+        const totalUnitsSlider = document.getElementById('totalUnitsSlider');
+        const rentalPercentSlider = document.getElementById('rentalPercentSlider');
+        const rental60Slider = document.getElementById('rental60Slider');
+        const rental80Slider = document.getElementById('rental80Slider');
+        const rental120Slider = document.getElementById('rental120Slider');
+        
+        // Update functions
+        function updateAll() {
+            const totalUnits = parseInt(totalUnitsSlider.value);
+            const rentalPercent = parseInt(rentalPercentSlider.value);
+            const rentalUnits = Math.round(totalUnits * rentalPercent / 100);
+            const ownershipUnits = totalUnits - rentalUnits;
+            
+            // Update display values
+            document.getElementById('totalUnitsValue').textContent = totalUnits;
+            document.getElementById('rentalPercentValue').textContent = `${rentalPercent}% Rental`;
+            document.getElementById('rental60Value').textContent = `${rental60Slider.value}%`;
+            document.getElementById('rental80Value').textContent = `${rental80Slider.value}%`;
+            document.getElementById('rental120Value').textContent = `${rental120Slider.value}%`;
+            
+            // Check rental percentages
+            const rentalSum = parseInt(rental60Slider.value) + parseInt(rental80Slider.value) + parseInt(rental120Slider.value);
+            const rentalWarning = document.getElementById('rentalWarning');
+            if (Math.abs(rentalSum - 100) > 2) {
+                rentalWarning.style.display = 'block';
+                rentalWarning.textContent = `⚠️ Rental percentages total ${rentalSum}% (must equal 100%)`;
+            } else {
+                rentalWarning.style.display = 'none';
+            }
+            
+            // Calculate units by AMI
+            const rentalBelow60 = Math.round(rentalUnits * parseInt(rental60Slider.value) / 100);
+            const rental60to80 = Math.round(rentalUnits * parseInt(rental80Slider.value) / 100);
+            const rental80to120 = Math.round(rentalUnits * parseInt(rental120Slider.value) / 100);
+            
+            let ownership80to100, ownership100to120, ownership120to150;
+            if (ownershipTarget === 'workforce') {
+                ownership80to100 = Math.round(ownershipUnits * 0.5);
+                ownership100to120 = ownershipUnits - ownership80to100;
+                ownership120to150 = 0;
+            } else {
+                ownership80to100 = Math.round(ownershipUnits * 0.4);
+                ownership100to120 = Math.round(ownershipUnits * 0.4);
+                ownership120to150 = ownershipUnits - ownership80to100 - ownership100to120;
+            }
+            
+            // Update metrics
+            document.getElementById('householdsServed').textContent = totalUnits;
+            
+            // Calculate workers housed (more sophisticated based on unit types and household composition)
+            // Rental units tend to be smaller (studios/1BR) = fewer workers per household
+            // Ownership units tend to be larger (2-3BR) = more workers per household
+            // Higher AMI households more likely to have dual earners
+            
+            let totalWorkers = 0;
+            
+            // <60% AMI rentals: mostly singles, some single parents (0.7 workers/HH)
+            totalWorkers += rentalBelow60 * 0.7;
+            
+            // 60-80% AMI rentals: mix of singles and couples (1.0 workers/HH)
+            totalWorkers += rental60to80 * 1.0;
+            
+            // 80-120% AMI rentals: mostly couples, some singles (1.3 workers/HH)
+            totalWorkers += rental80to120 * 1.3;
+            
+            // 80-100% AMI ownership: mostly families (1.5 workers/HH)
+            totalWorkers += ownership80to100 * 1.5;
+            
+            // 100-120% AMI ownership: dual-income households (1.8 workers/HH)
+            totalWorkers += ownership100to120 * 1.8;
+            
+            // 120-150% AMI ownership: dual-income professionals (2.0 workers/HH)
+            totalWorkers += ownership120to150 * 2.0;
+            
+            const workersHoused = Math.round(totalWorkers);
+            document.getElementById('workersHoused').textContent = workersHoused;
+            
+            // Calculate school children (more nuanced based on household types)
+            // Singles and seniors have no children
+            // Higher income ownership more likely to have children
+            const childrenFromRentals = (rental60to80 * 0.3 + rental80to120 * 0.4) * 0.7; // Some families in rentals
+            const childrenFromOwnership = (ownership80to100 * 0.8 + ownership100to120 * 0.9) * 1.2; // Most ownership are families
+            const schoolChildren = Math.round(childrenFromRentals + childrenFromOwnership);
+            document.getElementById('children').textContent = `+${schoolChildren}`;
+            
+            // Economic impact (household spending in community)
+            const annualEconomicImpact = totalUnits * 30000; // $30k per household local spending
+            document.getElementById('economic').textContent = `$${(annualEconomicImpact / 1000000).toFixed(1)}M`;
+            
+            // Calculate community benefits based on AMI mix
+            const essentialWorkers = Math.round((rental60to80 + rental80to120 + ownership80to100) * 0.6);
+            document.getElementById('essentialWorkers').textContent = `${essentialWorkers} teachers, nurses, EMTs housed`;
+            
+            const seniors = Math.round(rentalBelow60 * 0.3);
+            document.getElementById('seniorHousing').textContent = `${seniors} seniors can downsize`;
+            
+            const businesses = Math.round(totalUnits * 0.4);
+            document.getElementById('businessImpact').textContent = `${businesses} businesses keep workers`;
+            
+            const commuterReduction = Math.round(totalUnits * 0.6);
+            document.getElementById('commuteImpact').textContent = `${commuterReduction} fewer daily commuters`;
+            
+            // Style cards based on impact
+            if (workersHoused > 35) {
+                document.getElementById('workersHousedCard').classList.add('success');
+            } else {
+                document.getElementById('workersHousedCard').classList.remove('success');
+            }
+            
+            if (schoolChildren > 15) {
+                document.getElementById('childrenCard').classList.add('success');
+            } else {
+                document.getElementById('childrenCard').classList.remove('success');
+            }
+            
+            // Calculate funding gap
+            let totalSubsidy = 0;
+            totalSubsidy += rentalBelow60 * SUBSIDIES.rental.below60;
+            totalSubsidy += rental60to80 * SUBSIDIES.rental.ami60to80;
+            totalSubsidy += rental80to120 * SUBSIDIES.rental.ami80to120;
+            totalSubsidy += ownership80to100 * SUBSIDIES.ownership.ami80to100;
+            totalSubsidy += ownership100to120 * SUBSIDIES.ownership.ami100to120;
+            totalSubsidy += ownership120to150 * SUBSIDIES.ownership.ami120to150;
+            
+            document.getElementById('totalSubsidy').textContent = `$${(totalSubsidy / 1000000).toFixed(1)}M`;
+            document.getElementById('perUnitCost').textContent = `$${Math.round(totalSubsidy / totalUnits / 1000)}k`;
+            document.getElementById('annualCost').textContent = `$${(totalSubsidy / 5 / 1000000).toFixed(1)}M`;
+            
+            // Update AMI bar
+            const totalHoused = rentalBelow60 + rental60to80 + rental80to120 + ownershipUnits;
+            const below60Percent = (rentalBelow60 / totalHoused * 100).toFixed(0);
+            const ami60to80Percent = (rental60to80 / totalHoused * 100).toFixed(0);
+            const above80Percent = ((rental80to120 + ownershipUnits) / totalHoused * 100).toFixed(0);
+            
+            document.getElementById('amiBar').innerHTML = `
+                <div class="ami-segment" style="background: #e74c3c; width: ${below60Percent}%;">
+                    <60%: ${rentalBelow60}
+                </div>
+                <div class="ami-segment" style="background: #f39c12; width: ${ami60to80Percent}%;">
+                    60-80%: ${rental60to80}
+                </div>
+                <div class="ami-segment" style="background: #3498db; width: ${above80Percent}%;">
+                    80-120%: ${rental80to120 + ownershipUnits}
+                </div>
+            `;
+            
+            // Update bottom line with community focus
+            document.getElementById('annualUnits').textContent = Math.round(totalUnits / 5);
+            document.getElementById('percentNeed').textContent = `${(totalUnits / TOTAL_DEMAND * 100).toFixed(0)}%`;
+            document.getElementById('populationGrowth').textContent = `+${Math.round(totalUnits * 2 / CURRENT_POPULATION * 100)}%`;
+            
+            // Calculate impact on year-round housing balance
+            const currentYearRound = 380;
+            const newYearRound = currentYearRound + totalUnits;
+            const totalHousing = 1365 + totalUnits;
+            const newBalance = Math.round(newYearRound / totalHousing * 100);
+            document.getElementById('yearRoundBalance').textContent = `${newBalance}%`;
+            
+            // Update summary text with community benefits focus
+            const summaryText = `This ${totalUnits < 35 ? 'modest' : totalUnits > 45 ? 'ambitious' : 'balanced'} plan would strengthen our community by enabling ${workersHoused} NEW workers to live locally (in ${totalUnits} households), adding ${schoolChildren} children to our schools, and reducing commuters by ${commuterReduction} vehicles daily. The ${(totalSubsidy/1000000).toFixed(1)}M investment would generate ${(annualEconomicImpact/1000000).toFixed(1)}M in annual local spending.`;
+            
+            document.getElementById('summaryText').textContent = summaryText;
+        }
+        
+        // Event listeners
+        totalUnitsSlider.oninput = updateAll;
+        rentalPercentSlider.oninput = updateAll;
+        rental60Slider.oninput = updateAll;
+        rental80Slider.oninput = updateAll;
+        rental120Slider.oninput = updateAll;
+        
+        function setOwnershipTarget(target) {
+            ownershipTarget = target;
+            document.querySelectorAll('.toggle-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            updateAll();
+        }
+        
+        // Initialize
+        updateAll();
+    </script>
+</body>
+</html>
