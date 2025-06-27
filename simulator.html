@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+                <!-- Subsidy Assumptions -->
+                <div class="assumption-card">
+                    <h3 style="color: #e74c3c; margin-top: 0;">💰 Subsidy Assumptions</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Rental Subsidies (per unit):</strong></p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• <60% AMI: $400k (Prop 123 eligible + operations)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 60-80% AMI: $250k (LIHTC + local subsidy)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 80-120% AMI: $100k (light local subsidy)</p>
+                    <p style="margin: 10px 0 5px; font-size: 0.9em;"><strong>Ownership Subsidies (per unit):</strong></p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 80-100% AMI: $260k gap</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 100-120% AMI: $200k gap</p>
+                    <p style="margin: 3                <h3>Community Benefits</h3>
+                <div class="benefit-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                    <div class="benefit-item" style="background: rgba(46, 204, 113, 0.2); padding: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -291,14 +303,14 @@
                 <div class="assumption-card">
                     <h3 style="color: #e74c3c; margin-top: 0;">💰 Subsidy Assumptions</h3>
                     <p style="margin: 5px 0; font-size: 0.9em;"><strong>Rental Subsidies (per unit):</strong></p>
-                    <p style="margin: 3px 0; font-size: 0.85em;">• <60% AMI: $400k (deep subsidy + operations)</p>
-                    <p style="margin: 3px 0; font-size: 0.85em;">• 60-80% AMI: $250k (moderate subsidy)</p>
-                    <p style="margin: 3px 0; font-size: 0.85em;">• 80-120% AMI: $100k (light subsidy)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• <60% AMI: $400k (Prop 123 eligible + operations)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 60-80% AMI: $250k (LIHTC + local subsidy)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 80-120% AMI: $100k (light local subsidy)</p>
                     <p style="margin: 10px 0 5px; font-size: 0.9em;"><strong>Ownership Subsidies (per unit):</strong></p>
                     <p style="margin: 3px 0; font-size: 0.85em;">• 80-100% AMI: $260k gap</p>
                     <p style="margin: 3px 0; font-size: 0.85em;">• 100-120% AMI: $200k gap</p>
                     <p style="margin: 3px 0; font-size: 0.85em;">• 120-150% AMI: $100k gap</p>
-                    <p style="margin-top: 10px; font-size: 0.8em; color: #bdc3c7;"><em>Assumes land provided at no cost</em></p>
+                    <p style="margin-top: 10px; font-size: 0.8em; color: #bdc3c7;"><em>Note: Prop 123 funds rentals only up to 60% AMI</em></p>
                 </div>
                 
                 <!-- Community Impacts -->
@@ -379,13 +391,13 @@
                 
                 <h3>Rental Income Targeting</h3>
                 <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9em; color: #bdc3c7;">
-                    <p style="margin: 3px 0;"><strong><60% AMI:</strong> Service workers ($32-45k), fixed-income seniors</p>
+                    <p style="margin: 3px 0;"><strong><60% AMI:</strong> Service workers ($32-45k), retail, restaurant, fixed-income seniors</p>
                     <p style="margin: 3px 0;"><strong>60-80% AMI:</strong> Entry teachers, skilled trades ($48-65k)</p>
                     <p style="margin: 3px 0;"><strong>80-120% AMI:</strong> Young professionals, dual earners ($65-98k)</p>
                 </div>
                 <div class="slider-group">
                     <div class="slider-label">
-                        <span>% Below 60% AMI (Deep Subsidy)</span>
+                        <span>% Below 60% AMI (Prop 123 Eligible)</span>
                         <span id="rental60Value">40%</span>
                     </div>
                     <input type="range" min="0" max="100" value="40" class="slider" id="rental60Slider">
@@ -481,16 +493,16 @@
                 <h3>Community Benefits</h3>
                 <div class="benefit-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
                     <div class="benefit-item" style="background: rgba(46, 204, 113, 0.2); padding: 15px; border-radius: 10px;">
-                        <strong>Essential Services</strong>
+                        <strong>Essential Workers</strong>
                         <div id="essentialWorkers" style="font-size: 1.2em; margin-top: 5px;">18 teachers, nurses, EMTs housed</div>
+                    </div>
+                    <div class="benefit-item" style="background: rgba(155, 89, 182, 0.2); padding: 15px; border-radius: 10px;">
+                        <strong>Service Workers</strong>
+                        <div id="serviceWorkers" style="font-size: 1.2em; margin-top: 5px;">8 retail, restaurant, hospitality workers</div>
                     </div>
                     <div class="benefit-item" style="background: rgba(52, 152, 219, 0.2); padding: 15px; border-radius: 10px;">
                         <strong>Seniors Aging in Place</strong>
-                        <div id="seniorHousing" style="font-size: 1.2em; margin-top: 5px;">8 seniors can downsize</div>
-                    </div>
-                    <div class="benefit-item" style="background: rgba(155, 89, 182, 0.2); padding: 15px; border-radius: 10px;">
-                        <strong>Business Stability</strong>
-                        <div id="businessImpact" style="font-size: 1.2em; margin-top: 5px;">15 businesses keep workers</div>
+                        <div id="seniorHousing" style="font-size: 1.2em; margin-top: 5px;">3 seniors can downsize</div>
                     </div>
                     <div class="benefit-item" style="background: rgba(241, 196, 15, 0.2); padding: 15px; border-radius: 10px;">
                         <strong>Commute Reduction</strong>
@@ -769,11 +781,13 @@
             const essentialWorkers = Math.round((rental60to80 + rental80to120 + ownership80to100) * 0.6);
             document.getElementById('essentialWorkers').textContent = `${essentialWorkers} teachers, nurses, EMTs housed`;
             
+            // Service workers from <60% AMI category (70% are service workers, 30% are seniors)
+            const serviceWorkers = Math.round(rentalBelow60 * 0.7);
+            document.getElementById('serviceWorkers').textContent = `${serviceWorkers} retail, restaurant, hospitality workers`;
+            
+            // Seniors from <60% AMI category (30% are seniors)
             const seniors = Math.round(rentalBelow60 * 0.3);
             document.getElementById('seniorHousing').textContent = `${seniors} seniors can downsize`;
-            
-            const businesses = Math.round(totalUnits * 0.4);
-            document.getElementById('businessImpact').textContent = `${businesses} businesses keep workers`;
             
             const commuterReduction = Math.round(totalUnits * 0.6);
             document.getElementById('commuteImpact').textContent = `${commuterReduction} fewer daily commuters`;
