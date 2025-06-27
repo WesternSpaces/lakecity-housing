@@ -32,6 +32,42 @@
             font-size: 2.5em;
         }
         
+        .assumptions-toggle {
+            background: rgba(52, 152, 219, 0.2);
+            border: 2px solid #3498db;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .assumptions-toggle:hover {
+            background: rgba(52, 152, 219, 0.3);
+        }
+
+        .assumptions-guide {
+            display: none;
+            background: #34495e;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #3498db;
+        }
+
+        .assumptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .assumption-card {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -211,6 +247,98 @@
 <body>
     <div class="container">
         <h1>Lake City Housing Trade-off Simulator</h1>
+        
+        <!-- Assumptions Guide Toggle -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button onclick="toggleAssumptions()" class="assumptions-toggle">
+                ℹ️ How These Numbers Work: View Assumptions & Data Sources
+            </button>
+        </div>
+
+        <!-- Collapsible Assumptions Guide -->
+        <div id="assumptionsGuide" class="assumptions-guide">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: #3498db; margin: 0;">📊 How the Numbers Work</h2>
+                <button onclick="toggleAssumptions()" style="background: none; border: none; color: #e74c3c; font-size: 1.5em; cursor: pointer;">✕</button>
+            </div>
+            
+            <div class="assumptions-grid">
+                <!-- Base Data -->
+                <div class="assumption-card">
+                    <h3 style="color: #f39c12; margin-top: 0;">🏠 Base Community Data</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Population:</strong> 774 residents</p>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Year-Round Households:</strong> 380</p>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Total Housing Units:</strong> 1,365</p>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>5-Year Demand Pool:</strong> 245 households</p>
+                    <p style="margin-top: 10px; font-size: 0.8em; color: #bdc3c7;"><em>Source: State Demography Office & Market Analysis, 2025</em></p>
+                </div>
+                
+                <!-- Workers per Household -->
+                <div class="assumption-card">
+                    <h3 style="color: #2ecc71; margin-top: 0;">👥 Workers per Household</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Survey Average:</strong> 1.52 workers/household</p>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Renters:</strong> 1.54 workers/household</p>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Owners:</strong> 1.46 workers/household</p>
+                    <div style="margin-top: 10px;">
+                        <p style="margin: 3px 0; font-size: 0.85em;"><strong><60% AMI:</strong> 1.0 workers (many retirees)</p>
+                        <p style="margin: 3px 0; font-size: 0.85em;"><strong>60-80% AMI:</strong> 1.39 workers (near average)</p>
+                        <p style="margin: 3px 0; font-size: 0.85em;"><strong>80-120% AMI:</strong> 1.54+ workers (dual income needed)</p>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.8em; color: #bdc3c7;"><em>Source: 2025 Lake City Housing Survey</em></p>
+                </div>
+                
+                <!-- Subsidy Assumptions -->
+                <div class="assumption-card">
+                    <h3 style="color: #e74c3c; margin-top: 0;">💰 Subsidy Assumptions</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Rental Subsidies (per unit):</strong></p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• <60% AMI: $400k (deep subsidy + operations)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 60-80% AMI: $250k (moderate subsidy)</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 80-120% AMI: $100k (light subsidy)</p>
+                    <p style="margin: 10px 0 5px; font-size: 0.9em;"><strong>Ownership Subsidies (per unit):</strong></p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 80-100% AMI: $260k gap</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 100-120% AMI: $200k gap</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• 120-150% AMI: $100k gap</p>
+                    <p style="margin-top: 10px; font-size: 0.8em; color: #bdc3c7;"><em>Assumes land provided at no cost</em></p>
+                </div>
+                
+                <!-- Community Impacts -->
+                <div class="assumption-card">
+                    <h3 style="color: #9b59b6; margin-top: 0;">🎯 Community Impact Calculations</h3>
+                    <p style="margin: 5px 0; font-size: 0.85em;"><strong>Essential Workers:</strong> 60% of workforce units</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;"><strong>Seniors Downsizing:</strong> 30% of <60% AMI units</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;"><strong>Business Retention:</strong> 40% of all units</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;"><strong>Commute Reduction:</strong> 60% of all units</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;"><strong>Economic Impact:</strong> $30k/year per household</p>
+                    <p style="margin: 10px 0 5px; font-size: 0.9em;"><strong>School Children:</strong></p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• Rentals: 30-40% have kids × 0.7 children</p>
+                    <p style="margin: 3px 0; font-size: 0.85em;">• Ownership: 80-90% have kids × 1.2 children</p>
+                </div>
+                
+                <!-- Housing Balance -->
+                <div class="assumption-card">
+                    <h3 style="color: #1abc9c; margin-top: 0;">⚖️ Housing Balance</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>Current:</strong> 28% year-round, 72% vacant/seasonal</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;">New balance = (380 + new units) ÷ (1,365 + new units)</p>
+                    <p style="margin-top: 10px; font-size: 0.8em; color: #bdc3c7;"><em>Every new unit slightly increases year-round housing share</em></p>
+                </div>
+                
+                <!-- Important Notes -->
+                <div style="background: rgba(241, 196, 15, 0.2); padding: 15px; border-radius: 8px; border-left: 4px solid #f39c12;">
+                    <h3 style="color: #f39c12; margin-top: 0;">⚠️ Important Limitations</h3>
+                    <p style="margin: 5px 0; font-size: 0.85em;">• Simplified model - actual costs vary by site & timing</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;">• All figures in 2025 dollars (no inflation)</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;">• Assumes even development over 5 years</p>
+                    <p style="margin: 5px 0; font-size: 0.85em;">• Based on best available data - will be updated</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: rgba(46, 204, 113, 0.2); border-radius: 8px; text-align: center;">
+                <p style="margin: 0; font-size: 0.9em; color: #ecf0f1;">
+                    <strong>Questions about these assumptions?</strong><br>
+                    Contact: sarah@westernspaces.co | ethan@dynamicplanning.co | grant@proximitygreen.com | jmoffett@tpsconsulting.net
+                </p>
+            </div>
+        </div>
         
         <div class="main-grid">
             <!-- Left Panel: Inputs -->
@@ -804,6 +932,18 @@
             });
             event.target.classList.add('active');
             updateAll();
+        }
+        
+        // Toggle assumptions guide
+        function toggleAssumptions() {
+            const guide = document.getElementById('assumptionsGuide');
+            if (guide.style.display === 'none' || guide.style.display === '') {
+                guide.style.display = 'block';
+                // Smooth scroll to the guide
+                guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                guide.style.display = 'none';
+            }
         }
         
         // Initialize
