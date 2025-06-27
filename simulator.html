@@ -1,9 +1,17 @@
-<!DOCTYPE html>
+                <h3>Investment Required</h3>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2em; color: #3498db; font-weight: bold;" id="totalSubsidy">$8.2M</div>
+                    <div style="color: #bdc3c7;">Total subsidy over 5 years</div>
+                    <div style="margin-top: 10px; font-size: 1.2em;">
+                        <span id="perUnitCost">$205k</span> per household |
+                        <span id="annualCost">$1.6M</span> per year
+                    </div>
+                </div>                <h3>Investment Required</h3><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Lake City Housing Trade-off Simulator</title>
     <style>
         * {
@@ -230,9 +238,30 @@
                         <span id="rentalPercentValue">70% Rental</span>
                     </div>
                     <input type="range" min="0" max="100" value="70" class="slider" id="rentalPercentSlider">
+                    
+                    <!-- Visual split bar -->
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; height: 30px; border-radius: 5px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);">
+                            <div id="rentalBar" style="background: #e74c3c; width: 70%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; transition: width 0.3s ease;">
+                                <span id="rentalCount">28</span>
+                            </div>
+                            <div id="ownershipBar" style="background: #3498db; width: 30%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; transition: width 0.3s ease;">
+                                <span id="ownershipCount">12</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.9em; color: #bdc3c7;">
+                            <span>Rental Units</span>
+                            <span>Ownership Units</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <h3>Rental Income Targeting</h3>
+                <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9em; color: #bdc3c7;">
+                    <p style="margin: 3px 0;"><strong><60% AMI:</strong> Service workers ($32-45k), fixed-income seniors</p>
+                    <p style="margin: 3px 0;"><strong>60-80% AMI:</strong> Entry teachers, skilled trades ($48-65k)</p>
+                    <p style="margin: 3px 0;"><strong>80-120% AMI:</strong> Young professionals, dual earners ($65-98k)</p>
+                </div>
                 <div class="slider-group">
                     <div class="slider-label">
                         <span>% Below 60% AMI (Deep Subsidy)</span>
@@ -264,11 +293,15 @@
                 <h3>Ownership Income Targeting</h3>
                 <div class="toggle-group">
                     <button class="toggle-button active" onclick="setOwnershipTarget('workforce')">
-                        Workforce Focus (80-120% AMI)
+                        80-120% AMI
                     </button>
                     <button class="toggle-button" onclick="setOwnershipTarget('mixed')">
-                        Mixed Income (80-150% AMI)
+                        100-150% AMI
                     </button>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-top: 10px; font-size: 0.9em; color: #bdc3c7;">
+                    <p style="margin: 3px 0;"><strong>80-120% AMI:</strong> Teachers ($55-75k), nurses, public safety</p>
+                    <p style="margin: 3px 0;"><strong>100-150% AMI:</strong> Managers ($80-120k), dual-income professionals</p>
                 </div>
                 
                 <h3>Development Assumptions</h3>
@@ -276,6 +309,12 @@
                     <p style="margin: 5px 0;">✓ Land provided at no cost</p>
                     <p style="margin: 5px 0;">✓ Basic infrastructure in place</p>
                     <p style="margin: 5px 0;">✓ Standard construction costs</p>
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9em; color: #bdc3c7;">
+                        <p style="margin: 3px 0;"><strong>Subsidy Estimates:</strong></p>
+                        <p style="margin: 3px 0;">• Deep affordability (<60%): ~$400k/unit</p>
+                        <p style="margin: 3px 0;">• Workforce (60-100%): ~$200-250k/unit</p>
+                        <p style="margin: 3px 0;">• Moderate (100-150%): ~$100-150k/unit</p>
+                    </div>
                 </div>
             </div>
             
@@ -338,7 +377,42 @@
                     </div>
                 </div>
                 
-                <h3>Investment Required</h3>
+                <h3>Impact on Housing Balance</h3>
+                <div style="margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #bdc3c7;">
+                        <span>Current Balance</span>
+                        <span>With New Units</span>
+                    </div>
+                    
+                    <!-- Current balance bar -->
+                    <div style="margin-bottom: 15px;">
+                        <div style="display: flex; height: 25px; border-radius: 5px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                            <div style="background: #2ecc71; width: 28%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9em; font-weight: bold;">
+                                28%
+                            </div>
+                            <div style="background: #95a5a6; width: 72%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9em; font-weight: bold;">
+                                72% Vacant/Seasonal
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- New balance bar -->
+                    <div>
+                        <div style="display: flex; height: 25px; border-radius: 5px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                            <div id="newYearRoundBar" style="background: #27ae60; width: 31%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9em; font-weight: bold; transition: width 0.3s ease;">
+                                <span id="newYearRoundPercent">31%</span>
+                            </div>
+                            <div id="newVacantBar" style="background: #7f8c8d; width: 69%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9em; font-weight: bold; transition: width 0.3s ease;">
+                                <span id="newVacantPercent">69%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.85em; color: #bdc3c7;">
+                        <span>Year-Round Housing</span>
+                        <span>Vacant/Seasonal</span>
+                    </div>
+                </div>
                 <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 2em; color: #3498db; font-weight: bold;" id="totalSubsidy">$8.2M</div>
                     <div style="color: #bdc3c7;">Total subsidy over 5 years</div>
@@ -426,6 +500,25 @@
             document.getElementById('rental80Value').textContent = `${rental80Slider.value}%`;
             document.getElementById('rental120Value').textContent = `${rental120Slider.value}%`;
             
+            // Update the visual split bar
+            document.getElementById('rentalBar').style.width = rentalPercent + '%';
+            document.getElementById('ownershipBar').style.width = (100 - rentalPercent) + '%';
+            document.getElementById('rentalCount').textContent = rentalUnits;
+            document.getElementById('ownershipCount').textContent = ownershipUnits;
+            
+            // Hide labels if section is too small
+            if (rentalPercent < 15) {
+                document.getElementById('rentalCount').style.display = 'none';
+            } else {
+                document.getElementById('rentalCount').style.display = 'block';
+            }
+            
+            if (rentalPercent > 85) {
+                document.getElementById('ownershipCount').style.display = 'none';
+            } else {
+                document.getElementById('ownershipCount').style.display = 'block';
+            }
+            
             // Check rental percentages
             const rentalSum = parseInt(rental60Slider.value) + parseInt(rental80Slider.value) + parseInt(rental120Slider.value);
             const rentalWarning = document.getElementById('rentalWarning');
@@ -443,13 +536,15 @@
             
             let ownership80to100, ownership100to120, ownership120to150;
             if (ownershipTarget === 'workforce') {
+                // 80-120% AMI split
                 ownership80to100 = Math.round(ownershipUnits * 0.5);
                 ownership100to120 = ownershipUnits - ownership80to100;
                 ownership120to150 = 0;
             } else {
-                ownership80to100 = Math.round(ownershipUnits * 0.4);
-                ownership100to120 = Math.round(ownershipUnits * 0.4);
-                ownership120to150 = ownershipUnits - ownership80to100 - ownership100to120;
+                // 100-150% AMI split
+                ownership80to100 = 0;
+                ownership100to120 = Math.round(ownershipUnits * 0.5);
+                ownership120to150 = ownershipUnits - ownership100to120;
             }
             
             // Update metrics
@@ -552,6 +647,56 @@
                 </div>
             `;
             
+            // Update strategy recommendations based on choices
+            const updateStrategyRecommendations = function(below60, ami60to80, ami80to120, ownership) {
+                const total = below60 + ami60to80 + ami80to120 + ownership;
+                const deepAffordabilityPercent = (below60 / total * 100).toFixed(0);
+                const workforcePercent = ((ami60to80 + ami80to120) / total * 100).toFixed(0);
+                const ownershipPercent = (ownership / total * 100).toFixed(0);
+                
+                let strategyText = "";
+                
+                if (deepAffordabilityPercent > 40) {
+                    strategyText = "Heavy focus on <60% AMI requires aggressive pursuit of 9% LIHTC, HOME funds, and state grants. Consider partnering with Gunnison Valley RHA for project-based vouchers. Local revenue sources (STR fees, vacant home tax) become critical.";
+                } else if (workforcePercent > 50) {
+                    strategyText = "Workforce emphasis aligns well with Prop 123 funding and employer partnerships. Focus on 4% LIHTC with income averaging, DOLA grants, and employer master leases or contributions. STR fees could support operations.";
+                } else if (ownershipPercent > 40) {
+                    strategyText = "Ownership focus requires CHFA programs, down payment assistance, and deed restriction programs. Consider community land trust model and partnerships with local banks. Requires less ongoing subsidy but higher upfront costs.";
+                } else {
+                    strategyText = "Balanced approach requires layering multiple funding sources: LIHTC for rentals, CHFA for ownership, employer partnerships for workforce, and local revenue generation. Most complex but serves diverse needs.";
+                }
+                
+                // Add urgency based on scale
+                if (total > 45) {
+                    strategyText += " This ambitious scale requires immediate action on local revenue sources and aggressive grant pursuit.";
+                }
+                
+                const strategyTextElement = document.getElementById('strategyText');
+                if (strategyTextElement) {
+                    strategyTextElement.textContent = strategyText;
+                }
+                
+                // Update pathway highlighting based on mix
+                const pathways = document.querySelectorAll('#strategyPathways > div:not(#strategyRecommendation)');
+                if (pathways.length > 0) {
+                    pathways.forEach(pathway => {
+                        pathway.style.opacity = '0.6';
+                    });
+                    
+                    if (deepAffordabilityPercent > 30 && pathways[0]) {
+                        pathways[0].style.opacity = '1';
+                    }
+                    if (workforcePercent > 30 && pathways[1]) {
+                        pathways[1].style.opacity = '1';
+                    }
+                    if (ownershipPercent > 30 && pathways[2]) {
+                        pathways[2].style.opacity = '1';
+                    }
+                }
+            };
+            
+            updateStrategyRecommendations(rentalBelow60, rental60to80, rental80to120, ownershipUnits);
+            
             // Update bottom line with community focus
             document.getElementById('annualUnits').textContent = Math.round(totalUnits / 5);
             document.getElementById('percentNeed').textContent = `${(totalUnits / TOTAL_DEMAND * 100).toFixed(0)}%`;
@@ -562,6 +707,15 @@
             const newYearRound = currentYearRound + totalUnits;
             const totalHousing = 1365 + totalUnits;
             const newBalance = Math.round(newYearRound / totalHousing * 100);
+            const newVacantBalance = 100 - newBalance;
+            
+            // Update balance visualization
+            document.getElementById('newYearRoundBar').style.width = newBalance + '%';
+            document.getElementById('newVacantBar').style.width = newVacantBalance + '%';
+            document.getElementById('newYearRoundPercent').textContent = newBalance + '%';
+            document.getElementById('newVacantPercent').textContent = newVacantBalance + '%';
+            
+            // Update bottom summary
             document.getElementById('yearRoundBalance').textContent = `${newBalance}%`;
             
             // Update summary text with community benefits focus
