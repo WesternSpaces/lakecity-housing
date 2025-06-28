@@ -1,3 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Lake City Housing Strategy Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #2c5f2d;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            padding: 40px;
+            display: none;
+            position: relative;
+            background: #2c5f2d; /* Default green */
+        }
+        
+        .slide.challenge {
+            background: linear-gradient(135deg, #7c4a4a 0%, #8b5a5a 100%);
+        }
+        
+        .slide.vision {
+            background: linear-gradient(135deg, #4a6b7c 0%, #5a7b8b 100%);
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        .slide h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            border-bottom: 3px solid white;
+            padding-bottom: 15px;
+        }
+        
+        .slide h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .slide p, .slide li {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .two-col {
+            display: table;
+            width: 100%;
+            margin: 30px 0;
+        }
+        
+        .col {
+            display: table-cell;
+            width: 50%;
+            padding: 0 20px;
+            vertical-align: top;
+        }
+        
+        .chart-box {
+            border: 3px solid white;
+            padding: 20px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .red-bg {
+            background: #ff6b6b;
+        }
+        
+        .teal-bg {
+            background: #4ecdc4;
+        }
+        
+        .dark-red-bg {
+            background: #8B0000;
+        }
+        
+        .white-bg {
+            background: white;
+            color: #2c5f2d;
+        }
+        
+        .highlight-box {
+            background: #4a7c59;
+            border: 2px solid white;
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .nav-buttons button {
+            background: rgba(255,255,255,0.3);
+            border: 1px solid white;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .nav-buttons button:hover {
+            background: rgba(255,255,255,0.5);
+        }
+        
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .big-number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .process-step {
+            background: white;
+            color: #2c5f2d;
+            border: 3px solid white;
+            padding: 25px;
+            margin: 15px auto;
+            text-align: center;
+            max-width: 400px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .arrow {
+            text-align: center;
+            font-size: 2em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide active">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" alt="Lake City Housing Strategy Logo" height="100" style="vertical-align: middle;">
+        </div>
+        <h1>Lake City & Hinsdale County</h1>
+        <h2>Comprehensive Housing Strategy</h2>
+        <div class="highlight-box">
+            <p><strong>Moving from Planning to Implementation</strong></p>
+            <p>Housing Steering Committee Meeting #1<br>June 30, 2025</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 2: Introduction -->
+<div class="slide">
+    <div class="container">
+        <h2>Welcome & Introductions</h2>
+        <div class="two-col">
+            <div class="col">
+                <h3>Project Team</h3>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border: 2px solid white;">
+                    <p><strong>Sarah Brown McClain</strong><br>Western Spaces - Project Lead</p>
+                    <p><strong>Ethan Mobley</strong><br>Dynamic Planning + Science</p>
+                    <p><strong>Grant Bennett</strong><br>Proximity Green</p>
+                    <p><strong>Jeff Moffett</strong><br>Triple Point Strategic Consulting</p>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Project Purpose</h3>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border: 2px solid white; margin-bottom: 20px;">
+                    <ul style="font-size: 1.1em; margin: 0; padding-left: 20px;">
+                        <li>Create actionable housing solutions</li>
+                        <li>Bridge gap from planning to implementation</li>
+                        <li>Support Lake Fork development</li>
+                        <li>Establish sustainable funding strategy</li>
+                        <li>Enable workforce housing opportunities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <h3>Today's Meeting Goals</h3>
+            <p><strong>Morning:</strong> Review findings, discuss vision & objectives</p>
+            <p><strong>Afternoon:</strong> Use housing simulator to set specific numerical targets</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Housing Challenges -->
+<div class="slide challenge">
+    <div class="container">
+        <h2>Lake City's Unique Housing Challenges</h2>
+        <div class="two-col">
+            <div class="col">
+                <h3>Geographic Constraints</h3>
+                <ul>
+                    <li><strong>96% federal land ownership</strong> - extremely limited developable land</li>
+                    <li><strong>Most remote county</strong> in lower 48 states</li>
+                    <li>Higher construction costs, material challenges</li>
+                    <li>Limited workforce access</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Market Realities - Housing Split</h3>
+                
+                <!-- TEST: Simple table for chart -->
+                <table width="100%" style="margin: 20px 0; border: 2px solid white;">
+                    <tr>
+                        <td class="chart-box red-bg" style="width: 72%;">
+                            985 units<br>VACANT/SEASONAL<br><span class="big-number">72%</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="chart-box teal-bg" style="width: 28%;">
+                            380 units<br>YEAR-ROUND<br><span class="big-number">28%</span>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div style="border: 2px solid white; padding: 10px; text-align: center; background: black;">
+                    <strong>Total: 1,365 housing units</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Economic Reality -->
+<div class="slide challenge">
+    <div class="container">
+        <h2>Economic & Employment Context</h2>
+        <div style="text-align: center; margin: 40px 0;">
+            <div style="display: inline-block; background: rgba(255,255,255,0.2); border: 3px solid white; padding: 30px; margin: 20px; min-width: 200px;">
+                <div class="big-number">~465</div>
+                <div>Total Jobs in County</div>
+            </div>
+            <div style="display: inline-block; background: #ff6b6b; border: 3px solid white; padding: 30px; margin: 20px; min-width: 200px; color: white;">
+                <div class="big-number">98</div>
+                <div>Workers Commuting In Daily<br><strong>CRISIS</strong></div>
+            </div>
+            <div style="display: inline-block; background: #ff6b6b; border: 3px solid white; padding: 30px; margin: 20px; min-width: 200px; color: white;">
+                <div class="big-number">40%</div>
+                <div>Summer Employment Surge<br><strong>INSTABILITY</strong></div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Key Challenge:</strong> Workforce can't afford to live where they work</p>
+            <p><strong>Most jobs pay $25k-$45k annually</strong> • But families need $68k-$92k for self-sufficiency</p>
+            <p>38% tourism/hospitality jobs • 20% essential services • Growing underemployment</p>
+        </div>
+        
+        <div style="background: #4ecdc4; border: 2px solid white; padding: 15px; margin: 15px auto; max-width: 500px; color: white; text-align: center;">
+            <p style="font-size: 1.0em; margin: 0;"><strong>📊 77 local workers surveyed validate this crisis</strong></p>
+        </div>
+    </div>
+</div>
+
+<!-- NEW SLIDE: Income Reality Gap -->
+<div class="slide challenge">
+    <div class="container">
+        <h2>The Income Reality Gap</h2>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <h3>What Jobs Actually Pay vs. What Families Need</h3>
+        </div>
+        
+        <div class="two-col">
+            <div class="col">
+                <h3>Typical Local Wages (Annual)</h3>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 15px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Food Service: $25,499</strong>
+                </div>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 15px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Teachers: $34,353</strong>
+                </div>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 15px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Office Support: $36,458</strong>
+                </div>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 15px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Average All Jobs: $40,119</strong>
+                </div>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 15px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Construction: $44,072</strong>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Self-Sufficiency Standard (What's Actually Needed)</h3>
+                <div style="background: #4ecdc4; border: 3px solid white; padding: 20px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>2 Adults + 1 School Child</strong><br>
+                    <div class="big-number">$68,427</div>
+                    <small>($16.20/hour each adult)</small>
+                </div>
+                <div style="background: #4ecdc4; border: 3px solid white; padding: 20px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Single Parent + 2 Kids</strong><br>
+                    <div class="big-number">$92,302</div>
+                    <small>($43.70/hour)</small>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #8B0000; border: 4px solid yellow; padding: 20px; margin: 30px 0; text-align: center; color: white;">
+            <h3>Reality Check: Most jobs pay HALF of what families need for basic self-sufficiency</h3>
+            <p style="font-size: 1.2em;">And that's BEFORE considering housing costs above $1,100/month</p>
+        </div>
+        
+        <div style="background: #4ecdc4; border: 3px solid white; padding: 15px; margin: 20px 0; text-align: center; color: white;">
+            <h3 style="margin-bottom: 10px;">📊 Survey Validation</h3>
+            <p style="font-size: 1.1em; margin: 5px 0;"><strong>77 local residents and workers confirm:</strong></p>
+            <p>74% own their homes, 21% rent - matching our market analysis</p>
+            <p>These are the voices of people experiencing this crisis daily</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 1.1em; font-style: italic;">Key insight: Even "good" local jobs like teaching ($34k) fall far short of family needs ($68k+)</p>
+        </div>
+    </div>
+</div>
+
+<!-- NEW SLIDE: Seasonal Data Deep Dive -->
+<div class="slide challenge">
+    <div class="container">
+        <h2>Seasonal Housing Pressure: The Data</h2>
+        
+        <div class="two-col">
+            <div class="col">
+                <h3>Daily Visitors</h3>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 20px; margin: 10px 0; color: white; text-align: center;">
+                    <div class="big-number">8,000+</div>
+                    <div>Peak Summer Days</div>
+                    <div style="margin-top: 8px; font-size: 0.9em;">vs ~1,000 in winter</div>
+                </div>
+                
+                <h3>Daily Commuters</h3>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 20px; margin: 10px 0; color: white; text-align: center;">
+                    <div class="big-number">100+</div>
+                    <div>Peak Summer Commuters</div>
+                    <div style="margin-top: 8px; font-size: 0.9em;">Workers living elsewhere</div>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Population Swings</h3>
+                <div style="background: #4ecdc4; border: 3px solid white; padding: 18px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Winter Base</strong><br>
+                    <div class="big-number">~650</div>
+                </div>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 18px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Summer Peak</strong><br>
+                    <div class="big-number">~1,000</div>
+                    <div style="margin-top: 8px; font-weight: bold;">54% INCREASE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #8B0000; border: 4px solid yellow; padding: 15px; margin: 20px 0; text-align: center; color: white;">
+            <h3 style="margin-bottom: 10px;">The Housing Math Doesn't Work</h3>
+            <p style="font-size: 1.1em; margin: 5px 0;">54% more people + 0% vacancy = Housing crisis every summer</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Market Crisis -->
+<div class="slide challenge">
+    <div class="container">
+        <h2>Severe Market Imbalances</h2>
+        <div class="two-col">
+            <div class="col">
+                <h3>Ownership Crisis - Affordability Gap</h3>
+                
+                <div class="chart-box teal-bg">
+                    <div>80% AMI Can Afford</div>
+                    <div class="big-number">$245,000</div>
+                </div>
+                
+                <div style="text-align: center; margin: 15px 0; font-size: 2em; font-weight: bold;">
+                    VS
+                </div>
+                
+                <div class="chart-box red-bg" style="padding: 30px;">
+                    <div>Median Market Price</div>
+                    <div class="big-number">$639,500</div>
+                </div>
+                
+                <div class="chart-box dark-red-bg" style="border-color: yellow; border-width: 4px;">
+                    <div class="big-number">$394,500 GAP</div>
+                    <div>(161% more than affordable!)</div>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Rental Emergency</h3>
+                
+                <div class="chart-box red-bg" style="padding: 40px; margin: 30px 0;">
+                    <div class="big-number" style="font-size: 4em;">0%</div>
+                    <div style="font-size: 1.5em;">VACANCY RATE</div>
+                    <div>CRISIS LEVEL</div>
+                </div>
+                
+                <ul>
+                    <li>Only <strong>80 rental units</strong> county-wide</li>
+                    <li><strong>Zero vacancy rate</strong> with waiting lists</li>
+                    <li>Median 2BR rent: <strong>$1,875/month</strong></li>
+                    <li>$651/month gap for service workers</li>
+                    <li><strong>Summer population +54%</strong> strains limited housing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Slide 6: Bottom Line -->
 <div class="slide challenge">
     <div class="container">
@@ -79,3 +532,223 @@
         </div>
     </div>
 </div>
+
+<!-- Slide 7: Our Approach -->
+<div class="slide vision">
+    <div class="container">
+        <h2>Our Implementation-Focused Approach</h2>
+        
+        <div class="process-step" style="background: white; color: #2c5f2d; border: 3px solid white;">
+            STEP 1: MARKET ANALYSIS<br>
+            <small>Not just needs assessment</small>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="process-step" style="background: white; color: #2c5f2d; border: 3px solid white;">
+            STEP 2: SET GOALS<br>
+            <small>Specific, measurable targets</small>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="process-step" style="background: white; color: #2c5f2d; border: 3px solid white;">
+            STEP 3: CHOOSE TOOLS<br>
+            <small>Feasible strategies</small>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="process-step" style="background: #4ecdc4; color: white; border: 3px solid white;">
+            STEP 4: IMPLEMENT & BUILD<br>
+            <small>Deliver actual housing</small>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Vision -->
+<div class="slide vision">
+    <div class="container">
+        <h2>DRAFT Vision Statement</h2>
+        <div class="highlight-box" style="font-size: 1.6em; padding: 40px; margin: 40px auto;">
+            <p><em>"To provide housing opportunities across all life stages, enabling residents to find appropriate homes as they begin careers, raise families, and retire in the community they love."</em></p>
+        </div>
+        <h3>Discussion Questions:</h3>
+        <ul style="font-size: 1.4em; max-width: 800px; margin: 0 auto;">
+            <li>Does this vision capture our community's aspirations?</li>
+            <li>What would you add or change?</li>
+            <li>How do we balance community needs with market realities?</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Slide 9A: Core Objectives - Community Focus -->
+<div class="slide vision">
+    <div class="container">
+        <h2>Core Objectives: Community Needs</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 18px; margin: 15px 0;">
+                <p style="font-size: 1.2em;"><strong>1. Serve All Life Stages</strong><br>Create diverse housing options that meet residents' changing needs - from workforce rentals to family homes to senior-friendly downsizing options.</p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 18px; margin: 15px 0;">
+                <p style="font-size: 1.2em;"><strong>2. Expand Housing Supply Strategically</strong><br>Develop new rental and ownership opportunities across income levels, recognizing that 54% of households earn below 80% AMI.</p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 18px; margin: 15px 0;">
+                <p style="font-size: 1.2em;"><strong>3. Support Economic Stability</strong><br>Expand housing opportunities for teachers, healthcare workers, service employees, and other essential workers.</p>
+            </div>
+            
+            <div style="background: #4ecdc4; border: 3px solid white; padding: 18px; margin: 15px 0; color: white;">
+                <p style="font-size: 1.2em;"><strong>4. Preserve Long-Term Affordability</strong><br>Implement deed restrictions and other mechanisms to ensure public investment creates lasting community benefit.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9B: Core Objectives - Implementation Focus -->
+<div class="slide vision">
+    <div class="container">
+        <h2>Core Objectives: Implementation Approach</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 18px; margin: 15px 0;">
+                <p style="font-size: 1.2em;"><strong>5. Maximize Limited Land Resources</strong><br>Focus on strategic infill development and efficient land use within town boundaries.</p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 18px; margin: 15px 0;">
+                <p style="font-size: 1.2em;"><strong>6. Build Quality, Sustainable Communities</strong><br>Prioritize durable construction, energy efficiency, and professional management.</p>
+            </div>
+            
+            <div style="background: #4ecdc4; border: 3px solid white; padding: 18px; margin: 15px 0; color: white;">
+                <p style="font-size: 1.2em;"><strong>7. Promote a Sustainable Housing Balance</strong><br>Monitor and influence the ratio of year-round to seasonal housing to ensure adequate homes remain available for the local workforce.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 1.1em; font-style: italic;">These objectives guide all our housing strategy decisions</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Housing Balance -->
+<div class="slide vision">
+    <div class="container">
+        <h2>The Housing Balance Question</h2>
+        <div style="text-align: center; margin: 30px 0;">
+            <div style="background: #ff6b6b; border: 3px solid white; padding: 40px; display: inline-block; color: white;">
+                <div class="big-number" style="font-size: 4em;">72%</div>
+                <div style="font-size: 1.2em;">of homes are vacant/seasonal<br>(985 of 1,365 units)</div>
+                <div style="margin-top: 10px; font-weight: bold;">PROBLEM</div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <h3>What Other Mountain Communities Have Decided:</h3>
+            <ul style="font-size: 1.2em; text-align: left;">
+                <li><strong>Jackson Hole:</strong> Target 60% of workers living locally</li>
+                <li><strong>Aspen:</strong> Achieved 35% vacancy rate through deed restrictions</li>
+                <li><strong>Mountain Village (Telluride):</strong> 68% deed-restricted for local workers</li>
+            </ul>
+        </div>
+        
+        <div style="background: #4ecdc4; border: 3px solid white; padding: 15px; margin: 20px auto; max-width: 600px; color: white; text-align: center;">
+            <h3 style="margin-bottom: 10px;">📊 Our Survey Says</h3>
+            <p style="font-size: 1.1em;">77 local residents participated in our housing survey</p>
+            <p><strong>These are the voices of people who live and work here year-round</strong></p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Not second-home owners or tourists - your neighbors and coworkers</p>
+        </div>
+        <h3 style="text-align: center; margin-top: 30px;">Key Question for Our Community:</h3>
+        <p style="font-size: 1.4em; text-align: center;"><strong>What housing balance will allow Lake City to thrive as a year-round community?</strong></p>
+    </div>
+</div>
+
+<!-- Slide 11: Discussion & Next Steps -->
+<div class="slide vision">
+    <div class="container">
+        <h2>Discussion Before Lunch</h2>
+        <div class="two-col">
+            <div class="col">
+                <h3>Vision & Objectives</h3>
+                <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 15px; margin-bottom: 20px;">
+                    <ul>
+                        <li>Do these objectives address our most pressing needs?</li>
+                        <li>What should we add or modify?</li>
+                        <li>How should we prioritize competing objectives?</li>
+                    </ul>
+                </div>
+                
+                <h3>Housing Balance</h3>
+                <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 15px;">
+                    <ul>
+                        <li>What percentage of year-round housing do we need?</li>
+                        <li>Should we set an explicit target?</li>
+                        <li>What level of intervention matches our values?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <h3>After Lunch</h3>
+                <div style="background: #4ecdc4; border: 3px solid white; padding: 20px; color: white;">
+                    <p><strong>Housing Goals Simulator</strong></p>
+                    <p>We'll use an interactive tool to:</p>
+                    <ul style="text-align: left;">
+                        <li>Set specific production targets</li>
+                        <li>Choose income mix priorities</li>
+                        <li>Balance rental vs. ownership goals</li>
+                        <li>See financial implications</li>
+                        <li>Test different scenarios</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 15px; background: white; color: #2c5f2d; border-radius: 5px; text-align: center;">
+                        <strong>Access the simulator:</strong><br>
+                        <a href="https://lakecityhousingstrategy.com/simulator" style="color: #2c5f2d; font-weight: bold; text-decoration: underline; font-size: 1.1em;">lakecityhousingstrategy.com/simulator</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nav-buttons">
+    <button onclick="previousSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide-number">
+    <span id="current">1</span> / <span id="total">12</span>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+document.getElementById('total').textContent = totalSlides;
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    
+    if (n >= totalSlides) currentSlide = 0;
+    if (n < 0) currentSlide = totalSlides - 1;
+    
+    slides[currentSlide].classList.add('active');
+    document.getElementById('current').textContent = currentSlide + 1;
+}
+
+function nextSlide() {
+    currentSlide++;
+    showSlide(currentSlide);
+}
+
+function previousSlide() {
+    currentSlide--;
+    showSlide(currentSlide);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+        previousSlide();
+    }
+});
+
+// Initialize
+showSlide(currentSlide);
+</script>
+
+</body>
+</html>
