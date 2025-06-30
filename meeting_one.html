@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Lake City Housing Strategy Presentation</title>
+    <meta name="description" content="Comprehensive housing strategy presentation for Lake City and Hinsdale County addressing workforce housing challenges and implementation solutions">
     <style>
         * {
             margin: 0;
@@ -25,20 +26,20 @@
             padding: 30px;
             display: none;
             position: relative;
-            background: #2c5f2d;
+            background: #1a4a1d;
             overflow-y: auto;
         }
         
         .slide.challenge {
-            background: linear-gradient(135deg, #7c4a4a 0%, #8b5a5a 100%);
+            background: linear-gradient(135deg, #8b2635 0%, #a53545 100%);
         }
         
         .slide.vision {
-            background: linear-gradient(135deg, #4a6b7c 0%, #5a7b8b 100%);
+            background: linear-gradient(135deg, #2a4a7c 0%, #3a5a8c 100%);
         }
         
         .slide.solutions {
-            background: linear-gradient(135deg, #2d5a3d 0%, #3d6a4d 100%);
+            background: linear-gradient(135deg, #1a4a2d 0%, #2a5a3d 100%);
         }
         
         .slide.active {
@@ -119,25 +120,86 @@
         }
         
         .teal-bg {
-            background: #2d8659;
+            background: #1a5a3a;
+            color: white;
         }
         
         .dark-red-bg {
-            background: #8B0000;
+            background: #660000;
+            color: white;
         }
         
         .white-bg {
             background: white;
-            color: #2c5f2d;
+            color: #1a4a1d;
         }
         
         .highlight-box {
-            background: #4a7c59;
-            border: 2px solid white;
+            background: #2a5a3a;
+            border: 3px solid white;
             padding: 15px;
             margin: 15px auto;
             text-align: center;
             max-width: 600px;
+            color: white;
+        }
+        
+        /* Accessibility improvements */
+        .nav-buttons button:focus,
+        .nav-buttons button:hover {
+            background: rgba(255,255,255,0.8);
+            outline: 3px solid #ffff00;
+            outline-offset: 2px;
+        }
+        
+        /* Skip link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Focus indicators */
+        h1:focus, h2:focus, h3:focus {
+            outline: 3px solid #ffff00;
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .slide {
+                background: #000000 !important;
+            }
+            .slide.challenge {
+                background: #330000 !important;
+            }
+            .slide.vision {
+                background: #000033 !important;
+            }
+            .slide.solutions {
+                background: #003300 !important;
+            }
+            
+            .chart-box, .highlight-box {
+                border-width: 4px !important;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .slide {
+                transition: none !important;
+            }
         }
         
         .nav-buttons {
@@ -192,16 +254,18 @@
     </style>
 </head>
 <body>
+<!-- Skip link for accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- Slide 1: Title -->
-<div class="slide active">
+<div class="slide active" id="main-content" role="main" aria-label="Slide 1 of 26">
     <div class="container">
         <div style="text-align: center; margin-bottom: 30px;">
             <img src="logo.png" alt="Lake City Housing Strategy Logo" height="100" style="vertical-align: middle;">
         </div>
-        <h1>Lake City & Hinsdale County</h1>
-        <h2>Comprehensive Housing Strategy</h2>
-        <div class="highlight-box">
+        <h1 tabindex="0">Lake City & Hinsdale County</h1>
+        <h2 tabindex="0">Comprehensive Housing Strategy</h2>
+        <div class="highlight-box" role="banner">
             <p><strong>Moving from Planning to Implementation</strong></p>
             <p>Housing Steering Committee Meeting #1<br>June 30, 2025</p>
         </div>
@@ -1102,7 +1166,7 @@
     </div>
 </div>
 
-<!-- Slide 23: Middle-Income Workers Reality -->
+<!-- Slide 23: Middle-Income Workers Reality - FIXED -->
 <div class="slide solutions">
     <div class="container">
         <h2>Middle-Income Workers Can't Afford Local Housing</h2>
@@ -1116,3 +1180,347 @@
                 <h3>Essential Workers</h3>
                 <div style="background: #2d8659; border: 3px solid white; padding: 12px; margin: 8px 0; color: white; text-align: center;">
                     <strong>Teacher: $42,000</strong><br>
+                    <small>Can afford $245k home</small>
+                </div>
+                <div style="background: #2d8659; border: 3px solid white; padding: 12px; margin: 8px 0; color: white; text-align: center;">
+                    <strong>Nurse: $68,000</strong><br>
+                    <small>Can afford $390k home</small>
+                </div>
+                <div style="background: #2d8659; border: 3px solid white; padding: 12px; margin: 8px 0; color: white; text-align: center;">
+                    <strong>Sheriff Deputy: $55,000</strong><br>
+                    <small>Can afford $320k home</small>
+                </div>
+                <div style="background: #2d8659; border: 3px solid white; padding: 12px; margin: 8px 0; color: white; text-align: center;">
+                    <strong>County Clerk: $48,000</strong><br>
+                    <small>Can afford $280k home</small>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Market Reality</h3>
+                <div style="background: #ff6b6b; border: 3px solid white; padding: 30px; margin: 15px 0; color: white; text-align: center;">
+                    <div class="big-number">$639k</div>
+                    <strong>Median Home Price</strong><br>
+                    <small>161% above what teachers can afford</small>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 15px; margin: 8px 0;">
+                    <strong>Available Options:</strong>
+                    <ul style="text-align: left; margin-top: 10px; font-size: 1.0em;">
+                        <li>Under $300k: 4 tiny units (all under 500 sq ft)</li>
+                        <li>Under $400k: 5 total units</li>
+                        <li>Under $500k: 8 total units</li>
+                        <li>Family-suitable homes: Almost none</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #8B0000; border: 3px solid white; padding: 15px; margin: 8px 0; color: white; text-align: center;">
+                    <strong>The Gap is Real</strong><br>
+                    <small>Even professionals earning $68k can't afford median homes</small>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #8B0000; border: 4px solid yellow; padding: 12px; margin: 15px 0; text-align: center; color: white;">
+            <h3 style="margin-bottom: 8px;">Essential workers face $150k-$400k gaps between income and housing costs</h3>
+            <p style="font-size: 1.0em; margin: 5px 0;">This forces teachers to commute 2+ hours daily or live in substandard conditions</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 24: The Solution Framework -->
+<div class="slide solutions">
+    <div class="container">
+        <h2>The Solution Framework</h2>
+        <div style="background: #2d8659; border: 2px solid white; padding: 15px; margin: 15px auto; text-align: center; max-width: 600px; color: white;">
+            <h3 style="margin-bottom: 10px;">Three-Pronged Approach to Housing Crisis</h3>
+            <p style="font-size: 1.2em;">Address immediate needs while building long-term solutions</p>
+        </div>
+        
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="background: #2d8659; border: 3px solid white; padding: 20px; margin: 15px 0; color: white;">
+                <h3 style="margin-bottom: 15px;">1. Emergency Housing (0-2 years)</h3>
+                <div class="two-col">
+                    <div class="col">
+                        <strong>Lake Fork Project</strong><br>
+                        28 units mixed-income rental<br>
+                        <small>Already funded and in design</small>
+                    </div>
+                    <div class="col">
+                        <strong>Employer Housing Programs</strong><br>
+                        Master leases, housing allowances<br>
+                        <small>School district, county, health clinic</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #2d8659; border: 3px solid white; padding: 20px; margin: 15px 0; color: white;">
+                <h3 style="margin-bottom: 15px;">2. Workforce Housing (2-5 years)</h3>
+                <div class="two-col">
+                    <div class="col">
+                        <strong>Deed-Restricted Ownership</strong><br>
+                        15-20 homes for 80-120% AMI<br>
+                        <small>Using local funding + state programs</small>
+                    </div>
+                    <div class="col">
+                        <strong>Rental Expansion</strong><br>
+                        Additional 20-30 rental units<br>
+                        <small>Mix of subsidized and workforce</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 20px; margin: 15px 0;">
+                <h3 style="margin-bottom: 15px;">3. Policy & Preservation (Ongoing)</h3>
+                <p><strong>Zoning reform, STR regulations, land banking, preservation programs</strong></p>
+                <p><small>Create sustainable systems to maintain affordability long-term</small></p>
+            </div>
+        </div>
+        
+        <div style="background: #8B0000; border: 4px solid yellow; padding: 12px; margin: 15px 0; text-align: center; color: white;">
+            <h3 style="margin-bottom: 8px;">Total Goal: 40-50 new housing opportunities over 5 years</h3>
+            <p style="font-size: 1.0em; margin: 5px 0;">Focus on rentals for <80% AMI and ownership for 80-120% AMI</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 25: Implementation Timeline -->
+<div class="slide solutions">
+    <div class="container">
+        <h2>Implementation Timeline</h2>
+        <div style="background: #2d8659; border: 2px solid white; padding: 15px; margin: 15px auto; text-align: center; max-width: 600px; color: white;">
+            <h3 style="margin-bottom: 10px;">5-Year Roadmap to Housing Solutions</h3>
+            <p style="font-size: 1.1em;">Phased approach balancing urgency with capacity</p>
+        </div>
+        
+        <div style="max-width: 1100px; margin: 0 auto; font-size: 0.9em;">
+            <div style="background: #ff6b6b; border: 3px solid white; padding: 15px; margin: 10px 0; color: white;">
+                <h3 style="margin-bottom: 10px;">2025-2026: Foundation Phase</h3>
+                <div class="two-col">
+                    <div class="col">
+                        <strong>Lake Fork Construction</strong><br>
+                        • Complete design & permitting<br>
+                        • Begin construction (28 units)<br>
+                        • Establish rental management
+                    </div>
+                    <div class="col">
+                        <strong>Policy & Planning</strong><br>
+                        • Adopt housing strategy<br>
+                        • Pass funding measures<br>
+                        • Update zoning for density
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #2d8659; border: 3px solid white; padding: 15px; margin: 10px 0; color: white;">
+                <h3 style="margin-bottom: 10px;">2027-2028: Expansion Phase</h3>
+                <div class="two-col">
+                    <div class="col">
+                        <strong>Ownership Development</strong><br>
+                        • 10-15 deed-restricted homes<br>
+                        • Down payment assistance program<br>
+                        • Employer partnerships
+                    </div>
+                    <div class="col">
+                        <strong>Site Development</strong><br>
+                        • Land acquisition/exchange<br>
+                        • Infrastructure planning<br>
+                        • Additional rental sites
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 15px; margin: 10px 0;">
+                <h3 style="margin-bottom: 10px;">2029-2030: Sustainability Phase</h3>
+                <div class="two-col">
+                    <div class="col">
+                        <strong>Program Maturation</strong><br>
+                        • Second rental development<br>
+                        • Preservation programs<br>
+                        • Housing trust operations
+                    </div>
+                    <div class="col">
+                        <strong>Evaluation & Scaling</strong><br>
+                        • Assess impact & needs<br>
+                        • Plan next 5-year cycle<br>
+                        • Regional partnerships
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #2d8659; border: 3px solid white; padding: 15px; margin: 20px auto; max-width: 700px; color: white; text-align: center;">
+            <h3 style="margin-bottom: 10px;">Success Metrics</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 15px;">
+                <div><strong>40-50</strong><br><small>New units created</small></div>
+                <div><strong>60%</strong><br><small>Workers housed locally</small></div>
+                <div><strong>15</strong><br><br><small>Essential worker families retained</small></div>
+                <div><strong>$15M</strong><br><small>Economic impact generated</small></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 26: Call to Action -->
+<div class="slide solutions">
+    <div class="container">
+        <h2>Call to Action</h2>
+        <div class="highlight-box" style="font-size: 1.5em; padding: 40px; margin: 40px auto;">
+            <p><strong>The crisis is real. The solutions are achievable. The time to act is now.</strong></p>
+        </div>
+        
+        <div class="two-col">
+            <div class="col">
+                <h3>What Success Looks Like</h3>
+                <div style="background: #2d8659; border: 3px solid white; padding: 20px; margin: 10px 0; color: white;">
+                    <ul style="text-align: left;">
+                        <li>Teachers living in the community they serve</li>
+                        <li>Nurses walking to work instead of commuting 2+ hours</li>
+                        <li>Young families staying instead of leaving</li>
+                        <li>Businesses with reliable, local workforce</li>
+                        <li>Vibrant year-round community</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Next Steps</h3>
+                <div style="background: rgba(255,255,255,0.1); border: 2px solid white; padding: 20px; margin: 10px 0;">
+                    <strong>Immediate Actions:</strong>
+                    <ul style="text-align: left; margin-top: 10px;">
+                        <li>Finalize housing production goals</li>
+                        <li>Select funding strategies</li>
+                        <li>Begin community education</li>
+                        <li>Prepare ballot measures</li>
+                        <li>Advance Lake Fork project</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #2d8659; border: 3px solid white; padding: 15px; margin: 10px 0; color: white; text-align: center;">
+                    <strong>Your Role</strong><br>
+                    <small>Champion solutions in your organization and community</small>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #8B0000; border: 4px solid yellow; padding: 15px; margin: 20px 0; text-align: center; color: white;">
+            <h3 style="margin-bottom: 10px;">Every month we delay, more families are forced to leave</h3>
+            <p style="font-size: 1.1em; margin: 5px 0;">Lake City's future as a year-round community depends on the decisions we make this year</p>
+        </div>
+    </div>
+</div>
+
+<div class="nav-buttons" role="navigation" aria-label="Presentation navigation">
+    <button onclick="previousSlide()" aria-label="Go to previous slide" accesskey="p">Previous</button>
+    <button onclick="nextSlide()" aria-label="Go to next slide" accesskey="n">Next</button>
+</div>
+
+<div class="slide-number" role="status" aria-live="polite" aria-label="Current slide number">
+    <span id="current">1</span> / <span id="total">26</span>
+</div>
+
+<script>
+let currentSlide = 0;
+let slides = [];
+let totalSlides = 0;
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    slides = document.querySelectorAll('.slide');
+    totalSlides = slides.length;
+    
+    document.getElementById('total').textContent = totalSlides;
+    showSlide(0);
+});
+
+function showSlide(n) {
+    // Hide all slides
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        slide.setAttribute('aria-hidden', 'true');
+        slide.removeAttribute('role');
+    });
+    
+    // Handle wrapping
+    if (n >= totalSlides) currentSlide = 0;
+    if (n < 0) currentSlide = totalSlides - 1;
+    
+    // Show current slide
+    if (slides[currentSlide]) {
+        slides[currentSlide].classList.add('active');
+        slides[currentSlide].setAttribute('aria-hidden', 'false');
+        slides[currentSlide].setAttribute('role', 'main');
+        slides[currentSlide].setAttribute('aria-label', `Slide ${currentSlide + 1} of ${totalSlides}`);
+        
+        // Focus management for screen readers
+        const heading = slides[currentSlide].querySelector('h1, h2');
+        if (heading) {
+            heading.focus();
+        }
+    }
+    
+    // Update counter
+    document.getElementById('current').textContent = currentSlide + 1;
+    
+    // Announce slide change to screen readers
+    const announcement = `Slide ${currentSlide + 1} of ${totalSlides}`;
+    const ariaLive = document.querySelector('[aria-live="polite"]');
+    if (ariaLive) {
+        ariaLive.textContent = announcement;
+    }
+}
+
+function nextSlide() {
+    currentSlide++;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    showSlide(currentSlide);
+}
+
+function previousSlide() {
+    currentSlide--;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    showSlide(currentSlide);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        previousSlide();
+    } else if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlide = 0;
+        showSlide(currentSlide);
+    } else if (e.key === 'End') {
+        e.preventDefault();
+        currentSlide = totalSlides - 1;
+        showSlide(currentSlide);
+    }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+        nextSlide(); // Swipe left = next slide
+    }
+    if (touchEndX > touchStartX + 50) {
+        previousSlide(); // Swipe right = previous slide
+    }
+}
+</script>
+
+</body>
+</html>
