@@ -33,17 +33,21 @@
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
             .slide {
-                padding: 15px 15px 90px 15px; /* More bottom space for mobile nav */
                 height: 100vh;
+                height: 100dvh; /* Dynamic viewport height for mobile browsers */
+                padding: 25px 15px 110px 15px; /* More top padding, more bottom space */
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
         
         @media (max-width: 480px) {
             .slide {
-                padding: 10px 10px 100px 10px; /* Even more space for mobile nav */
                 height: 100vh;
+                height: 100dvh; /* Dynamic viewport height */
+                padding: 30px 10px 130px 10px; /* Even more top padding */
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
         
@@ -67,7 +71,7 @@
             font-size: 2.4em;
             text-align: center;
             margin-bottom: 15px;
-            margin-top: 0;
+            margin-top: 10px; /* Small top margin for breathing room */
             font-family: 'Georgia', 'Times New Roman', serif;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -79,7 +83,7 @@
             font-size: 2.2em;
             text-align: center;
             margin-bottom: 20px;
-            margin-top: 0;
+            margin-top: 10px; /* Small top margin */
             font-family: 'Georgia', 'Times New Roman', serif;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -92,7 +96,7 @@
         .slide h3 {
             font-size: 1.6em;
             margin-bottom: 15px;
-            margin-top: 0;
+            margin-top: 10px;
             font-family: 'Georgia', 'Times New Roman', serif;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -104,12 +108,14 @@
             .slide h1 {
                 font-size: 2.0em;
                 margin-bottom: 12px;
+                margin-top: 5px; /* Ensure visible on tablets */
                 line-height: 1.1;
             }
             
             .slide h2 {
                 font-size: 1.8em;
                 margin-bottom: 15px;
+                margin-top: 5px;
                 padding-bottom: 8px;
                 line-height: 1.1;
             }
@@ -117,6 +123,7 @@
             .slide h3 {
                 font-size: 1.4em;
                 margin-bottom: 12px;
+                margin-top: 8px;
                 line-height: 1.2;
             }
         }
@@ -125,13 +132,17 @@
             .slide h1 {
                 font-size: 1.6em;
                 margin-bottom: 10px;
+                margin-top: 0; /* Start at very top on phones */
                 line-height: 1.1;
                 letter-spacing: 0.5px;
+                padding-top: 5px; /* Small internal padding instead */
             }
             
             .slide h2 {
                 font-size: 1.4em;
                 margin-bottom: 12px;
+                margin-top: 0; /* Start at very top */
+                padding-top: 5px;
                 padding-bottom: 6px;
                 line-height: 1.1;
                 letter-spacing: 0.5px;
@@ -140,6 +151,7 @@
             .slide h3 {
                 font-size: 1.2em;
                 margin-bottom: 10px;
+                margin-top: 5px;
                 line-height: 1.2;
             }
         }
@@ -170,9 +182,8 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            width: 100%;
+            min-height: calc(100vh - 160px); /* Ensure content fits */
         }
         
         .slide.solutions .container {
@@ -188,11 +199,20 @@
                 max-width: 100%;
                 padding: 0;
                 margin: 0;
+                min-height: auto;
+                width: 100%;
             }
             
             .slide.solutions .container {
                 transform: none;
                 max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                min-height: auto;
+                width: 100%;
             }
         }
         
@@ -602,7 +622,27 @@
         /* Ensure content is always visible above navigation */
         @media (max-width: 480px) {
             .slide {
-                padding-bottom: 120px; /* Extra space for mobile nav */
+                padding-bottom: 130px; /* Extra space for mobile nav */
+            }
+            
+            /* Fix for mobile browser address bars */
+            .slide {
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+            
+            /* Ensure titles are always visible */
+            .slide:first-child {
+                padding-top: 40px;
+            }
+        }
+        
+        /* Fix for mobile browser viewport issues */
+        @supports (height: 100dvh) {
+            @media (max-width: 768px) {
+                .slide {
+                    height: 100dvh;
+                }
             }
         }
         
@@ -616,6 +656,12 @@
             strong {
                 font-weight: bold;
                 font-size: 1.05em;
+            }
+            
+            /* Ensure logo/images don't get cut off */
+            img {
+                max-width: 100%;
+                height: auto;
             }
         }
     </style>
