@@ -168,21 +168,31 @@ def create_demographic_summary(df):
     
     with col1:
         st.subheader("Ownership Status")
-        ownership_data = df['own_or_rent'].value_counts()
-        if len(ownership_data) > 0:
-            fig = px.pie(values=ownership_data.values, names=ownership_data.index, 
-                        title="Own vs Rent Distribution")
-            st.plotly_chart(fig, use_container_width=True)
+        try:
+            ownership_data = df['own_or_rent'].value_counts()
+            if len(ownership_data) > 0:
+                fig = px.pie(values=ownership_data.values, names=ownership_data.index, 
+                            title="Own vs Rent Distribution")
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No ownership data available")
+        except Exception as e:
+            st.error(f"Error creating ownership chart: {str(e)}")
     
     with col2:
         st.subheader("Household Size")
-        size_data = df['household_size'].value_counts().sort_index()
-        if len(size_data) > 0:
-            fig = px.bar(x=size_data.index, y=size_data.values, 
-                        title="Household Size Distribution")
-            fig.update_xaxis(title="Number of People")
-            fig.update_yaxis(title="Number of Households")
-            st.plotly_chart(fig, use_container_width=True)
+        try:
+            size_data = df['household_size'].value_counts().sort_index()
+            if len(size_data) > 0:
+                fig = px.bar(x=size_data.index.astype(str), y=size_data.values, 
+                            title="Household Size Distribution")
+                fig.update_xaxis(title="Number of People")
+                fig.update_yaxis(title="Number of Households")
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No household size data available")
+        except Exception as e:
+            st.error(f"Error creating household size chart: {str(e)}")
 
 def create_economic_analysis(df):
     """Create economic analysis visualizations"""
@@ -190,27 +200,37 @@ def create_economic_analysis(df):
     
     with col1:
         st.subheader("Income Distribution")
-        income_order = ['Less than $25,000', '$25,000-$49,999', '$50,000-$74,999', 
-                       '$75,000-$99,999', '$100,000-$149,999', '$150,000-$199,999', 
-                       '$200,000 or more']
-        income_data = df['income_category'].value_counts().reindex(income_order, fill_value=0)
-        if income_data.sum() > 0:
-            fig = px.bar(x=income_data.index, y=income_data.values, 
-                        title="Annual Household Income")
-            fig.update_xaxis(title="Income Range", tickangle=45)
-            fig.update_yaxis(title="Number of Households")
-            st.plotly_chart(fig, use_container_width=True)
+        try:
+            income_order = ['Less than $25,000', '$25,000-$49,999', '$50,000-$74,999', 
+                           '$75,000-$99,999', '$100,000-$149,999', '$150,000-$199,999', 
+                           '$200,000 or more']
+            income_data = df['income_category'].value_counts().reindex(income_order, fill_value=0)
+            if income_data.sum() > 0:
+                fig = px.bar(x=income_data.index, y=income_data.values, 
+                            title="Annual Household Income")
+                fig.update_xaxis(title="Income Range", tickangle=45)
+                fig.update_yaxis(title="Number of Households")
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No income data available")
+        except Exception as e:
+            st.error(f"Error creating income chart: {str(e)}")
     
     with col2:
         st.subheader("Housing Cost Burden")
-        burden_data = df['cost_burden_category'].value_counts()
-        if len(burden_data) > 0:
-            colors = {'30% or less': 'green', '30-50%': 'orange', 'Over 50%': 'red'}
-            fig = px.bar(x=burden_data.index, y=burden_data.values,
-                        title="Housing Cost as % of Income",
-                        color=burden_data.index,
-                        color_discrete_map=colors)
-            st.plotly_chart(fig, use_container_width=True)
+        try:
+            burden_data = df['cost_burden_category'].value_counts()
+            if len(burden_data) > 0:
+                colors = {'30% or less': 'green', '30-50%': 'orange', 'Over 50%': 'red'}
+                fig = px.bar(x=burden_data.index, y=burden_data.values,
+                            title="Housing Cost as % of Income",
+                            color=burden_data.index,
+                            color_discrete_map=colors)
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No cost burden data available")
+        except Exception as e:
+            st.error(f"Error creating cost burden chart: {str(e)}")
 
 def create_filtered_crosstab(df, row_var, col_var, min_size=MIN_SAMPLE_SIZE):
     """Create a crosstab with confidentiality protection"""
