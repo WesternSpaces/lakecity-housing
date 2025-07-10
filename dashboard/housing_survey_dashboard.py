@@ -94,7 +94,7 @@ def load_data():
     """Load and prepare the housing survey data"""
     try:
         # Load the raw data file
-        df = pd.read_csv('Final_HH_Export_with_all_categories.csv')
+        df = pd.read_csv('dashboard/Final_HH_Export_with_all_categories.csv')
         
         # Filter for year-round and seasonal workers only
         df = df[df['residency_duration'].str.contains('Year-round|seasonal', case=False, na=False)]
