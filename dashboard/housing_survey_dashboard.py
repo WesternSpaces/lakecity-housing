@@ -121,19 +121,35 @@ def load_data():
             '$4,000 or more': 'High ($2,000+)'
         })
         
-        # Create employment status
-        df['employment_status'] = df.apply(lambda row: 
-            'Working Households' if (
-                int(str(row.get('adults_employed', '0')).replace('Zero', '0') or '0') > 0 or
-                int(str(row.get('adults_self_employed', '0')).replace('Zero', '0') or '0') > 0
-            ) and int(str(row.get('adults_retired', '0')).replace('Zero', '0') or '0') == 0
-            else 'Working and Retired' if (
-                int(str(row.get('adults_employed', '0')).replace('Zero', '0') or '0') > 0 or
-                int(str(row.get('adults_self_employed', '0')).replace('Zero', '0') or '0') > 0
-            ) and int(str(row.get('adults_retired', '0')).replace('Zero', '0') or '0') > 0
-            else 'Retired Only' if int(str(row.get('adults_retired', '0')).replace('Zero', '0') or '0') > 0
-            else 'Not in Labor Force', axis=1
-        )
+        # Create employment status with better error handling
+        def get_employment_status(row):
+            try:
+                # Helper function to safely convert to int
+                def safe_int(val):
+                    val_str = str(val).replace('Zero', '0').replace('nan', '0').strip()
+                    if not val_str or val_str.lower() == 'nan':
+                        return 0
+                    try:
+                        return int(float(val_str))
+                    except:
+                        return 0
+                
+                employed = safe_int(row.get('adults_employed', 0))
+                self_employed = safe_int(row.get('adults_self_employed', 0))
+                retired = safe_int(row.get('adults_retired', 0))
+                
+                if (employed > 0 or self_employed > 0) and retired == 0:
+                    return 'Working Households'
+                elif (employed > 0 or self_employed > 0) and retired > 0:
+                    return 'Working and Retired'
+                elif retired > 0:
+                    return 'Retired Only'
+                else:
+                    return 'Not in Labor Force'
+            except:
+                return 'Not in Labor Force'
+        
+        df['employment_status'] = df.apply(get_employment_status, axis=1)
         
         return df
     except Exception as e:
@@ -286,12 +302,19 @@ def main():
             st.metric("Total Households", len(filtered_df))
         
         with col2:
-            avg_size = filtered_df['household_size'].astype(str).str.extract('(\d+)').astype(float).mean()
-            st.metric("Average Household Size", f"{avg_size:.1f}")
+            try:
+                avg_size = filtered_df['household_size'].astype(str).str.extract('(\d+)')[0].astype(float).mean()
+                st.metric("Average Household Size", f"{avg_size:.1f}" if not pd.isna(avg_size) else "N/A")
+            except:
+                st.metric("Average Household Size", "N/A")
         
         with col3:
-            seniors = filtered_df['age_65_plus'].fillna('0').astype(str).str.extract('(\d+)').astype(int).sum()
-            st.metric("Households with 65+", f"{(seniors > 0).sum()}")
+            try:
+                seniors_data = filtered_df['age_65_plus'].fillna('0').astype(str).str.extract('(\d+)')[0]
+                seniors_count = (seniors_data.astype(float) > 0).sum()
+                st.metric("Households with 65+", seniors_count)
+            except:
+                st.metric("Households with 65+", "N/A")
     
     with tab2:
         st.header("Economic Analysis")
