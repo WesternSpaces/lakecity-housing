@@ -185,9 +185,8 @@ def create_demographic_summary(df):
             size_data = df['household_size'].value_counts().sort_index()
             if len(size_data) > 0:
                 fig = px.bar(x=size_data.index.astype(str), y=size_data.values, 
-                            title="Household Size Distribution")
-                fig.update_xaxis(title="Number of People")
-                fig.update_yaxis(title="Number of Households")
+                            title="Household Size Distribution",
+                            labels={'x': 'Number of People', 'y': 'Number of Households'})
                 st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No household size data available")
@@ -207,9 +206,9 @@ def create_economic_analysis(df):
             income_data = df['income_category'].value_counts().reindex(income_order, fill_value=0)
             if income_data.sum() > 0:
                 fig = px.bar(x=income_data.index, y=income_data.values, 
-                            title="Annual Household Income")
-                fig.update_xaxis(title="Income Range", tickangle=45)
-                fig.update_yaxis(title="Number of Households")
+                            title="Annual Household Income",
+                            labels={'x': 'Income Range', 'y': 'Number of Households'})
+                fig.update_layout(xaxis_tickangle=45)
                 st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No income data available")
