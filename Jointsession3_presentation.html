@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lake City Housing Plan - Joint Session #3 Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a1a;
+            color: #333;
+            overflow: hidden;
+            font-size: 125%;
+        }
+
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            padding: 40px 60px;
+            background: white;
+            overflow-y: auto;
+        }
+
+        .slide.topic-slide {
+            background: #f5f5f5;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #1a5490 0%, #2c7ab8 100%);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 2.8em;
+            margin-bottom: 0.3em;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
+        }
+
+        .title-slide h2 {
+            font-size: 1.6em;
+            margin-bottom: 0.8em;
+            font-weight: 400;
+            opacity: 0.95;
+            color: white;
+        }
+
+        .title-slide .session-info {
+            font-size: 1.3em;
+            margin: 0.8em 0;
+            font-weight: 500;
+            color: white;
+        }
+
+        .title-slide .team-info {
+            margin-top: 1.5em;
+            font-size: 1.1em;
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* Content Slides */
+        h1 {
+            color: #1a5490;
+            font-size: 2.6em;
+            margin-bottom: 0.25em;
+            border-bottom: 4px solid #1a5490;
+            padding-bottom: 0.15em;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: #1a5490;
+            font-size: 1.9em;
+            margin: 0.4em 0 0.25em 0;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin: 0.4em 0 0.2em 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #34495e;
+            font-size: 1.35em;
+            margin: 0.4em 0 0.2em 0;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.35em;
+            line-height: 1.4;
+            margin: 0.3em 0;
+        }
+
+        ul, ol {
+            font-size: 1.35em;
+            line-height: 1.5;
+            margin: 0.4em 0 0.4em 1.5em;
+        }
+
+        li {
+            margin: 0.25em 0;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 15px 20px;
+            margin: 0.5em 0;
+            border-radius: 6px;
+            border-left: 6px solid;
+            background: #f8f9fa;
+        }
+
+        .callout h3 {
+            margin-top: 0;
+            margin-bottom: 0.3em;
+        }
+
+        .callout-info {
+            background: #e3f2fd;
+            border-left-color: #1976d2;
+        }
+
+        .callout-info h3 {
+            color: #1976d2;
+        }
+
+        .callout-success {
+            background: #e8f5e9;
+            border-left-color: #388e3c;
+        }
+
+        .callout-success h3 {
+            color: #388e3c;
+        }
+
+        .callout-warning {
+            background: #fff3e0;
+            border-left-color: #f57c00;
+        }
+
+        .callout-warning h3 {
+            color: #f57c00;
+        }
+
+        /* Decision Boxes */
+        .decision {
+            background: #fafafa;
+            border: 3px solid #1a5490;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 0.5em 0;
+        }
+
+        .decision h3 {
+            color: #1a5490;
+            margin-top: 0;
+            font-size: 1.7em;
+        }
+
+        .decision-question {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin: 0.3em 0 0.6em 0;
+            font-style: italic;
+        }
+
+        .checkbox-item {
+            font-size: 1.3em;
+            margin: 0.4em 0;
+            padding: 14px 18px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #1a5490;
+        }
+
+        .checkbox-item.highlight {
+            background: #e8f5e9;
+            border-left-color: #388e3c;
+        }
+
+        .checkbox-item.urgent {
+            background: #ffebee;
+            border-left-color: #d32f2f;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        .badge-urgent {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .badge-high {
+            background: #1976d2;
+            color: white;
+        }
+
+        /* Bottom Line */
+        .bottom-line {
+            background: #263238;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 6px;
+            margin: 0.6em 0;
+            text-align: center;
+        }
+
+        .bottom-line p {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .bottom-line strong {
+            color: #ffd54f;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5em 0;
+            font-size: 1.1em;
+        }
+
+        th {
+            background: #1a5490;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 9px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.05em;
+            line-height: 1.3;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr.strategy-header {
+            background: #e0e0e0 !important;
+            font-weight: bold;
+        }
+
+        tr.phase1 {
+            background: #E3F2FD !important;
+        }
+
+        tr.phase2 {
+            background: #E8F5E9 !important;
+        }
+
+        tr.phase3 {
+            background: #FFF3E0 !important;
+        }
+
+        /* Phase boxes */
+        .phase {
+            padding: 15px 20px;
+            margin: 0.5em 0;
+            border-radius: 6px;
+            border-left: 5px solid;
+        }
+
+        .phase h4 {
+            margin-top: 0;
+            margin-bottom: 0.3em;
+        }
+
+        .phase ul {
+            font-size: 1.25em;
+        }
+
+        .phase-1 {
+            background: #E3F2FD;
+            border-left-color: #1976d2;
+        }
+
+        .phase-1 h4 {
+            color: #1976d2;
+        }
+
+        .phase-2 {
+            background: #E8F5E9;
+            border-left-color: #388e3c;
+        }
+
+        .phase-2 h4 {
+            color: #388e3c;
+        }
+
+        .phase-3 {
+            background: #FFF3E0;
+            border-left-color: #f57c00;
+        }
+
+        .phase-3 h4 {
+            color: #f57c00;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1em;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px 15px;
+            margin: 0 5px;
+        }
+
+        .nav-button:hover {
+            opacity: 0.7;
+        }
+
+        .slide-number {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        /* Two column layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 0.5em 0;
+        }
+
+        .column {
+            padding: 12px;
+        }
+
+        /* Scrollbar styling */
+        .slide::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide active title-slide">
+    <h1>Lake City & Hinsdale County<br>Strategic Housing Plan</h1>
+    <h2>Implementation Discussion</h2>
+    <div class="session-info">
+        Joint Session #3<br>
+        November 19, 2025 | 1:00 PM
+    </div>
+    <div class="team-info">
+        <strong>Team:</strong><br>
+        Western Spaces | Dynamic Planning + Science<br>
+        Proximity Green | Triple Point Strategic Consulting
+    </div>
+</div>
+
+<!-- Slide 2: Meeting Overview -->
+<div class="slide">
+    <h1>Today's Session</h1>
+
+    <div class="callout callout-info">
+        <h3>Meeting Goal</h3>
+        <p>Finalize implementation approach, capacity, and next steps</p>
+    </div>
+
+    <h2>Our Role Today</h2>
+    <p>We're handing you the baton. This meeting is about your decisions:</p>
+    <ul>
+        <li>What you have capacity to take on</li>
+        <li>What aligns with your priorities</li>
+        <li>What timeline makes sense for you</li>
+        <li>How much you want to pursue vs. set aside for later</li>
+    </ul>
+
+    <div class="bottom-line">
+        <p><strong>There's no "wrong" answer</strong> - only what works for Lake City</p>
+    </div>
+</div>
+
+<!-- Slide 3: Context -->
+<div class="slide">
+    <h1>What You Have Going For You</h1>
+
+    <div class="callout callout-info">
+        <h3>Prop 123 Commitment</h3>
+        <p>Town committed to 7 units, County to 2 units by end of 2026. Pathways include ADUs, acquisition/rehab, code revisions, and deed restrictions.</p>
+    </div>
+
+    <div class="callout callout-success">
+        <h3>Fast-Track Permitting</h3>
+        <p>$100K incentive ($50K Town + $50K County) if completed by Dec 31, 2025. <span class="badge badge-urgent">IN PROGRESS</span></p>
+    </div>
+
+    <div class="callout callout-info">
+        <h3>Lake Fork Site</h3>
+        <p>MHN grant underway for site plans. Town owns the land, utilities nearby. Potential for 28 units.</p>
+    </div>
+
+    <div class="callout callout-success">
+        <h3>Grant Opportunities</h3>
+        <p>DOLA, Prop 123, LIHTC, USDA 515 all available for implementation support.</p>
+    </div>
+</div>
+
+<!-- Slide 4: First Action - IGA -->
+<div class="slide">
+    <h1>First Action to Consider</h1>
+
+    <div class="callout callout-warning">
+        <h3>Intergovernmental Agreement (IGA)</h3>
+        <p>Before diving into specific programs, consider formalizing your collaboration with an IGA to implement this plan together.</p>
+
+        <h4 style="margin-top: 1em;">An IGA would:</h4>
+        <ul>
+            <li>Establish clear roles and responsibilities between Town and County</li>
+            <li>Create a framework for shared funding and resource allocation</li>
+            <li>Strengthen grant applications by demonstrating formal partnership</li>
+            <li>Provide legal structure for joint housing initiatives</li>
+        </ul>
+    </div>
+
+    <div class="bottom-line">
+        <p><strong>This could be your first concrete action</strong> - setting the foundation for all collaborative work to follow</p>
+    </div>
+</div>
+
+<!-- Slide 5: Topic 1A - Housing Coordinator -->
+<div class="slide topic-slide">
+    <h1>Topic 1: Capacity & Structure</h1>
+
+    <div class="decision">
+        <h3>Part A: Housing Coordinator Position</h3>
+        <p class="decision-question">Core question: Do you have staff capacity to implement?</p>
+
+        <p>A shared 0.5-0.75 FTE coordinator could handle grant writing, program management, and implementation coordination.</p>
+
+        <p><strong>Silverton case study:</strong> $60K coordinator brought in $1M+ in grants within 2 years (17:1 ROI)</p>
+
+        <h4 style="margin-top: 0.8em;">Hire a Joint Housing Coordinator?</h4>
+        <div class="two-column" style="gap: 20px;">
+            <div class="checkbox-item highlight" style="font-size: 1.4em; text-align: center; padding: 20px;">
+                <strong>YES</strong> - Hire coordinator position
+            </div>
+            <div class="checkbox-item" style="font-size: 1.4em; text-align: center; padding: 20px;">
+                <strong>NO</strong> - Revisit later, continue with existing staff
+            </div>
+        </div>
+
+        <h4 style="margin-top: 1.5em;">If YES, Funding Options:</h4>
+        <div class="checkbox-item">
+            <strong>Pursue DOLA grants first</strong> (could cover full cost)
+        </div>
+        <div class="checkbox-item">
+            <strong>Use Fast-Track $100K</strong> (partial or full Year 1 coverage)
+        </div>
+        <div class="checkbox-item">
+            <strong>Local budgets</strong> ($30-45K per jurisdiction/year)
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Topic 1B - Housing Authority -->
+<div class="slide topic-slide">
+    <h1>Topic 1: Capacity & Structure</h1>
+
+    <div class="decision">
+        <h3>Part B: Housing Authority Formation</h3>
+        <p class="decision-question">What organizational structure do you need?</p>
+
+        <p>A housing authority would:</p>
+        <ul>
+            <li>Unlock multiple funding sources (CHFA loans, LIHTC, additional grant opportunities)</li>
+            <li>Strengthen Prop 123 applications</li>
+            <li>Provide a dedicated legal entity for housing work</li>
+            <li>Town Trustees can serve as Board</li>
+            <li>Legal setup cost: $2-5K</li>
+        </ul>
+
+        <p><strong>Silverton used this model successfully</strong></p>
+
+        <h4 style="margin-top: 1em;">Your Options:</h4>
+        <div class="checkbox-item highlight">
+            <strong>Form Lake City Housing Authority</strong> (Trustees as Board)
+        </div>
+        <div class="checkbox-item">
+            <strong>Not at this time</strong> - Work through existing Town/County structure
+        </div>
+
+        <p style="margin-top: 1em; font-style: italic;"><em>Note: Housing Coordinator and Housing Authority work well together but can also be pursued independently.</em></p>
+    </div>
+</div>
+
+<!-- Slide 7: Topic 2 - Funding -->
+<div class="slide topic-slide">
+    <h1>Topic 2: Funding</h1>
+
+    <div class="callout callout-info">
+        <h3>Why This Matters</h3>
+        <p>Sustainable, predictable revenue allows you to plan multi-year projects, match grants, and demonstrate commitment to funders. Without it, you're limited to opportunistic, one-off actions.</p>
+        <p style="margin-top: 0.5em;"><strong>Timing consideration:</strong> Aligning a mill levy campaign with Lake Fork MHN momentum (when plans are in hand) could strengthen your case to voters.</p>
+    </div>
+
+    <div class="decision">
+        <h3>Sustainable Revenue Source?</h3>
+        <p class="decision-question">Core question: Do you want to pursue voter-approved funding, or rely on grants and fees?</p>
+
+        <div class="two-column">
+            <div class="column">
+                <h4>Option A: Mill Levy</h4>
+                <p><strong>~$116K/year</strong></p>
+                <ul>
+                    <li>2-mill property tax</li>
+                    <li>75% paid by out-of-county vacation/seasonal homeowners</li>
+                    <li>Costs residents $12.64 per $100K property value/year</li>
+                    <li>Predictable annual revenue</li>
+                </ul>
+
+                <h4 style="margin-top: 1em;">When?</h4>
+                <div class="checkbox-item">
+                    <strong>November 2026</strong> (allows time for education campaign)
+                </div>
+                <div class="checkbox-item">
+                    <strong>Later</strong> (2027+, once you have early wins)
+                </div>
+            </div>
+
+            <div class="column">
+                <h4>Option B: Grants & Fees Only</h4>
+                <ul>
+                    <li>Inclusionary zoning fees ($25K/home)</li>
+                    <li>Grants (DOLA, Prop 123, etc.)</li>
+                    <li>Periodic local budget allocations</li>
+                    <li>More variable</li>
+                    <li>No voter approval needed</li>
+                </ul>
+
+                <div class="checkbox-item" style="margin-top: 2em;">
+                    <strong>Don't pursue mill levy at this time</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Topic 3 - Lake Fork -->
+<div class="slide topic-slide">
+    <h1>Topic 3: Lake Fork Site</h1>
+
+    <div class="decision">
+        <h3>What's Your Approach?</h3>
+        <p class="decision-question">Core question: When MHN plans are ready, how do you want to proceed?</p>
+
+        <div class="callout callout-info">
+            <h3>Context</h3>
+            <p>MHN grant underway - will deliver site plans. Potential for 28 units. Town owns land, utilities nearby.</p>
+            <p style="margin-top: 0.5em;"><strong>Timing:</strong> MHN momentum + plans in hand = window of opportunity for funding and community support.</p>
+        </div>
+
+        <div class="callout callout-warning">
+            <h3>Recommended Approach</h3>
+            <p><strong>Phased development</strong> with <strong>public-private partnership.</strong> Consider prefab/modular construction given high costs and short build season.</p>
+        </div>
+
+        <h4 style="margin-top: 1em;">Your Decision:</h4>
+        <div class="checkbox-item highlight">
+            <strong>YES</strong> - Pursue Lake Fork development (work with consultant on approach)
+        </div>
+        <div class="checkbox-item">
+            <strong>WAIT</strong> - See MHN plans before deciding
+        </div>
+        <div class="checkbox-item">
+            <strong>NO</strong> - Not a priority at this time
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Topic 4 - First Steps -->
+<div class="slide topic-slide">
+    <h1>Topic 4: First Steps</h1>
+
+    <div class="decision">
+        <h3>What Launches Now?</h3>
+        <p class="decision-question">Core question: What are you ready to pursue in the next 6 months?</p>
+
+        <h4>Already Underway:</h4>
+        <div class="checkbox-item urgent">
+            <strong>Fast-Track Permitting & Development Incentives</strong> <span class="badge badge-urgent">DEC 31 DEADLINE</span><br>
+            $100K incentive - includes expedited permitting, fee waivers, density bonuses
+        </div>
+
+        <h4 style="margin-top: 1em;">Actions to Consider:</h4>
+        <div class="checkbox-item highlight">
+            <strong>Intergovernmental Agreement (IGA)</strong> - Formalize Town/County partnership and implementation framework
+        </div>
+        <div class="checkbox-item">
+            <strong>Housing Coordinator</strong> - Hire shared position or apply for DOLA grants
+        </div>
+        <div class="checkbox-item">
+            <strong>Housing Authority Formation</strong> - Unlocks multiple funding sources and strengthens grant applications
+        </div>
+        <div class="checkbox-item">
+            <strong>Housing Trust Fund</strong> - Establish fund structure (needed to receive and manage revenue)
+        </div>
+        <div class="checkbox-item">
+            <strong>Mill Levy Campaign</strong> - Begin planning for voter-approved revenue (Note: This takes time to ramp up - education campaign, ballot language, PAC formation)
+        </div>
+
+        <p style="margin-top: 1em; font-style: italic;"><em>These five actions form a strong foundation. The IGA formalizes your partnership, the Coordinator provides capacity, the Housing Authority unlocks resources, the Trust Fund manages revenue, and the Mill Levy provides sustainable funding.</em></p>
+    </div>
+</div>
+
+<!-- Slide 10: Topic 5 - Oversight -->
+<div class="slide topic-slide">
+    <h1>Topic 5: Staying on Track</h1>
+
+    <div class="decision">
+        <h3>Oversight Structure</h3>
+        <p class="decision-question">Core question: How do you want to maintain momentum and accountability?</p>
+
+        <h4>Recommended Approach (Both Together):</h4>
+        <p>We recommend combining these two complementary structures:</p>
+
+        <div class="checkbox-item highlight">
+            <strong>Quarterly joint sessions</strong><br>
+            Town Trustees + County Commissioners review progress, make decisions
+        </div>
+
+        <div class="checkbox-item highlight">
+            <strong>Standing housing committee</strong><br>
+            Steering group continues in advisory role, provides technical guidance
+        </div>
+
+        <p style="margin-top: 1.5em;"><strong>Why both?</strong> The quarterly sessions ensure elected officials stay engaged and make timely decisions, while the standing committee provides continuity, technical expertise, and detailed oversight between sessions.</p>
+
+        <h4 style="margin-top: 1em;">Alternative Options:</h4>
+        <div class="checkbox-item">
+            <strong>Annual review only</strong> (lighter touch, less frequent check-ins)
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: Timeline Overview -->
+<div class="slide">
+    <h1>Implementation Timeline</h1>
+
+    <div class="phase phase-1">
+        <h4>Phase I (Months 0-6): Foundation & Quick Wins</h4>
+        <ul>
+            <li>Complete Fast-Track Permitting (Dec 31 deadline)</li>
+            <li>Execute IGA between Town and County</li>
+            <li>Establish Housing Trust Fund</li>
+            <li>Hire Housing Coordinator or secure DOLA grant</li>
+            <li>Form Housing Authority (if pursued)</li>
+            <li>Begin land acquisition/banking opportunities (Prop 123)</li>
+            <li>Launch acquisition & rehabilitation program</li>
+        </ul>
+    </div>
+
+    <div class="phase phase-2">
+        <h4>Phase II (Months 6-18): Programs Launch</h4>
+        <ul>
+            <li>Mill levy campaign and ballot (if November 2026 pursued)</li>
+            <li>Select Lake Fork developer partner</li>
+            <li>Launch ADU incentive program</li>
+            <li>Expand acquisition/rehabilitation</li>
+            <li>Implement anti-displacement policies</li>
+            <li>Launch down payment assistance and emergency repair programs</li>
+        </ul>
+        <p style="font-style: italic; margin-top: 0.3em; font-size: 1.15em;"><strong>Note:</strong> Priorities shift based on Phase I successes and available capacity</p>
+    </div>
+</div>
+
+<!-- Slide 12: Timeline Phase 3 -->
+<div class="slide">
+    <h1>Implementation Timeline (cont.)</h1>
+
+    <div class="phase phase-3">
+        <h4>Phase III (Months 18+): Construction & Scale</h4>
+        <ul>
+            <li>Lake Fork construction begins (2027-2029)</li>
+            <li>Expand successful programs from Phase I & II</li>
+            <li>Implement housing impact fees (if capacity allows)</li>
+            <li>Launch construction workforce development</li>
+            <li>Path to 40+ units by 2034</li>
+        </ul>
+    </div>
+
+    <div class="callout callout-info" style="margin-top: 1em;">
+        <h3>Path to 40 Units (Example Trajectory)</h3>
+        <ul style="font-size: 1.25em;">
+            <li><strong>Years 1-2:</strong> 8-14 units (ADUs, acquisition/rehab, STR conversions)</li>
+            <li><strong>Years 3-5:</strong> 20-33 units (Lake Fork Phase 1, continued programs)</li>
+            <li><strong>Years 6-10:</strong> 23-42 units (Lake Fork Phase 2, scaling, employer partnerships)</li>
+            <li><strong>Potential total:</strong> 51-89 units (exceeds 40-unit goal if programs succeed)</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Slide 13: Action Table - Strategy 1 & 2 -->
+<div class="slide">
+    <h1>Complete Action List</h1>
+
+    <p style="font-size: 1.2em; margin-bottom: 0.5em;"><em>Color key: <span style="background: #E3F2FD; padding: 3px 10px;">Phase I (0-6 mo)</span> <span style="background: #E8F5E9; padding: 3px 10px;">Phase II (6-18 mo)</span> <span style="background: #FFF3E0; padding: 3px 10px;">Phase III (18+ mo)</span></em></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40%;">Strategy / Action</th>
+                <th style="width: 15%;">Lead</th>
+                <th style="width: 15%;">Timeline</th>
+                <th style="width: 30%;">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="strategy-header">
+                <td colspan="4"><strong>STRATEGY 1: Policies & Incentives</strong></td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>1.1</strong> Fast-Track Permitting & Development Incentives</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td><span class="badge badge-urgent">IN PROGRESS</span> Dec 31 deadline, $100K</td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>1.2</strong> ADU Ordinance</td>
+                <td>Town</td>
+                <td>0-6 mo</td>
+                <td>Enable accessory dwelling units</td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>1.3</strong> STR Caps or Bans</td>
+                <td>County</td>
+                <td>0-6 mo</td>
+                <td>Manage short-term rental growth</td>
+            </tr>
+            <tr class="phase2">
+                <td><strong>1.5</strong> Long-Term Lease Incentives</td>
+                <td>County</td>
+                <td>6-18 mo</td>
+                <td>Property tax incentives for LTRs</td>
+            </tr>
+            <tr class="strategy-header">
+                <td colspan="4"><strong>STRATEGY 2: Optimize Existing Housing Stock</strong></td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>2.2</strong> Acquisition & Rehabilitation</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td>Purchase/fix existing units</td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>2.3</strong> Housing Preservation Fund</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td>Revolving loan fund for repairs</td>
+            </tr>
+            <tr class="phase2">
+                <td><strong>2.5</strong> Down Payment Assistance Program</td>
+                <td>Town & County</td>
+                <td>6-18 mo</td>
+                <td>Assist 2-3 first-time buyers annually</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Slide 14: Action Table - Strategy 3, 4 & Foundational -->
+<div class="slide">
+    <h1>Complete Action List (cont.)</h1>
+
+    <p style="font-size: 1.2em; margin-bottom: 0.5em;"><em>Color key: <span style="background: #E3F2FD; padding: 3px 10px;">Phase I (0-6 mo)</span> <span style="background: #E8F5E9; padding: 3px 10px;">Phase II (6-18 mo)</span> <span style="background: #FFF3E0; padding: 3px 10px;">Phase III (18+ mo)</span></em></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40%;">Strategy / Action</th>
+                <th style="width: 15%;">Lead</th>
+                <th style="width: 15%;">Timeline</th>
+                <th style="width: 30%;">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="strategy-header">
+                <td colspan="4"><strong>STRATEGY 3: Develop Sustainable Revenue</strong></td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>3.1</strong> Property Tax Allocation (Mill Levy)</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td><span class="badge badge-high">PRIMARY REVENUE</span> 2 mills = $116K/year</td>
+            </tr>
+            <tr class="phase2">
+                <td><strong>3.3</strong> Inclusionary Zoning with Fee in Lieu</td>
+                <td>Town</td>
+                <td>6-18 mo</td>
+                <td>$25K/home (10 homes/year = $250K)</td>
+            </tr>
+            <tr class="phase2">
+                <td><strong>3.4</strong> Partnership Leverage & Fundraising</td>
+                <td>Town & County</td>
+                <td>6-18 mo</td>
+                <td>Employer partnerships, philanthropy</td>
+            </tr>
+            <tr class="strategy-header">
+                <td colspan="4"><strong>STRATEGY 4: Strategic Development & Land Banking</strong></td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>4.1</strong> Land Acquisition/Banking</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td>Prop 123 funding available</td>
+            </tr>
+            <tr class="phase2">
+                <td><strong>4.2</strong> Lake Fork Site Development</td>
+                <td>Town</td>
+                <td>6-18 mo</td>
+                <td>28 units, $2.8-3.5M, PPP model</td>
+            </tr>
+            <tr class="phase2">
+                <td><strong>4.4</strong> Employer Partnerships</td>
+                <td>Town & County</td>
+                <td>6-18 mo</td>
+                <td>Formalize employer housing assistance</td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>4.5</strong> Legislative Partnerships & Advocacy</td>
+                <td>Town & County</td>
+                <td>Ongoing</td>
+                <td>State/federal advocacy coordination</td>
+            </tr>
+            <tr class="strategy-header">
+                <td colspan="4"><strong>FOUNDATIONAL (Cross-Strategy)</strong></td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>F.1</strong> Housing Trust Fund Establishment</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td>Foundation for all revenue</td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>F.2</strong> Housing Authority Formation</td>
+                <td>Town</td>
+                <td>0-6 mo</td>
+                <td>Unlocks multiple funding sources, Prop 123 benefits</td>
+            </tr>
+            <tr class="phase1">
+                <td><strong>F.3</strong> Shared Housing Staff</td>
+                <td>Town & County</td>
+                <td>0-6 mo</td>
+                <td>Housing Coordinator 0.5-0.75 FTE, $60-90K/year</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Slide 15: The Bottom Line -->
+<div class="slide">
+    <h1>The Bottom Line</h1>
+
+    <div class="bottom-line" style="margin: 1em 0;">
+        <p style="font-size: 1.8em;"><strong>You have a solid plan and some real advantages.</strong></p>
+        <p style="font-size: 1.8em; margin-top: 0.3em;"><strong>Now: What are you ready to take on?</strong></p>
+    </div>
+
+    <div class="callout callout-info" style="margin-top: 1.2em;">
+        <h3>Remember</h3>
+        <p>You're not committing to every detail today. You're discussing:</p>
+        <ul style="font-size: 1.25em;">
+            <li>What you have capacity to take on</li>
+            <li>What aligns with your priorities</li>
+            <li>What timeline works for your community</li>
+            <li>How you want to stay accountable</li>
+        </ul>
+    </div>
+
+    <div class="callout callout-success" style="margin-top: 1em;">
+        <h3>The Working Draft Housing Plan has all the details</h3>
+        <p style="font-size: 1.25em;">Action cards, examples, budgets, grant info - use it as your reference</p>
+    </div>
+</div>
+
+<!-- Slide 16: Next Steps -->
+<div class="slide">
+    <h1>What Happens Next</h1>
+
+    <div class="callout callout-success">
+        <h3>After Today's Session</h3>
+        <ol style="font-size: 1.3em; line-height: 1.6;">
+            <li><strong>Finalize the plan:</strong> Review decisions from today and formalize your commitments</li>
+            <li><strong>Formal adoption:</strong> Hold public hearing and formally adopt the Housing Plan</li>
+            <li><strong>Launch priority actions:</strong> Begin implementing the actions you've prioritized (IGA, Trust Fund, etc.)</li>
+            <li><strong>Ongoing implementation:</strong> Maintain momentum through your chosen oversight structure (quarterly sessions, standing committee, etc.)</li>
+            <li><strong>Regular re-evaluation:</strong> Re-visit periodically to adjust to changing conditions and recognize what is working well and what is not. Housing needs evolve - your plan should too.</li>
+        </ol>
+    </div>
+
+    <div class="bottom-line" style="margin-top: 1.2em;">
+        <p style="font-size: 1.8em;"><strong>You've done the hard work of planning.</strong></p>
+        <p style="font-size: 1.8em; margin-top: 0.3em;"><strong>Now it's about choosing your path forward.</strong></p>
+    </div>
+</div>
+
+<!-- Navigation Controls -->
+<div class="nav-controls">
+    <button class="nav-button" onclick="prevSlide()">◀</button>
+    <span class="slide-number"><span id="current-slide">1</span> / <span id="total-slides">16</span></span>
+    <button class="nav-button" onclick="nextSlide()">▶</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    document.getElementById('total-slides').textContent = totalSlides;
+
+    function showSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active');
+        slides[currentSlide].scrollTop = 0; // Reset scroll position
+        document.getElementById('current-slide').textContent = currentSlide + 1;
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            e.preventDefault();
+            prevSlide();
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            showSlide(0);
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            showSlide(totalSlides - 1);
+        }
+    });
+
+    // Click navigation (right side = next, left side = prev)
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('nav-button')) return;
+        if (e.target.closest('.nav-controls')) return;
+
+        const windowWidth = window.innerWidth;
+        const clickX = e.clientX;
+
+        if (clickX > windowWidth / 2) {
+            nextSlide();
+        } else {
+            prevSlide();
+        }
+    });
+
+    // Prevent scrolling with arrow keys on the whole page
+    window.addEventListener('keydown', function(e) {
+        if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+</script>
+
+</body>
+</html>

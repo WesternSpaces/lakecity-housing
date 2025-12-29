@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lake City Housing Plan - Implementation Decisions</title>
+    <style>
+        /* Print-friendly base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        h1 {
+            color: #1a5490;
+            font-size: 2.2em;
+            margin-bottom: 0.3em;
+            border-bottom: 4px solid #1a5490;
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: #1a5490;
+            font-size: 1.5em;
+            margin: 1.5em 0 0.8em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin: 1.2em 0 0.6em 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #34495e;
+            font-size: 1em;
+            margin: 1em 0 0.5em 0;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+
+        .meeting-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #1a5490;
+            margin-bottom: 2em;
+        }
+
+        .meeting-info p {
+            margin: 0.3em 0;
+        }
+
+        /* Callout boxes */
+        .callout {
+            padding: 20px;
+            margin: 1.5em 0;
+            border-radius: 4px;
+            border-left: 5px solid;
+        }
+
+        .callout h3 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        .callout-info {
+            background: #e3f2fd;
+            border-left-color: #1976d2;
+        }
+
+        .callout-info h3 {
+            color: #1976d2;
+        }
+
+        .callout-warning {
+            background: #fff3e0;
+            border-left-color: #f57c00;
+        }
+
+        .callout-warning h3 {
+            color: #f57c00;
+        }
+
+        .callout-danger {
+            background: #ffebee;
+            border-left-color: #d32f2f;
+        }
+
+        .callout-danger h3 {
+            color: #d32f2f;
+        }
+
+        .callout-success {
+            background: #e8f5e9;
+            border-left-color: #388e3c;
+        }
+
+        .callout-success h3 {
+            color: #388e3c;
+        }
+
+        /* Special styling for "Start Here" callout */
+        .callout-info:first-of-type {
+            border: 3px solid #1976d2;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+        }
+
+        /* Highlight boxes for competitive advantages */
+        .advantage-box {
+            background: #f1f8ff;
+            border: 2px solid #0366d6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 1em 0;
+        }
+
+        .advantage-box h3 {
+            color: #0366d6;
+            margin-top: 0;
+        }
+
+        .urgent {
+            background: #fff3e0;
+            border-color: #f57c00;
+        }
+
+        .urgent h3 {
+            color: #f57c00;
+        }
+
+        /* Decision boxes */
+        .decision {
+            background: #fafafa;
+            border: 2px solid #1a5490;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 1.5em 0;
+        }
+
+        .decision h3 {
+            color: #1a5490;
+            margin-top: 0;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .decision-question {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.05em;
+            margin: 0.5em 0 1em 0;
+            font-style: italic;
+        }
+
+        /* Lists */
+        ul {
+            margin: 0.8em 0 0.8em 2em;
+        }
+
+        ol {
+            margin: 0.8em 0 0.8em 2em;
+        }
+
+        li {
+            margin: 0.4em 0;
+        }
+
+        /* Checkboxes */
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin: 0.6em 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            font-size: 0.95em;
+        }
+
+        th {
+            background: #1a5490;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e3f2fd;
+        }
+
+        /* Priority badges */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-urgent {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .badge-critical {
+            background: #f57c00;
+            color: white;
+        }
+
+        .badge-high {
+            background: #1976d2;
+            color: white;
+        }
+
+        .badge-medium {
+            background: #757575;
+            color: white;
+        }
+
+        /* Numbers/Stats */
+        .stat {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1a5490;
+        }
+
+        .money {
+            color: #388e3c;
+            font-weight: bold;
+        }
+
+        .deadline {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        /* Horizontal rules */
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 2em 0;
+        }
+
+        /* Print styles */
+        @media print {
+            @page {
+                margin: 0.4in;
+                size: letter;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+                font-size: 10pt;
+                line-height: 1.25;
+                orphans: 3;
+                widows: 3;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 16pt;
+                margin-bottom: 0.2em;
+                padding-bottom: 5px;
+                page-break-after: avoid;
+            }
+
+            h2 {
+                font-size: 13pt;
+                margin: 0.8em 0 0.4em 0;
+                padding-bottom: 0.2em;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            h3 {
+                font-size: 11pt;
+                margin: 0.6em 0 0.3em 0;
+                page-break-after: avoid;
+            }
+
+            h4 {
+                font-size: 10pt;
+                margin: 0.5em 0 0.25em 0;
+                page-break-after: avoid;
+            }
+
+            .subtitle {
+                font-size: 10pt;
+                margin-bottom: 0.5em;
+            }
+
+            .meeting-info {
+                padding: 8px;
+                margin-bottom: 0.8em;
+                page-break-inside: avoid;
+            }
+
+            /* Compact spacing for print */
+            p {
+                margin: 0.25em 0;
+                orphans: 2;
+                widows: 2;
+            }
+
+            .decision p {
+                margin: 0.2em 0;
+            }
+
+            ul, ol {
+                margin: 0.25em 0 0.25em 1.2em;
+            }
+
+            li {
+                margin: 0.1em 0;
+            }
+
+            /* Boxes and callouts - allow breaking for long ones */
+            .callout {
+                padding: 8px;
+                margin: 0.5em 0;
+                page-break-inside: auto;
+                border-width: 1px;
+                background: #f9f9f9 !important;
+            }
+
+            .callout.callout-info:first-of-type {
+                page-break-inside: avoid;
+            }
+
+            .advantage-box {
+                padding: 8px;
+                margin: 0.5em 0;
+                page-break-inside: auto;
+                border-width: 1px;
+                background: #f9f9f9 !important;
+            }
+
+            .advantage-box h3 {
+                page-break-after: avoid;
+            }
+
+            /* Decision boxes - allow breaking but keep headers with content */
+            .decision {
+                padding: 8px;
+                margin: 0.5em 0;
+                page-break-inside: auto;
+                border-width: 1px;
+                background: white !important;
+            }
+
+            .decision h3 {
+                page-break-after: avoid;
+                margin-bottom: 0.2em;
+                font-size: 11pt;
+            }
+
+            .decision h4 {
+                page-break-after: avoid;
+                margin-top: 0.4em;
+            }
+
+            .decision-question {
+                page-break-after: avoid;
+                margin-bottom: 0.4em;
+            }
+
+            /* Phase boxes */
+            .phase {
+                padding: 8px;
+                margin: 0.4em 0;
+                page-break-inside: auto;
+                background: #f9f9f9 !important;
+            }
+
+            .phase h4 {
+                page-break-after: avoid;
+            }
+
+            .bottom-line {
+                padding: 10px;
+                margin: 0.8em 0;
+                page-break-inside: avoid;
+                background: #333 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* Tables */
+            table {
+                margin: 0.6em 0;
+                font-size: 8pt;
+                page-break-inside: auto;
+                width: 100%;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            th {
+                padding: 4px 2px;
+                background: #1a5490 !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 8pt;
+            }
+
+            td {
+                padding: 3px 2px;
+                font-size: 7.5pt;
+                line-height: 1.2;
+            }
+
+            tr {
+                page-break-inside: avoid;
+            }
+
+            tbody tr:first-child {
+                page-break-before: avoid;
+            }
+
+            /* Strategy header rows in table */
+            tbody tr[style*="background"] {
+                background-color: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+            }
+
+            /* Keep strategy headers with at least 2 rows */
+            tbody tr[style*="background"] + tr {
+                page-break-before: avoid;
+            }
+
+            /* Badges */
+            .badge {
+                padding: 2px 5px;
+                font-size: 7.5pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* Checkboxes - allow breaking between them */
+            .checkbox-item {
+                padding: 2px;
+                margin: 0.15em 0;
+                page-break-inside: avoid;
+            }
+
+            .checkbox-item input[type="checkbox"] {
+                width: 12px;
+                height: 12px;
+            }
+
+            .checkbox-item label {
+                line-height: 1.2;
+            }
+
+            /* Horizontal rules - minimal space */
+            hr {
+                margin: 0.6em 0;
+                border-top: 1px solid #ccc;
+            }
+
+            /* Better page break control */
+            h2 {
+                page-break-before: auto;
+            }
+
+            /* Specific section controls */
+            h2:first-of-type {
+                page-break-before: avoid;
+            }
+
+            /* Keep short callouts together, allow long ones to break */
+            .callout ul {
+                page-break-before: avoid;
+            }
+
+            /* Allow natural breaks after decision option groups */
+            .checkbox-item:nth-child(3) {
+                page-break-before: auto;
+            }
+
+            /* Keep Topic 5 together - it's short */
+            #topic5 {
+                page-break-inside: avoid;
+                page-break-before: auto;
+            }
+
+            /* Try to start Reference Materials on a new page */
+            h2:contains("Reference Materials") {
+                page-break-before: always;
+            }
+        }
+
+        /* Bottom line emphasis */
+        .bottom-line {
+            background: #263238;
+            color: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 2em 0;
+            text-align: center;
+        }
+
+        .bottom-line p {
+            margin: 0.5em 0;
+            font-size: 1.1em;
+        }
+
+        .bottom-line strong {
+            color: #ffd54f;
+        }
+
+        /* Timeline phases */
+        .phase {
+            background: #f8f9fa;
+            border-left: 5px solid #1a5490;
+            padding: 15px;
+            margin: 1em 0;
+        }
+
+        .phase h4 {
+            color: #1a5490;
+            margin-top: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lake City Housing Plan - Implementation Discussion Guide</h1>
+        <p class="subtitle">Steering Group Meeting - November 14, 2025</p>
+
+        <div class="meeting-info">
+            <p><strong>Meeting Goal:</strong> Discuss implementation approach, capacity, and next steps</p>
+            <p><strong>Time:</strong> 2 hours</p>
+            <p><strong>Prepared by:</strong> Western Spaces | Dynamic Planning + Science | Proximity Green | Triple Point Strategic Consulting</p>
+        </div>
+
+        <div class="callout callout-info">
+            <h3>Start Here: Before We Dive In</h3>
+            <ol>
+                <li><strong>Review the Working Draft Housing Plan</strong> (attached) - browse through all chapters to see the full picture</li>
+                <li><strong>Notice: Chapter 5 (Implementation) is blank</strong> - that's intentional</li>
+                <li><strong>This packet contains our initial recommendations</strong> for what could go in that chapter</li>
+                <li><strong>At the meeting:</strong> You decide what fits your capacity, your priorities, and your community's will</li>
+            </ol>
+        </div>
+
+        <div class="callout callout-success">
+            <h3>Our Role at the Meeting</h3>
+            <p>We're handing you the baton. This packet presents options and recommendations based on what we've learned from other rural communities. At the meeting, you'll decide:</p>
+            <ul>
+                <li>What you have the capacity to take on</li>
+                <li>What aligns with your priorities</li>
+                <li>What timeline makes sense for you</li>
+                <li>How much you want to pursue vs. set aside for later</li>
+            </ul>
+            <p><strong>There's no "wrong" answer</strong> - only what works for Lake City.</p>
+        </div>
+
+        <hr>
+
+        <div class="bottom-line">
+            <p><strong>You have a solid plan and some real advantages. Now: What are you ready to take on?</strong></p>
+        </div>
+
+        <hr>
+
+        <h2>Quick Context: What You Have Going For You</h2>
+
+        <div class="callout callout-info">
+            <p><strong>Prop 123 Commitment:</strong> Town committed to 7 units, County to 2 units by end of 2026. Pathways include ADUs, acquisition/rehab, STR conversions, and deed restrictions.</p>
+
+            <p><strong>Fast-Track Permitting:</strong> $100K incentive ($50K Town + $50K County) if completed by Dec 31, 2025. Currently in progress.</p>
+
+            <p><strong>Lake Fork Site:</strong> MHN grant underway for site plans. Town owns the land, utilities nearby. Potential for 28 units.</p>
+
+            <p><strong>Grant Opportunities:</strong> DOLA, Prop 123, LIHTC, USDA 515 all available. Housing coordinator position could have 17:1 ROI (Silverton got $1M+ in grants with $60K coordinator).</p>
+
+            <p><strong>Revenue Options:</strong> Mill levy (2 mills = $116K/year, 75% paid by non-residents), inclusionary zoning fees ($25K/home).</p>
+        </div>
+
+        <hr>
+
+        <h2>Discussion Flow for the Meeting</h2>
+
+        <p><em>We recommend working through these topics in order - each builds on the previous one. Reference the complete action table in the Reference Materials section to discuss specific commitments.</em></p>
+
+        <div class="decision">
+            <h3>Topic 1: Capacity & Structure - Who Does the Work?</h3>
+            <p class="decision-question">Core questions: Do you have staff capacity to implement? What organizational structure do you need?</p>
+
+            <h4>Part A: Housing Coordinator Position</h4>
+            <p>A shared 0.5-0.75 FTE coordinator could handle grant writing, program management, and implementation coordination. Silverton's $60K coordinator brought in $1M+ in grants within 2 years.</p>
+
+            <p><strong>Funding Options to Consider:</strong></p>
+            <div class="checkbox-item">
+                <input type="checkbox" id="coord1">
+                <label for="coord1"><strong>Pursue DOLA grants first</strong> (could cover full cost)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="coord2">
+                <label for="coord2"><strong>Use Fast-Track $100K</strong> (partial or full Year 1 coverage)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="coord3">
+                <label for="coord3"><strong>Local budgets</strong> ($30-45K per jurisdiction/year)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="coord4">
+                <label for="coord4"><strong>Revisit later</strong> - Continue with existing staff for now</label>
+            </div>
+
+            <p style="margin-top: 1em;"><em>Note: Without dedicated capacity, implementation will be limited to what existing staff can manage alongside current duties.</em></p>
+
+            <h4 style="margin-top: 1.5em;">Part B: Housing Authority Formation</h4>
+            <p>A housing authority would unlock CHFA loans, strengthen Prop 123 applications, and provide a dedicated legal entity for housing work. Town Trustees can serve as Board, legal setup cost $2-5K. Silverton used this model successfully.</p>
+
+            <p><strong>Your Options:</strong></p>
+            <div class="checkbox-item">
+                <input type="checkbox" id="ha1">
+                <label for="ha1"><strong>Form Lake City Housing Authority</strong> (Trustees as Board)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="ha2">
+                <label for="ha2"><strong>Not at this time</strong> - Work through existing Town/County structure</label>
+            </div>
+
+            <p style="margin-top: 1em;"><em>These two decisions work well together but can also be pursued independently.</em></p>
+        </div>
+
+        <div class="decision">
+            <h3>Topic 2: Funding - Sustainable Revenue Source?</h3>
+            <p class="decision-question">Core question: Do you want to pursue voter-approved funding, or rely on grants and fees?</p>
+
+            <h4>Option A: Mill Levy (~$116K/year)</h4>
+            <p>A 2-mill property tax would generate predictable annual revenue. 75% paid by out-of-county vacation/seasonal homeowners. Costs residents $12.64 per $100K property value/year.</p>
+
+            <p><strong>If this interests you, when?</strong></p>
+            <div class="checkbox-item">
+                <input type="checkbox" id="mill1">
+                <label for="mill1"><strong>November 2026</strong> (allows time for education campaign)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="mill2">
+                <label for="mill2"><strong>Later</strong> (2027 or beyond, once you have early wins to show)</label>
+            </div>
+
+            <p style="margin-top: 1em;"><em>Would require: PAC formation, ballot language drafting, education campaign ($5-15K campaign budget)</em></p>
+
+            <h4 style="margin-top: 1.5em;">Option B: Grants and Fees Only</h4>
+            <p>Rely on inclusionary zoning fees ($25K/home), grants, and periodic local budget allocations. More variable, but doesn't require voter approval.</p>
+            <div class="checkbox-item">
+                <input type="checkbox" id="mill3">
+                <label for="mill3">Don't pursue mill levy at this time</label>
+            </div>
+        </div>
+
+        <div class="decision" style="page-break-before: always;">
+            <h3>Topic 3: Lake Fork - What's Your Approach?</h3>
+            <p class="decision-question">Core question: When MHN plans are ready, how do you want to proceed?</p>
+
+            <p><strong>Context:</strong> MHN grant underway - will deliver site plans and development roadmap. Potential for 28 units. Town owns the land, utilities nearby.</p>
+
+            <p>Your consultant is working with MHN on site planning and will help guide Lake Fork development options. The key question now is whether you want to pursue this as a major project.</p>
+
+            <h4>General Approaches to Consider:</h4>
+            <p><strong>Public-Private Partnership:</strong> Partner with an experienced affordable housing developer who brings expertise, financing connections, and ongoing management capacity.</p>
+            <p><strong>Town-led:</strong> Town takes the lead on development, requiring significant staff capacity and risk management.</p>
+
+            <h4>Your Options:</h4>
+            <div class="checkbox-item">
+                <input type="checkbox" id="lake1">
+                <label for="lake1">Pursue Lake Fork development - work with consultant on approach</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="lake2">
+                <label for="lake2">Wait to see MHN plans before deciding on approach</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="lake3">
+                <label for="lake3">Not a priority at this time</label>
+            </div>
+        </div>
+
+        <div class="decision">
+            <h3>Topic 4: First Steps - What Launches Now?</h3>
+            <p class="decision-question">Core question: What are you ready to pursue in the next 6 months?</p>
+
+            <h4>Already Underway:</h4>
+            <div class="checkbox-item" style="background: #ffebee;">
+                <input type="checkbox" id="act1" checked disabled>
+                <label for="act1"><strong>Fast-Track Permitting & Development Incentives</strong> (Dec 31 deadline for $100K - includes expedited permitting, fee waivers, density bonuses)</label>
+            </div>
+
+            <h4 style="margin-top: 1.5em;">Actions to Consider:</h4>
+            <div class="checkbox-item">
+                <input type="checkbox" id="act2">
+                <label for="act2"><strong>Housing Trust Fund</strong> - Establish fund structure (needed to receive any revenue)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="act4">
+                <label for="act4"><strong>Housing Coordinator</strong> - Hire or apply for DOLA grants</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="act3">
+                <label for="act3"><strong>Grant Applications</strong> - DOLA, Prop 123, CHFA</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="act6">
+                <label for="act6"><strong>ADU Ordinance</strong> - Enable accessory dwelling units</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="act7">
+                <label for="act7"><strong>STR Management</strong> - Caps and licensing system</label>
+            </div>
+
+            <p style="margin-top: 1em;"><em>Our suggestion: Start with Housing Trust Fund (foundation for everything) and Housing Coordinator (capacity to execute). These enable the other actions.</em></p>
+        </div>
+
+        <div class="decision" id="topic5">
+            <h3>Topic 5: Staying on Track - Oversight Structure</h3>
+            <p class="decision-question">Core question: How do you want to maintain momentum and accountability?</p>
+
+            <h4>Options to Consider:</h4>
+            <div class="checkbox-item">
+                <input type="checkbox" id="gov1">
+                <label for="gov1"><strong>Quarterly joint sessions</strong> (Town Trustees + County Commissioners review progress)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="gov2">
+                <label for="gov2"><strong>Standing housing committee</strong> (this steering group continues in advisory role)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="gov3">
+                <label for="gov3"><strong>Annual review</strong> (lighter touch, less frequent check-ins)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="gov4">
+                <label for="gov4"><strong>Other approach:</strong> _______________</label>
+            </div>
+
+            <p style="margin-top: 1em;"><em>Consider: Regular reporting on units created, funds leveraged, and progress toward goals helps maintain momentum and allows for course corrections.</em></p>
+        </div>
+
+        <hr>
+
+        <h2 style="page-break-before: always;">Reference Materials</h2>
+        <p><em>Use these sections for detailed information during your discussion</em></p>
+
+        <h3>Complete Action List: Strategies, Roles & Timeline</h3>
+        <p><em>This table shows all actions organized by strategy. Use this to discuss and commit to roles and timelines.</em></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 28%;">Strategy / Action</th>
+                    <th style="width: 13%;">Lead</th>
+                    <th style="width: 13%;">Support</th>
+                    <th style="width: 11%;">Timeline</th>
+                    <th style="width: 35%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #e3f2fd;">
+                    <td colspan="5"><strong>STRATEGY 1: Policies & Incentives</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>1.1</strong> Fast-Track Permitting & Development Incentives Package</td>
+                    <td>Town & County</td>
+                    <td>Both</td>
+                    <td>0-6 mo</td>
+                    <td><span class="badge badge-urgent">IN PROGRESS</span> Dec 31 deadline, $100K incentive. Includes expedited permitting, fee waivers, and density bonuses for qualifying affordable projects</td>
+                </tr>
+                <tr>
+                    <td><strong>1.2</strong> ADU Ordinance</td>
+                    <td>Town</td>
+                    <td>County</td>
+                    <td>0-6 mo</td>
+                    <td>Enable accessory dwelling units</td>
+                </tr>
+                <tr>
+                    <td><strong>1.3</strong> STR Caps or Bans</td>
+                    <td>County</td>
+                    <td>Town</td>
+                    <td>0-6 mo</td>
+                    <td>Manage short-term rental growth</td>
+                </tr>
+                <tr>
+                    <td><strong>1.4</strong> STR Licensing and Fee Structure</td>
+                    <td>County/Both</td>
+                    <td>Joint</td>
+                    <td>0-6 mo</td>
+                    <td>Licensing fees cover admin costs only</td>
+                </tr>
+                <tr>
+                    <td><strong>1.5</strong> Long-Term Lease Incentives</td>
+                    <td>County</td>
+                    <td>Town</td>
+                    <td>6-18 mo</td>
+                    <td>Property tax incentives for long-term rentals</td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td colspan="5"><strong>STRATEGY 2: Optimize Existing Housing Stock</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>2.1</strong> Anti-Displacement Policy/Rules</td>
+                    <td>Town & County</td>
+                    <td>Joint</td>
+                    <td>6-18 mo</td>
+                    <td>Protect existing residents from displacement</td>
+                </tr>
+                <tr>
+                    <td><strong>2.2</strong> Acquisition & Rehabilitation</td>
+                    <td>Town & County</td>
+                    <td>Both</td>
+                    <td>6-18 mo</td>
+                    <td>Purchase/fix existing units</td>
+                </tr>
+                <tr>
+                    <td><strong>2.3</strong> Housing Preservation Fund</td>
+                    <td>Town & County</td>
+                    <td>Joint</td>
+                    <td>6-18 mo</td>
+                    <td>Revolving loan fund for repairs</td>
+                </tr>
+                <tr>
+                    <td><strong>2.4</strong> Emergency Home Repair Program</td>
+                    <td>Town & County</td>
+                    <td>State programs</td>
+                    <td>6-18 mo</td>
+                    <td>Partner with DOLA/CHFA programs</td>
+                </tr>
+                <tr>
+                    <td><strong>2.5</strong> Down Payment Assistance Program</td>
+                    <td>Town & County</td>
+                    <td>Joint</td>
+                    <td>6-18 mo</td>
+                    <td>Assist 2-3 first-time homebuyers annually</td>
+                </tr>
+                <tr>
+                    <td><strong>2.6</strong> Weatherization and Energy Efficiency</td>
+                    <td>Town & County</td>
+                    <td>State programs</td>
+                    <td>6-18 mo</td>
+                    <td>Partner with state weatherization programs</td>
+                </tr>
+                <tr style="background: #fff3e0;">
+                    <td colspan="5"><strong>STRATEGY 3: Develop Sustainable Revenue</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>3.1</strong> Property Tax Allocation (Mill Levy)</td>
+                    <td>Town & County</td>
+                    <td>Respective</td>
+                    <td>6-18 mo</td>
+                    <td><span class="badge badge-high">PRIMARY REVENUE</span> 2 mills = $116K/year if passed</td>
+                </tr>
+                <tr>
+                    <td><strong>3.2</strong> Housing Impact/Linkage Fees</td>
+                    <td>Town & County</td>
+                    <td>Both</td>
+                    <td>6-18 mo</td>
+                    <td>Consider development impact fees ($15-25K/year)</td>
+                </tr>
+                <tr>
+                    <td><strong>3.3</strong> Inclusionary Zoning with Fee in Lieu</td>
+                    <td>Town</td>
+                    <td>County</td>
+                    <td>6-18 mo</td>
+                    <td>Fee-in-lieu: $25K/home (e.g., 10 homes/year = $250K)</td>
+                </tr>
+                <tr>
+                    <td><strong>3.4</strong> Partnership Leverage and Community Fundraising</td>
+                    <td>Town & County</td>
+                    <td>Joint</td>
+                    <td>6-18 mo</td>
+                    <td>Employer partnerships, philanthropy ($2M endowment = $100K/year)</td>
+                </tr>
+                <tr style="background: #f1f8ff;">
+                    <td colspan="5"><strong>STRATEGY 4: Strategic Development & Land Banking</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>4.1</strong> Land Acquisition/Banking</td>
+                    <td>Town & County</td>
+                    <td>Both</td>
+                    <td>6-18 mo</td>
+                    <td>Prop 123 funding available</td>
+                </tr>
+                <tr>
+                    <td><strong>4.2</strong> Lake Fork Site Development</td>
+                    <td>Town</td>
+                    <td>County</td>
+                    <td>6-18 mo</td>
+                    <td>28 units, $2.8-3.5M, PPP model recommended</td>
+                </tr>
+                <tr>
+                    <td><strong>4.3</strong> Shared Housing Staff</td>
+                    <td>Town & County</td>
+                    <td>Joint</td>
+                    <td>0-6 mo</td>
+                    <td><span class="badge badge-critical">CRITICAL</span> Housing Coordinator 0.5-0.75 FTE, $60-90K/year</td>
+                </tr>
+                <tr>
+                    <td><strong>4.4</strong> Employer Partnerships</td>
+                    <td>Town & County</td>
+                    <td>Employers</td>
+                    <td>6-18 mo</td>
+                    <td>Formalize employer housing assistance</td>
+                </tr>
+                <tr>
+                    <td><strong>4.5</strong> Legislative Partnerships and Advocacy</td>
+                    <td>Town & County</td>
+                    <td>Both</td>
+                    <td>Ongoing</td>
+                    <td>State/federal advocacy coordination</td>
+                </tr>
+                <tr>
+                    <td><strong>4.6</strong> Construction Workforce Development</td>
+                    <td>Town & County</td>
+                    <td>CMC, Contractors</td>
+                    <td>18+ mo</td>
+                    <td>Train local residents in construction trades</td>
+                </tr>
+                <tr style="background: #f8f9fa;">
+                    <td colspan="5"><strong>FOUNDATIONAL (Cross-Strategy)</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>F.1</strong> Housing Trust Fund Establishment</td>
+                    <td>Town & County</td>
+                    <td>Joint</td>
+                    <td>0-6 mo</td>
+                    <td><span class="badge badge-high">REQUIRED</span> Foundation for all revenue</td>
+                </tr>
+                <tr>
+                    <td><strong>F.2</strong> Housing Authority Formation</td>
+                    <td>Town</td>
+                    <td>County</td>
+                    <td>0-6 mo</td>
+                    <td>Unlocks CHFA loans, Prop 123 benefits (optional but recommended)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h3 style="page-break-before: always;">Possible Timeline</h3>
+
+        <div class="phase">
+            <h4>Months 0-6: Foundation</h4>
+            <ul>
+                <li>Complete Fast-Track Permitting (Dec 31 deadline)</li>
+                <li>Establish Housing Trust Fund</li>
+                <li>Hire Housing Coordinator or secure DOLA grant</li>
+                <li>Form Housing Authority (if pursued)</li>
+                <li>Draft Lake Fork RFP</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <h4>Months 6-18: Programs Launch</h4>
+            <ul>
+                <li>Mill levy campaign and ballot (if November 2026 pursued)</li>
+                <li>Select Lake Fork developer partner</li>
+                <li>Launch ADU incentive program</li>
+                <li>Begin acquisition/rehabilitation activities</li>
+                <li>Implement STR management system</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <h4>Months 18+: Construction & Scale</h4>
+            <ul>
+                <li>Lake Fork construction begins (2027-2029)</li>
+                <li>Expand successful programs</li>
+                <li>Path to 40+ units by 2034</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h3>Budget Scenarios (Year 1)</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Funding Sources</th>
+                    <th>Local Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Best Case</strong></td>
+                    <td>Fast-Track $100K + DOLA grant (est. 25% match)</td>
+                    <td>$15-23K match</td>
+                </tr>
+                <tr>
+                    <td><strong>Middle Case</strong></td>
+                    <td>Fast-Track $100K only</td>
+                    <td>$9-110K</td>
+                </tr>
+                <tr>
+                    <td><strong>Baseline</strong></td>
+                    <td>Fast-Track $100K + local budgets for coordinator</td>
+                    <td>$30-45K each jurisdiction</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h3>Grant & Funding Sources</h3>
+        <p><strong>Local Revenue (from Revenue Feasibility Study):</strong></p>
+        <ul>
+            <li>Mill levy: 2 mills = $116K/year (75% paid by non-residents, costs residents $12.64 per $100K property value/year)</li>
+            <li>Inclusionary zoning: $25K fee-in-lieu per home (10 homes/year = $250K)</li>
+            <li>Local budgets: Town & County general funds</li>
+        </ul>
+        <p><strong>State:</strong> DOLA grants, Prop 123, CHFA LIHTC, DOLA Energy Impact</p>
+        <p><strong>Federal:</strong> USDA Rural Development 515/538, HUD HOME/CDBG, FHLB AHP</p>
+        <p><strong>Private:</strong> Gates Family Foundation, Daniels Fund, local philanthropy ($2M endowment = ~$100K/year)</p>
+        <p><em>See Revenue Feasibility Study and Working Draft Housing Plan for complete details</em></p>
+
+        <hr>
+
+        <h3>Path to 40 Units (Example Trajectory)</h3>
+        <p><strong>Years 1-2:</strong> 8-14 units (ADUs, acquisition/rehab, STR conversions)</p>
+        <p><strong>Years 3-5:</strong> 20-33 units (Lake Fork Phase 1, continued programs)</p>
+        <p><strong>Years 6-10:</strong> 23-42 units (Lake Fork Phase 2, scaling, employer partnerships)</p>
+        <p><strong>Potential total:</strong> 51-89 units (exceeds 40-unit goal if programs succeed)</p>
+
+        <hr>
+
+        <h2 style="page-break-before: always;">Wrapping Up</h2>
+
+        <div class="callout callout-success">
+            <h3>What Happens Next</h3>
+            <ol>
+                <li><strong>November 14th meeting:</strong> Discuss your capacity, priorities, and approach</li>
+                <li><strong>Within 30 days:</strong> Town Trustees & County Commissioners joint session for formal direction</li>
+                <li><strong>Within 60 days:</strong> Launch priority actions based on your decisions</li>
+                <li><strong>Ongoing:</strong> Progress updates through structure you choose (quarterly, annual, etc.)</li>
+            </ol>
+        </div>
+
+        <div class="callout callout-info">
+            <h3>Remember</h3>
+            <p>You're not committing to every detail at the meeting. You're discussing:</p>
+            <ul>
+                <li>What you have capacity to take on</li>
+                <li>What aligns with your priorities</li>
+                <li>What timeline works for your community</li>
+                <li>How you want to stay accountable</li>
+            </ul>
+            <p><strong>The Working Draft Housing Plan has all the details</strong> - action cards, examples, budgets, grant info. Use it as your reference.</p>
+        </div>
+
+        <hr>
+
+        <div class="bottom-line">
+            <p style="font-size: 1.2em;"><strong>You've done the hard work of planning. Now it's about choosing your path forward.</strong></p>
+        </div>
+
+    </div>
+</body>
+</html>
