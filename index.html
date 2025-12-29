@@ -783,8 +783,6 @@
           <li><a href="#about">About</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#team">Team</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -1177,82 +1175,6 @@
   </div>
 </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Frequently Asked Questions</h2>
-        <p>Common questions about the housing plan process</p>
-      </div>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            What is the Comprehensive Affordable Housing Plan?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>The Lake City & Hinsdale County Housing Strategy is a strategic initiative to address housing challenges in our community. We have completed comprehensive community and employer surveys (97 household responses, 21 employer surveys) and are now developing four core housing strategies: policies and incentives, optimizing existing housing stock, strategic development, and sustainable revenue sources.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            Why is this plan necessary?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Our community surveys documented a housing crisis: 77% view housing availability as critical, 24 jobs are unfilled due to lack of housing, and 1 in 5 households are at risk of displacement. With only 28% of housing units occupied year-round and a 0% rental vacancy rate, we need immediate action. The strategy addresses these challenges with specific, actionable solutions developed with extensive community input.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            How can I get involved?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>There are several ways to stay involved:
-            <br>- Attend upcoming Steering Committee meetings and Town/County work sessions
-            <br>- Review meeting materials and presentations available on this website
-            <br>- Sign up for project updates to receive meeting announcements
-            <br>- Contact the project team with questions or input
-            <br>Your continued engagement is essential as we move toward implementation!</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            What is the Lake Fork Project?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>The Lake Fork Project is a planned 28-unit rental housing development on Town-owned land that will significantly increase our rental inventory. The project is supported by state grant funding and represents our largest near-term housing opportunity. It serves as a cornerstone of our housing strategy, providing workforce housing for essential employees like teachers, healthcare workers, and public safety personnel.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            When will the plan be completed?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>The Housing Strategy will be completed by the end of 2025, with key decisions expected in the fall. We've completed the research phase (surveys and demand study) and are now in strategy development through Steering Committee meetings. Joint Town Council and County Commissioner work sessions will guide final policy and implementation decisions. Some actions may begin before the strategy is finalized.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- Newsletter Signup -->
-<section id="contact" class="section">
-  <div class="container">
-    <div class="form-container" style="max-width: 650px; text-align: center;">
-      <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">Stay Informed</h3>
-      <p style="margin-bottom: 1.5rem;">Get the latest updates on housing projects, meetings, and opportunities in Lake City and Hinsdale County.</p>
-      
-      <!-- Your Google Form embed code -->
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe6PmCr5fNYxi1mctw0XzZcsQ8XQQJ8vDT1LzRPkHFL_Vbmyg/viewform?embedded=true" width="100%" height="426" frameborder="0" marginheight="0" marginwidth="0" style="display: block; margin: 0 auto;">Loading…</iframe>
-      
-      <p style="font-size: 0.9rem; color: #6c757d; margin-top: 1rem;">We respect your privacy and will never share your email.</p>
-    </div>
-  </div>
-</section>
 
   <!-- Footer -->
   <footer>
@@ -1297,27 +1219,6 @@
     // Mobile menu toggle
     document.getElementById('hamburger').addEventListener('click', function() {
       document.getElementById('nav-menu').classList.toggle('show');
-    });
-    
-    // FAQ accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-
-      question.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-
-        // Close all items
-        faqItems.forEach(faqItem => {
-          faqItem.classList.remove('active');
-        });
-
-        // Open clicked item if it wasn't already open
-        if (!isActive) {
-          item.classList.add('active');
-        }
-      });
     });
 
     // Phase accordion toggle for meeting archive
