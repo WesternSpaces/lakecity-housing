@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,20L20,50v30h60V50L50,20z' fill='%232c5f73'/%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Lake City and Hinsdale County Housing Strategy develops practical housing solutions through community engagement and data-driven planning in Colorado's most remote county.">
+  <title>Lake City and Hinsdale County Housing Strategy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2c5f73;
+      --secondary-color: #a3b18a;
+      --accent-color: #588157;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --success-color: #4CAF50;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h20v20H0z" fill="%23f8f9fa"/%3E%3Cpath d="M0 10h20M10 0v20" stroke="%23e9ecef" stroke-width="0.5"/%3E%3C/svg%3E');
+      background-attachment: fixed;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo span {
+      color: var(--secondary-color);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem 0;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    
+    .hero-content h1 {
+      font-size: 2.7rem;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: -0.5px;
+    }
+    
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.85rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin: 0 0.5rem 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .btn:hover {
+      background-color: #3a5a40;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .btn-outline {
+      border: 2px solid var(--accent-color);
+      background-color: transparent;
+      color: var(--accent-color);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    
+    .section:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      color: var(--primary-color);
+    }
+    
+    .section-title h2 {
+      font-size: 2.2rem;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent-color);
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #6c757d;
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      border: 2px solid transparent;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      border-color: var(--accent-color);
+    }
+    
+    .card-img {
+      height: 200px;
+      background-color: #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 2rem;
+      overflow: hidden;
+    }
+    
+    .card-content {
+      padding: 1.8rem;
+    }
+    
+    .card-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+      font-size: 1.4rem;
+    }
+    
+    .card-content p {
+      color: #555;
+      line-height: 1.7;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: var(--secondary-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid var(--accent-color);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .left {
+      left: 0;
+    }
+    
+    .right {
+      left: 50%;
+    }
+    
+    .left::after {
+      right: -10px;
+    }
+    
+    .right::after {
+      left: -10px;
+    }
+    
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .timeline-item:nth-child(1) .timeline-content { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) .timeline-content { animation-delay: 0.3s; }
+    .timeline-item:nth-child(3) .timeline-content { animation-delay: 0.5s; }
+    .timeline-item:nth-child(4) .timeline-content { animation-delay: 0.7s; }
+    .timeline-item:nth-child(5) .timeline-content { animation-delay: 0.9s; }
+    
+    .timeline-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    
+    .timeline-content p {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(88, 129, 87, 0.1);
+    }
+    
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .team-member {
+      text-align: center;
+      background-color: white;
+      padding: 1.8rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 380px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    
+    .team-image {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      object-fit: cover;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 3px solid #f0f4f8;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .team-image img {
+      transition: transform 0.5s ease;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .team-member:hover .team-image img {
+      transform: scale(1.05);
+    }
+    
+    .team-member h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.4rem;
+      font-size: 1.3rem;
+    }
+    
+    .team-member p {
+      margin-bottom: 0.3rem;
+      color: #555;
+    }
+    
+    .team-info {
+      flex-grow: 1;
+    }
+    
+    .social-links {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .social-links a {
+      display: inline-block;
+      margin: 0 5px;
+      color: var(--primary-color);
+      transition: color 0.3s, transform 0.3s;
+      text-decoration: none;
+      padding: 5px;
+    }
+    
+    .social-links a:hover {
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      margin-bottom: 1.2rem;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .faq-question {
+      padding: 1.2rem;
+      background-color: #f8f9fa;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      color: var(--dark-color);
+    }
+    
+    .faq-question i {
+      transition: transform 0.3s ease;
+      color: var(--accent-color);
+    }
+    
+    .faq-item.active .faq-question {
+      color: var(--primary-color);
+      background-color: rgba(88, 129, 87, 0.1);
+    }
+    
+    .faq-answer {
+      padding: 0 1.2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: white;
+    }
+    
+    .faq-answer p {
+      padding: 1.2rem 0;
+      color: #555;
+      line-height: 1.7;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 2rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-column h3 {
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-column ul li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+    
+    .partner-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .partner-logo {
+      width: 200px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .partner-logo a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+    
+    .partner-logo:hover a {
+      transform: translateY(-3px);
+    }
+    
+    .partner-logo img {
+      max-height: 80px;
+      max-width: 100%;
+      border-radius: 4px;
+      transition: filter 0.3s ease;
+    }
+    
+    .partner-logo p {
+      color: #ddd;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .back-to-top:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .stat-highlight {
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+    
+    /* Survey embed styles */
+    .survey-embed {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Resources styles */
+    .resources-list {
+      list-style: none;
+    }
+    
+    .resources-list li {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .resources-list li a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      transition: color 0.3s;
+    }
+    
+    .resources-list li a:hover {
+      color: var(--accent-color);
+    }
+    
+    .resources-list li p {
+      margin-top: 0.5rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 992px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item::after {
+        left: 22px;
+      }
+      
+      .left::after, .right::after {
+        left: 22px;
+      }
+      
+      .right {
+        left: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: var(--primary-color);
+        z-index: 1000;
+        padding: 1rem 0;
+      }
+      
+      nav ul.show {
+        display: flex;
+      }
+      
+      nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+      }
+      
+      nav ul li a {
+        padding: 1rem 0;
+        display: block;
+      }
+      
+      .header-container {
+        position: relative;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="logo.png" alt="Lake City Housing Strategy Logo" height="100" style="vertical-align: middle;">
+      </div>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#working-group">Updates</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<!-- Hero -->
+<section class="hero" style="background-image: url('cover-small.jpg'); position: relative; overflow: hidden; background-size: cover; background-position: center; min-height: 450px; display: flex; align-items: center; text-align: center; color: white;">
+  <!-- No overlay - let the image show naturally -->
+  
+  <div class="container" style="position: relative; z-index: 2; width: 100%; padding: 2rem 1rem;">
+    <div class="hero-content" style="max-width: 900px; margin: 0 auto;">
+      <h1 style="font-size: clamp(1.8rem, 5vw, 2.7rem); margin-bottom: clamp(1rem, 3vw, 1.2rem); text-shadow: 0 3px 6px rgba(0,0,0,0.6); letter-spacing: -0.5px; line-height: 1.2;">Lake City and Hinsdale County<br>Housing Strategy</h1>
+      
+      <p style="font-size: clamp(1rem, 3vw, 1.3rem); margin-bottom: clamp(1.5rem, 5vw, 2.5rem); max-width: 800px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 4px rgba(0,0,0,0.6); line-height: 1.5;">Building housing solutions that work for our community, now and for generations to come.</p>
+      
+      <div style="background: rgba(255,255,255,0.95); padding: 2rem; border-radius: 8px; margin: 2rem auto; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 700px;">
+        <h3 style="color: #2c5f73; margin-bottom: 1rem; font-size: 1.4rem; text-shadow: none;">Our Vision</h3>
+        <p style="font-size: 1.1rem; color: #555; font-style: italic; line-height: 1.6; margin: 0; text-shadow: none;">
+          "To provide housing opportunities across all life stages, enabling residents to find appropriate homes as they begin careers, raise families, and retire in the community they love."
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>About the Project</h2>
+        <p>Understanding our community's housing needs and developing actionable solutions</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Simple House Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Housing Challenges</h3>
+            <p>Our 2024 community surveys documented a housing crisis: <span class="stat-highlight">77% view housing availability as critical</span>, <span class="stat-highlight">24 jobs unfilled due to housing shortages</span>, and <span class="stat-highlight">1 in 5 households at risk of displacement</span>. With only <span class="stat-highlight">28% of housing occupied year-round</span> and <span class="stat-highlight">0% rental vacancy</span>, immediate action is essential for community sustainability.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Simple Chart Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+              <line x1="2" y1="20" x2="22" y2="20"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Project Goals</h3>
+            <p>Our project will identify specific housing needs, develop strategies for both new construction and preservation, identify funding options, and create a clear roadmap to address housing challenges. We're focusing on practical solutions that can be implemented in our unique mountain community context.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Simple People Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Community Involvement</h3>
+            <p>Community input drives our strategy development. We completed comprehensive surveys with 97 households and 21 employers, and continue gathering feedback through Steering Committee meetings and Town/County work sessions. Stay connected through this website and attend upcoming meetings as we finalize actionable housing solutions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Working Group -->
+<section id="working-group" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Project Updates & Meeting Resources</h2>
+      <p>Stay informed with the latest meeting materials and project developments</p>
+    </div>
+
+    <!-- Public Review Section -->
+    <div style="background: linear-gradient(135deg, #2c5f73 0%, #3a7a94 100%); padding: 2.5rem; border-radius: 12px; margin-bottom: 3rem; color: white; text-align: center;">
+      <h3 style="color: white; margin-bottom: 1rem; font-size: 1.8rem;">Draft Housing Plan - Public Review</h3>
+      <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.95;">The draft Lake City & Hinsdale County Housing Plan is now available for public comment. Review the full plan or executive summary and share your feedback.</p>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;">
+        <a href="https://acrobat.adobe.com/id/urn:aaid:sc:US:cac52dcc-6049-4e3c-a67c-0c4be4f50b26" target="_blank" class="btn" style="background-color: white; color: #2c5f73; font-size: 1.1rem; padding: 1rem 2rem;">
+          <i class="fas fa-file-pdf" style="margin-right: 8px;"></i> Full Housing Plan
+        </a>
+        <a href="https://acrobat.adobe.com/id/urn:aaid:sc:US:d3eabd37-0285-48f8-a92a-2807518e0432" target="_blank" class="btn" style="background-color: rgba(255,255,255,0.2); color: white; border: 2px solid white; font-size: 1.1rem; padding: 1rem 2rem;">
+          <i class="fas fa-file-alt" style="margin-right: 8px;"></i> Executive Summary
+        </a>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.85;">Comment period open through January 12, 2026</p>
+    </div>
+
+    <!-- Visual Separator -->
+    <div style="margin: 3rem 0; padding: 1px; background: linear-gradient(to right, transparent, #588157, transparent);"></div>
+
+    <!-- Joint Session #3 Section -->
+    <div style="margin-bottom: 4rem;">
+      <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; text-align: center; font-size: 1.8rem;">Joint Town & County Session #3</h3>
+      <p style="text-align: center; margin-bottom: 2rem; color: #666;">November 19, 2025 - Implementation decisions and next steps</p>
+
+      <div class="cards">
+        <!-- Joint Session 3 Presentation -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Presentation Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Joint Session #3 Presentation</h3>
+            <p>Implementation discussion guide covering capacity assessment, priority actions, and next steps for housing strategy launch.</p>
+            <div style="margin-top: 15px;">
+              <a href="Jointsession3_presentation.html" target="_blank" class="btn">
+                <i class="fas fa-presentation"></i> View Presentation
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Joint Session 3 Read-Ahead -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Document Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Joint Session #3 Read-Ahead Packet</h3>
+            <p>Comprehensive implementation discussion guide with action priorities, resource requirements, and decision points.</p>
+            <div style="margin-top: 15px;">
+              <a href="Joint-Read-Ahead-3.pdf" target="_blank" class="btn">
+                <i class="fas fa-file-pdf"></i> Download Packet
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Separator -->
+    <div style="margin: 3rem 0; padding: 1px; background: linear-gradient(to right, transparent, #588157, transparent);"></div>
+
+    <!-- Steering Committee Meeting #3 Section -->
+    <div style="background-color: #f8f9fa; padding: 3rem 2rem; border-radius: 12px; margin-bottom: 3rem;">
+      <div class="section-title" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--primary-color);">Housing Steering Committee - Meeting #3</h2>
+        <p>November 14, 2025 - Implementation priorities, capacity, and next steps</p>
+      </div>
+
+      <div class="cards">
+        <!-- Meeting 3 Presentation -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Presentation Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Meeting #3 Presentation</h3>
+            <p>Implementation discussion guide covering what you have going for you, priority actions, and decisions needed to launch the housing strategy.</p>
+            <div style="margin-top: 15px;">
+              <a href="meeting_three.html" target="_blank" class="btn">
+                <i class="fas fa-presentation"></i> View Presentation
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meeting #3 Packet -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Document Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Meeting #3 Packet</h3>
+            <p>Implementation discussion guide with action priorities, resource requirements, timeline recommendations, and key decisions.</p>
+            <div style="margin-top: 15px;">
+              <a href="meeting_packet_3.pdf" target="_blank" class="btn">
+                <i class="fas fa-file-pdf"></i> Download Packet
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Separator -->
+    <div style="margin: 3rem 0; padding: 1px; background: linear-gradient(to right, transparent, #588157, transparent);"></div>
+
+    <!-- Joint Work Session #1 Section -->
+    <div style="margin-bottom: 4rem;">
+      <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; text-align: center; font-size: 1.8rem;">Joint Town & County Work Session #1</h3>
+      <p style="text-align: center; margin-bottom: 2rem; color: #666;">August 13, 2025 - Town Council and County Commissioners joint commitment session</p>
+      
+      <div class="cards">
+        <!-- Joint Session Presentation -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Presentation Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Joint Session Presentation</h3>
+            <p>Interactive slides presenting housing crisis evidence, community demand study results, and strategic goals for collaborative action.</p>
+            <div style="margin-top: 15px;">
+              <a href="Jointsession_presentation.html" target="_blank" class="btn">
+                <i class="fas fa-presentation"></i> View Presentation
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Joint Session Read-Ahead -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Document Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Joint Session Read-Ahead Packet</h3>
+            <p>Comprehensive briefing document with housing crisis data, draft strategy goals, and community demand study executive summary.</p>
+            <div style="margin-top: 15px;">
+              <a href="Joint-Read-Ahead.pdf" target="_blank" class="btn">
+                <i class="fas fa-file-pdf"></i> Download Packet
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Visual Separator -->
+    <div style="margin: 3rem 0; padding: 1px; background: linear-gradient(to right, transparent, #588157, transparent);"></div>
+    
+    <!-- Steering Committee Meetings Section -->
+    <div style="background-color: #f8f9fa; padding: 3rem 2rem; border-radius: 12px; margin-bottom: 3rem;">
+      <div class="section-title" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--primary-color);">Housing Steering Committee - Meeting #1</h2>
+        <p>July 30, 2025 - Collaborative planning session developing actionable housing solutions</p>
+      </div>
+      
+      <div class="cards">
+        <!-- Meeting Presentation -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Presentation Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Meeting #1 Presentation</h3>
+            <p>Review key findings, data analysis, and strategic discussions from our first housing committee meeting through interactive presentation materials.</p>
+            <div style="margin-top: 15px;">
+              <a href="meeting_one.html" target="_blank" class="btn">
+                <i class="fas fa-presentation"></i> View Presentation
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Interactive Simulator -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Calculator/Slider Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+              <line x1="8" y1="6" x2="16" y2="6"></line>
+              <line x1="8" y1="10" x2="16" y2="10"></line>
+              <line x1="8" y1="14" x2="16" y2="14"></line>
+              <line x1="8" y1="18" x2="16" y2="18"></line>
+              <line x1="4" y1="6" x2="4" y2="6"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Housing Strategy Simulator</h3>
+            <p>Explore different housing scenarios and their community impacts using our interactive planning tool. Test various combinations of rental vs. ownership housing and income targeting strategies.</p>
+            <div style="margin-top: 15px;">
+              <a href="simulator.html" target="_blank" class="btn">
+                <i class="fas fa-calculator"></i> Launch Simulator
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Meeting #1 Packet -->
+        <div class="card">
+          <div class="card-img" style="height: 180px; background-color: #f0f4f8; padding: 20px;">
+            <!-- Document Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#588157" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Meeting #1 Packet</h3>
+            <p>Access the comprehensive meeting packet with detailed data analysis, market findings, and supporting documents from our first steering committee session.</p>
+            <div style="margin-top: 15px;">
+              <a href="meeting_packet_1.pdf" target="_blank" class="btn">
+                <i class="fas fa-file-pdf"></i> Download Packet
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Meeting #1 Takeaway -->
+    <div style="background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-top: 3rem;">
+      <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; text-align: center;">Takeaway from Meeting #1</h3>
+      
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <p style="font-size: 1.2rem; line-height: 1.6; color: #555; margin-bottom: 1.5rem;">
+          Building housing for year-round community stability is essential for our future. We need housing for families and essential workers across all sectors to keep our community alive and functioning.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: #666;">
+        This will not be easy, but with community support we can start working towards a more equitable housing market that serves our people and our economy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  <!-- Timeline -->
+  <section id="timeline" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Project Timeline</h2>
+        <p>Key milestones in our housing planning process, this is an iterative process and this timeline will shift as we progress.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Project Kickoff</h3>
+            <p>April 2025</p>
+            <p>Formation of Housing Working Group and initial stakeholder engagement</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Community Surveys Launch</h3>
+            <p>May 2025</p>
+            <p>Household and employer surveys deployed - 97 households and 21 employers participated</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Steering Committee Meeting #1</h3>
+            <p>July 30, 2025</p>
+            <p>Review market findings, establish housing goals, and set production targets</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Joint Town & County Work Session</h3>
+            <p>August 13, 2025</p>
+            <p>Town Council and County Commissioners joint session on housing strategy commitment</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Steering Committee Meeting #2</h3>
+            <p>September 4, 2025</p>
+            <p>Review and refine four core housing strategies with financial feasibility focus</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Steering Committee Meeting #3</h3>
+            <p>November 14, 2025</p>
+            <p>Implementation priorities, capacity assessment, and action planning</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Joint Town & County Session #3</h3>
+            <p>November 19, 2025</p>
+            <p>Final implementation decisions and formal commitment to next steps</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Implementation Launch</h3>
+            <p>December 2025 - Ongoing</p>
+            <p>Begin priority actions including fast-track permitting and housing trust fund establishment</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Implementation Phase Box -->
+      <div style="background-color: #f8f9fa; padding: 2rem; border-radius: 8px; margin-top: 3rem; border-left: 4px solid var(--success-color);">
+        <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Now: Implementation Phase</h3>
+        <p style="color: #666; margin-bottom: 1.5rem;">The planning phase is complete. We're now moving into implementation with priority actions underway.</p>
+
+        <div style="display: grid; gap: 1rem;">
+          <div style="background-color: white; padding: 1rem; border-radius: 6px;">
+            <strong style="color: var(--success-color);">Fast-Track Permitting</strong>
+            <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.95rem;">Streamlined permitting process to be completed by December 31, 2025</p>
+          </div>
+
+          <div style="background-color: white; padding: 1rem; border-radius: 6px;">
+            <strong style="color: var(--success-color);">Housing Trust Fund</strong>
+            <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.95rem;">Establishing dedicated funding mechanism for housing programs</p>
+          </div>
+
+          <div style="background-color: white; padding: 1rem; border-radius: 6px;">
+            <strong style="color: var(--success-color);">Lake Fork Development</strong>
+            <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.95rem;">28-unit rental housing project on Town-owned land moving forward</p>
+          </div>
+        </div>
+
+        <p style="margin-top: 1.5rem; margin-bottom: 0; color: #555; font-size: 0.9rem;">
+          <i class="fas fa-info-circle" style="color: var(--accent-color); margin-right: 6px;"></i>
+          Stay connected for updates on implementation progress
+        </p>
+      </div>
+    </div>
+  </section>
+  
+<!-- Team -->
+<section id="team" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Project Team</h2>
+      <p>Meet the experts working on Lake City's housing solutions</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2.5rem;">
+      <!-- Sarah -->
+      <div style="background-color: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem; text-align: center; position: relative; height: 380px; overflow: hidden;">
+        <!-- Top content -->
+        <div style="margin-bottom: 40px;">
+          <!-- Image -->
+          <div style="width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 3px solid #f0f4f8; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+            <img src="Sarah.png" alt="Sarah Brown McClain" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <!-- Text -->
+          <h3 style="color: #2c5f73; margin-bottom: 0.3rem; font-size: 1.2rem;">Sarah Brown McClain</h3>
+          <p style="margin-bottom: 0.2rem; color: #555; font-size: 0.95rem;">Western Spaces, LLC</p>
+          <p style="color: #555; font-size: 0.95rem;">Project Lead and Housing Specialist</p>
+        </div>
+        
+        <!-- Bottom link -->
+        <div style="position: absolute; bottom: 1.5rem; left: 0; right: 0; border-top: 1px solid #eee; padding-top: 0.8rem;">
+          <a href="https://westernspaces.co" target="_blank" style="color: #2c5f73; text-decoration: none; display: inline-block; font-size: 0.95rem;">
+            <i class="fas fa-globe"></i> Company Website
+          </a>
+        </div>
+      </div>
+      
+      <!-- Ethan -->
+      <div style="background-color: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem; text-align: center; position: relative; height: 380px; overflow: hidden;">
+        <!-- Top content -->
+        <div style="margin-bottom: 40px;">
+          <!-- Image -->
+          <div style="width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 3px solid #f0f4f8; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+            <img src="Ethan.png" alt="Ethan Mobley" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <!-- Text -->
+          <h3 style="color: #2c5f73; margin-bottom: 0.3rem; font-size: 1.2rem;">Ethan Mobley</h3>
+          <p style="margin-bottom: 0.2rem; color: #555; font-size: 0.95rem;">Dynamic Planning & Science</p>
+          <p style="color: #555; font-size: 0.95rem;">Land Use Feasibility and GIS</p>
+        </div>
+        
+        <!-- Bottom link -->
+        <div style="position: absolute; bottom: 1.5rem; left: 0; right: 0; border-top: 1px solid #eee; padding-top: 0.8rem;">
+          <a href="https://dynamicplanning.co" target="_blank" style="color: #2c5f73; text-decoration: none; display: inline-block; font-size: 0.95rem;">
+            <i class="fas fa-globe"></i> Company Website
+          </a>
+        </div>
+      </div>
+      
+      <!-- Grant -->
+      <div style="background-color: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem; text-align: center; position: relative; height: 380px; overflow: hidden;">
+        <!-- Top content -->
+        <div style="margin-bottom: 40px;">
+          <!-- Image -->
+          <div style="width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 3px solid #f0f4f8; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+            <img src="Grant.png" alt="Grant Bennett" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <!-- Text -->
+          <h3 style="color: #2c5f73; margin-bottom: 0.3rem; font-size: 1.2rem;">Grant Bennett</h3>
+          <p style="margin-bottom: 0.2rem; color: #555; font-size: 0.95rem;">Proximity Green</p>
+          <p style="color: #555; font-size: 0.95rem;">Development Specialist</p>
+        </div>
+        
+        <!-- Bottom link -->
+        <div style="position: absolute; bottom: 1.5rem; left: 0; right: 0; border-top: 1px solid #eee; padding-top: 0.8rem;">
+          <a href="https://proximitygreen.com" target="_blank" style="color: #2c5f73; text-decoration: none; display: inline-block; font-size: 0.95rem;">
+            <i class="fas fa-globe"></i> Company Website
+          </a>
+        </div>
+      </div>
+      
+      <!-- Jeff -->
+      <div style="background-color: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem; text-align: center; position: relative; height: 380px; overflow: hidden;">
+        <!-- Top content -->
+        <div style="margin-bottom: 40px;">
+          <!-- Image -->
+          <div style="width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 3px solid #f0f4f8; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+            <img src="Jeff.png" alt="Jeff Moffett" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <!-- Text -->
+          <h3 style="color: #2c5f73; margin-bottom: 0.3rem; font-size: 1.2rem;">Jeff Moffett</h3>
+          <p style="margin-bottom: 0.2rem; color: #555; font-size: 0.95rem;">Triple Point Strategic Consulting</p>
+          <p style="color: #555; font-size: 0.95rem;">Financial Feasibility</p>
+        </div>
+        
+        <!-- Bottom link -->
+        <div style="position: absolute; bottom: 1.5rem; left: 0; right: 0; border-top: 1px solid #eee; padding-top: 0.8rem;">
+          <a href="https://tpsconsulting.net" target="_blank" style="color: #2c5f73; text-decoration: none; display: inline-block; font-size: 0.95rem;">
+            <i class="fas fa-globe"></i> Company Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about the housing plan process</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            What is the Comprehensive Affordable Housing Plan?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>The Lake City & Hinsdale County Housing Strategy is a strategic initiative to address housing challenges in our community. We have completed comprehensive community and employer surveys (97 household responses, 21 employer surveys) and are now developing four core housing strategies: policies and incentives, optimizing existing housing stock, strategic development, and sustainable revenue sources.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            Why is this plan necessary?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Our community surveys documented a housing crisis: 77% view housing availability as critical, 24 jobs are unfilled due to lack of housing, and 1 in 5 households are at risk of displacement. With only 28% of housing units occupied year-round and a 0% rental vacancy rate, we need immediate action. The strategy addresses these challenges with specific, actionable solutions developed with extensive community input.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            How can I get involved?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>There are several ways to stay involved:
+            <br>- Attend upcoming Steering Committee meetings and Town/County work sessions
+            <br>- Review meeting materials and presentations available on this website
+            <br>- Sign up for project updates to receive meeting announcements
+            <br>- Contact the project team with questions or input
+            <br>Your continued engagement is essential as we move toward implementation!</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            What is the Lake Fork Project?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>The Lake Fork Project is a planned 28-unit rental housing development on Town-owned land that will significantly increase our rental inventory. The project is supported by state grant funding and represents our largest near-term housing opportunity. It serves as a cornerstone of our housing strategy, providing workforce housing for essential employees like teachers, healthcare workers, and public safety personnel.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            When will the plan be completed?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>The Housing Strategy will be completed by the end of 2025, with key decisions expected in the fall. We've completed the research phase (surveys and demand study) and are now in strategy development through Steering Committee meetings. Joint Town Council and County Commissioner work sessions will guide final policy and implementation decisions. Some actions may begin before the strategy is finalized.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Newsletter Signup -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="form-container" style="max-width: 650px; text-align: center;">
+      <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">Stay Informed</h3>
+      <p style="margin-bottom: 1.5rem;">Get the latest updates on housing projects, meetings, and opportunities in Lake City and Hinsdale County.</p>
+      
+      <!-- Your Google Form embed code -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe6PmCr5fNYxi1mctw0XzZcsQ8XQQJ8vDT1LzRPkHFL_Vbmyg/viewform?embedded=true" width="100%" height="426" frameborder="0" marginheight="0" marginwidth="0" style="display: block; margin: 0 auto;">Loading…</iframe>
+      
+      <p style="font-size: 0.9rem; color: #6c757d; margin-top: 1rem;">We respect your privacy and will never share your email.</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="text-align: center; padding: 2rem 0;">
+        <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Project Partners</h3>
+        
+        <div class="partner-logos">
+          <!-- Town of Lake City Logo/Link -->
+          <div class="partner-logo">
+            <a href="https://www.townoflakecityco.gov/" target="_blank">
+              <img src="https://streamline.imgix.net/9b1e7af0-f53a-4d51-aa28-812ace7af50b/ce3755c9-0ecb-4fd8-b6b4-122fa026ba48/tolc-logo-2.png?ixlib=rb-1.1.0&w=2000&h=2000&fit=max&or=0&s=cf61f1e8b3fc0dab87c36743f701011a" alt="Town of Lake City Logo" style="background-color: white; padding: 8px; border-radius: 4px;">
+            </a>
+            <p>Town of Lake City</p>
+          </div>
+          
+          <!-- Hinsdale County Logo/Link -->
+          <div class="partner-logo">
+            <a href="https://hinsdalecounty.colorado.gov/" target="_blank">
+              <img src="https://hinsdalecounty.colorado.gov/sites/hinsdalecounty/files/double%20logo.jpg" alt="Hinsdale County Logo">
+            </a>
+            <p>Hinsdale County</p>
+          </div>
+          
+          <!-- DOLA Logo/Link -->
+          <div class="partner-logo">
+            <a href="https://cdola.colorado.gov/" target="_blank">
+              <img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" alt="Department of Local Affairs Logo" style="background-color: white; padding: 8px; border-radius: 4px;">
+            </a>
+            <p>Department of Local Affairs</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Western Spaces, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    });
+    
+    // FAQ accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        faqItems.forEach(faqItem => {
+          faqItem.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't already open
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          document.getElementById('nav-menu').classList.remove('show');
+        }
+      });
+    });
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', function() {
+      var backToTop = document.getElementById('back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTop.style.opacity = '1';
+      } else {
+        backToTop.style.opacity = '0';
+      }
+    });
+  </script>
+</body>
+</html>
