@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,20L20,50v30h60V50L50,20z' fill='%232c5f73'/%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Lake Fork Housing Project is a proposed workforce and affordable housing development on Henson Street in Lake City, Colorado, part of the broader Lake City Housing Strategy.">
+  <title>Lake Fork Housing Project | Lake City Housing Plan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2c5f73;
+      --secondary-color: #a3b18a;
+      --accent-color: #588157;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li { margin-left: 1.5rem; }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--secondary-color);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 2rem 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.9rem, 5vw, 2.9rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.6);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      max-width: 760px;
+      margin: 0 auto;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      line-height: 1.5;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background-color: rgba(88, 129, 87, 0.85);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .section { padding: 4.5rem 0; }
+    .section.alt { background-color: white; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent-color);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .prose {
+      max-width: 780px;
+      margin: 0 auto;
+      color: #444;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .prose p { margin-bottom: 1.4rem; }
+
+    .lead {
+      font-size: 1.15rem;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: #f0f4f8;
+      aspect-ratio: 16 / 9;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.03); }
+
+    .gallery-note {
+      text-align: center;
+      font-style: italic;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2.2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 1rem;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox-nav:hover { opacity: 1; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    .back-link {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .back-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .back-link a:hover { color: var(--accent-color); }
+
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 2rem;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      color: #ddd;
+      margin-top: 2rem;
+    }
+
+    .partner-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .partner-logo {
+      width: 200px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .partner-logo a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .partner-logo:hover a { transform: translateY(-3px); }
+
+    .partner-logo img {
+      max-height: 80px;
+      max-width: 100%;
+      border-radius: 4px;
+    }
+
+    .partner-logo p {
+      color: #ddd;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: var(--primary-color);
+        z-index: 1000;
+        padding: 1rem 0;
+      }
+
+      nav ul.show { display: flex; }
+
+      nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      nav ul li a {
+        padding: 1rem 0;
+        display: block;
+      }
+
+      .header-container { position: relative; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#" class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="../"><img src="../logo.png" alt="Lake City Housing Strategy Logo" height="100" style="vertical-align: middle;"></a>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="../index.html#final-report">Plan</a></li>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#process">Process</a></li>
+          <li><a href="./" class="active">Lake Fork</a></li>
+          <li><a href="../index.html#team">Team</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="background-image: url('render-02.jpg');">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tag">Lake City Housing Strategy</span>
+        <h1>Lake Fork Housing Project</h1>
+        <p>A proposed workforce and affordable housing development on the Lake Fork site near Henson Street in Lake City, Colorado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section alt">
+    <div class="container">
+      <div class="section-title">
+        <h2>About the Project</h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">The Lake Fork Housing Project is part of the broader Lake City Housing Strategy effort aimed at addressing the community's growing housing shortage and the increasing difficulty for local workers, families, and residents to find attainable year-round housing.</p>
+
+        <p>The Lake Fork site was identified as a unique opportunity to help meet this need through the development of thoughtfully designed housing within close proximity to downtown, community services, schools, and employment centers.</p>
+
+        <p>The project is intended to create high-quality housing opportunities while respecting the historic character, small-town identity, and natural setting of Lake City. Current planning efforts are exploring a mix of residential unit types, community amenities, parking, landscaping, and pedestrian-friendly design features that support long-term community livability and resilience. The design team is also evaluating floodplain-sensitive site planning, sustainability measures, accessibility, and compatibility with the surrounding neighborhood and Historic Preservation District.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Renderings Gallery -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Early Conceptual Renderings</h2>
+        <p style="max-width: 720px; margin: 1.2rem auto 0; color: #6c757d; font-size: 1rem;">A first look at the design direction. Concepts continue to be refined through community workshops.</p>
+      </div>
+
+      <div class="gallery" id="gallery">
+        <div class="gallery-item" data-img="render-03.jpg"><img src="render-03.jpg" alt="Aerial view of conceptual Lake Fork housing development showing varied facade colors"></div>
+        <div class="gallery-item" data-img="render-02.jpg"><img src="render-02.jpg" alt="Street-level view of conceptual Lake Fork housing units with mountains in background"></div>
+        <div class="gallery-item" data-img="render-08.jpg"><img src="render-08.jpg" alt="Aerial view showing housing site relative to river corridor and tree cover"></div>
+        <div class="gallery-item" data-img="render-09.jpg"><img src="render-09.jpg" alt="Riverside deck amenity with seating areas"></div>
+        <div class="gallery-item" data-img="render-04.jpg"><img src="render-04.jpg" alt="Pedestrian pathway between residential units"></div>
+        <div class="gallery-item" data-img="render-01.jpg"><img src="render-01.jpg" alt="Two-story residential units with gable roofs"></div>
+        <div class="gallery-item" data-img="render-10.jpg"><img src="render-10.jpg" alt="View of residential units with mountains and trees beyond"></div>
+        <div class="gallery-item" data-img="render-06.jpg"><img src="render-06.jpg" alt="Aerial site plan view showing parking and unit arrangement"></div>
+        <div class="gallery-item" data-img="render-05.jpg"><img src="render-05.jpg" alt="Parking area between residential units"></div>
+        <div class="gallery-item" data-img="render-07.jpg"><img src="render-07.jpg" alt="Parking area with mountain backdrop"></div>
+        <div class="gallery-item" data-img="render-11.jpg"><img src="render-11.jpg" alt="Winter view of residential units in snow"></div>
+      </div>
+
+      <p class="gallery-note">Renderings courtesy of the project design team. Concepts are illustrative and subject to refinement through ongoing community workshops.</p>
+    </div>
+  </section>
+
+  <!-- Community Engagement -->
+  <section class="section alt">
+    <div class="container">
+      <div class="section-title">
+        <h2>Community Engagement</h2>
+      </div>
+
+      <div class="prose">
+        <p>The planning and design process is being guided by a multidisciplinary consultant team including planners, architects, engineers, and housing specialists working closely with the Town and community.</p>
+
+        <p>Community involvement is a critical part of the project. Through a series of public workshops and design charrettes, residents are invited to review concepts, provide feedback, and help shape the future of the development. The first community workshop, held on October 30th, focused on site massing and layout concepts. Ongoing workshops continue to refine site amenities, architectural materials, floor plans, circulation, and overall neighborhood character based on public input.</p>
+
+        <p>The Lake Fork Housing Project represents an important step toward strengthening Lake City's housing supply and supporting a resilient, sustainable year-round community.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to plan -->
+  <section class="back-link">
+    <div class="container">
+      <a href="../"><i class="fas fa-arrow-left" style="margin-right: 6px;"></i> Back to the Housing Plan</a>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">&#10094;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">&#10095;</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="text-align: center; padding: 2rem 0;">
+        <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Project Partners</h3>
+
+        <div class="partner-logos">
+          <div class="partner-logo">
+            <a href="https://www.townoflakecityco.gov/" target="_blank">
+              <img src="https://streamline.imgix.net/9b1e7af0-f53a-4d51-aa28-812ace7af50b/ce3755c9-0ecb-4fd8-b6b4-122fa026ba48/tolc-logo-2.png?ixlib=rb-1.1.0&w=2000&h=2000&fit=max&or=0&s=cf61f1e8b3fc0dab87c36743f701011a" alt="Town of Lake City Logo" style="background-color: white; padding: 8px; border-radius: 4px;">
+            </a>
+            <p>Town of Lake City</p>
+          </div>
+
+          <div class="partner-logo">
+            <a href="https://hinsdalecounty.colorado.gov/" target="_blank">
+              <img src="https://hinsdalecounty.colorado.gov/sites/hinsdalecounty/files/double%20logo.jpg" alt="Hinsdale County Logo">
+            </a>
+            <p>Hinsdale County</p>
+          </div>
+
+          <div class="partner-logo">
+            <a href="https://cdola.colorado.gov/" target="_blank">
+              <img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" alt="Department of Local Affairs Logo" style="background-color: white; padding: 8px; border-radius: 4px;">
+            </a>
+            <p>Department of Local Affairs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2026 Western Spaces, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = galleryItems[index].dataset.img;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      lightboxImg.src = galleryItems[currentIndex].dataset.img;
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      lightboxImg.src = galleryItems[currentIndex].dataset.img;
+    }
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-next').addEventListener('click', nextImage);
+    document.getElementById('lightbox-prev').addEventListener('click', prevImage);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+
+    window.addEventListener('scroll', function() {
+      var backToTop = document.getElementById('back-to-top');
+      backToTop.style.opacity = window.pageYOffset > 300 ? '1' : '0';
+    });
+
+    document.getElementById('back-to-top').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  <script data-goatcounter="https://lakecityhousing.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
